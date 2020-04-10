@@ -25,7 +25,7 @@ Scalable tool for initial machine enumeration.
 
 
 
-![Images](TireFireAction.png)
+![Images](Modules.png)
 
 
 
