@@ -7,7 +7,8 @@
 - In ftp() add the variables "tfp_title", "ftp_comment", "ftp_lst", "ftp", and "scan".
 - fpt_lst should be a list of the following commands you would like to add (index 0 = scan 1)
 - scan will be the variable passed in determining which command to run
-- be sure to add a doit(command) to the bottom of the function.
+- Be sure to add a doit(command) to the bottom of the function.
+- Add your function to home_lst (line 32).
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/master/Images/Modules.png)
 ## Simple syntax
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/master/Images/TireFireAction.png)
