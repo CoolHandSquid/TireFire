@@ -18,6 +18,7 @@
 - sudo ./Build.sh 
 ## Useage
 * TireFire **NEEDS** to be run in terminater. 
+* Termianator does not allow root to run the --new-tab function programatically, therefore TireFire may only function from a non-root context.
 * Once Build.sh has been run TireFire will have been added to your path. 
 * Type "TireFire" and you will be yeeting with a cyber **cannon!**
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/master/Images/CoolHandSquid.jpg)
