@@ -1,5 +1,5 @@
 # TireFire
-* Scalable Python tool for initial machine enumeration.
+* Scalable Python tool for initial enumeration.
 * TireFire is a product of *19% security solutions.*
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/master/Images/Tire_fire.jpg)
 ## Easily add modules
