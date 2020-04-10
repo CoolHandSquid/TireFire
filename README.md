@@ -19,7 +19,7 @@
 ## Useage
 * TireFire **NEEDS** to be run in terminater. 
 * Once Build.sh has been run TireFire will have been added to your path. 
-* Type "TireFire" and you will be yeeting!
+* Type "TireFire" and you will be yeeting with a cyber **cannon**!
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/master/Images/CoolHandSquid.jpg)
 
 
