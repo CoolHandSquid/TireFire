@@ -17,7 +17,7 @@
 - cd TireFire
 - sudo ./Build.sh 
 ## Useage
-* TireFire needs to be run in terminater. 
+* TireFire **NEEDS** to be run in terminater. 
 * Once Build.sh has been run TireFire will have been added to your path. 
 * Type "TireFire" and you will be yeeting!
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/master/Images/CoolHandSquid.jpg)
