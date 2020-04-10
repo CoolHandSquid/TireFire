@@ -1,66 +1,13 @@
 # TireFire
-Scalable tool for initial machine enumeration.
+Scalable Python tool for initial machine enumeration.
 
 
 
 
+![alt text](https://github.com/CoolHandSquid/TireFire/blob/master/Images/Tire_fire.jpg)
 
 
-
-
-
-
-
-![Images](Tire_fire.jpg)
-
-
-
-
-
-
-
-
-
-
-
-
-
-![Images](Modules.png)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-![Images](TireFireAction.png)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+![alt text](https://github.com/CoolHandSquid/TireFire/blob/master/Images/Modules.png)
 
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/master/Images/CoolHandSquid.jpg)
 
