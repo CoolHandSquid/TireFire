@@ -1,13 +1,13 @@
 # TireFire
 * Scalable Python tool for initial machine enumeration.
-* TireFire is a product of *19% security solutions.
+* TireFire is a product of *19% security solutions.*
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/master/Images/Tire_fire.jpg)
 ## Easily add modules
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/master/Images/Modules.png)
 ## Simple syntax
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/master/Images/TireFireAction.png)
 ## How to build
-- git clone 
+- git clone https://github.com/CoolHandSquid/TireFire.git
 - cd TireFire
 - sudo ./Build.sh 
 ## Useage
