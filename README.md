@@ -62,7 +62,7 @@ Scalable tool for initial machine enumeration.
 
 
 
-![Images](CoolHandSquid.jpg)
+![alt text](https://github.com/CoolHandSquid/TireFire/blob/master/Images/CoolHandSquid.jpg)
 
 
 
