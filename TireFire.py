@@ -29,7 +29,7 @@ class Display_class:
 
 home_title	= "Home"
 home_comment= "#####"
-home_lst	= ["netdiscover()", "nmap()", "dns()", "web()", "webapp()", "smb()", "ProtoBrute()"]
+home_lst	= ["netdiscover()", "nmap()", "dns()", "web()", "webapp()", "smb()", "ldap()", "ProtoBrute()"]
 home 		= Display_class(home_title, home_comment, home_lst)
 
 yes		= [ "yes","y", "yee yee", "yee", "yeah", "yeet", "yeet cannon", "yea", "yeah", "ye"]
@@ -177,6 +177,21 @@ def smb():
 		#SquidsSmbTool
 		dn 		= input("What is the domain/workgroup? (example yeet.wtf)\n> ")
 		command = "SquidsSmbTool {} {}".format(ip, dn)
+	doit(command)
+
+def ldap():
+	ldap_title	= "ldap"
+	ldap_comment= "#####"
+	ldap_lst 	= ["Ldap nmap scan", "ldapsearch", "ldapsearch4base"]
+	ldap 		= Display_class(ldap_title, ldap_comment, ldap_lst)
+	scan 		= Display(ldap)
+
+	if scan 	== 1:
+		command = "nmap -p 389 --script ldap-search -Pn {}".format(ip)
+	elif scan 	== 2:
+		command = "ldapsearch -h {} -x".format(ip)
+	elif scan 	==3:
+		command = "ldapsearch -h {} -x -s base namingcontexts".format(ip)
 	doit(command)
 
 def ProtoBrute():
