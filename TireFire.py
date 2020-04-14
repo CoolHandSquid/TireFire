@@ -66,7 +66,7 @@ def nmap():
 
 	if scan		== 1:
 		#SquidsSmartScan
-		command = "nmap {} && nmap -sC -sV {} && nmap -p- -Pn {}".format(ip, ip, ip)
+		command = "nmap -Pn {} && nmap -sC -sV -Pn {} && nmap -p- -Pn {}".format(ip, ip, ip)
 	elif scan 	== 2:
 		#Quick Scan
 		command = "nmap {}".format(ip)
@@ -302,7 +302,6 @@ Example Syntax:	192.168.11.137
 		qwsq1		= os.popen("ping -c 1 {}".format(ip)).read()
 		ttl			= qwsq1.split()[12]
 		ttl_table= """
-**Ping Hop Table**
 Operating System 	TCP	UDP ICMP
 Linux				64	64	255
 OS/2				64	64	255
@@ -311,8 +310,9 @@ MS Windows 95-ME	32	32	255
 MS WIndows 			128	128	255
 Windows Other		128	128	255
 """
-		print(ttl_table)
-		command	= "echo -e \"\\e[5m\\e[31m\\e[1m{}\\e[0m\"; echo \"http://www.kellyodonnell.com/content/determining-os-type-ping\" ; nmap {} && nmap -sC -sV {} && nmap -p- {}".format(ttl, ip, ip, ip)
+		print(Fore.RED + "**Ping Hop Table**")
+		print(Fore.YELLOW + ttl_table + Fore.WHITE)
+		command	= "echo -e \"\\e[5m\\e[31m\\e[1m{}\\e[0m\"; echo \"http://www.kellyodonnell.com/content/determining-os-type-ping\" ; nmap -Pn {} && nmap -sC -sV -Pn {} && nmap -p- -Pn {}".format(ttl, ip, ip, ip)
 		doit(command)
 		main()
 	else:
