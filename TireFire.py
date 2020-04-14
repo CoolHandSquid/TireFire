@@ -183,17 +183,27 @@ def smb():
 
 def ldap():
 	ldap_title	= "ldap"
-	ldap_comment= "#####"
-	ldap_lst 	= ["Ldap nmap scan", "ldapsearch", "ldapsearch4base"]
+	ldap_comment= "Grep Through BigDump to get make a userlist"
+	ldap_lst 	= ["Ldap nmap scan", "ldapsearch", "ldapsearch_NamingContextsDump", "ldapsearch_BigDump"]
 	ldap 		= Display_class(ldap_title, ldap_comment, ldap_lst)
 	scan 		= Display(ldap)
 
+	global nc
+	try:
+		q1 = input("Do you want to change the namingcontext?\nIt is currently {}\n> ".format(nc))
+	except NameError:
+		nc = "DC=YeetCannon,DC=local"			
+		q1 = input("Do you want to change the namingcontext?\nIt is currently {}\n> ".format(nc))
+	if q1 in yes:
+		nc = input("What is the namingcontext? (Example Syntax: DC=YeetCannon,DC=local)\n> ")
 	if scan 	== 1:
 		command = "nmap -p 389 --script ldap-search -Pn {}".format(ip)
 	elif scan 	== 2:
 		command = "ldapsearch -h {} -x".format(ip)
-	elif scan 	==3:
+	elif scan 	== 3:
 		command = "ldapsearch -h {} -x -s base namingcontexts".format(ip)
+	elif scan 	== 4:
+		command = "ldapsearch -h {} -x -b '{}'".format(ip, nc)
 	doit(command)
 
 def ProtoBrute():
