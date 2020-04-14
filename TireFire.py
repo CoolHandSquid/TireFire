@@ -2,6 +2,8 @@
 import os
 import subprocess
 import sys
+from colorama import Fore, Style
+
 #TireFire is a 19% Security Solution Created by CoolHandSquid and inspired by MaBraFoo
 
 
@@ -318,8 +320,8 @@ Windows Other		128	128	255
 
 def Display(foo):
 	#used to create the list of options to choose from. Display() calls input_validation() to handle input properly.
-	print(foo.title)
-	print(foo.comment)
+	print(Fore.RED + foo.title)
+	print(Fore.YELLOW + foo.comment + Fore.WHITE)
 	for i in range(len(foo.lst)):
 		print("{}. {}".format(i + 1, (foo.lst[i]).replace("()", "")))
 	di1 = input_validation(foo) 
@@ -353,7 +355,8 @@ def input_validation(objec):
 def doit(command):
 	#called to execute command in new terminator tab
 	os.system("terminator --new-tab -x 'echo \"{}\"; {}; $SHELL'".format(command, command))
-	print("{}\n".format(command))
+	print(Fore.GREEN + "{}\n".format(command))
+	print(Style.RESET_ALL)
 	return
 
 def main():
