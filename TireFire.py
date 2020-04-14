@@ -183,8 +183,8 @@ def smb():
 
 def ldap():
 	ldap_title	= "ldap"
-	ldap_comment= "Grep Through BigDump to get make a userlist"
-	ldap_lst 	= ["Ldap nmap scan", "ldapsearch", "ldapsearch_NamingContextsDump", "ldapsearch_BigDump"]
+	ldap_comment= "Grep Through BigDump to make a userlist"
+	ldap_lst 	= ["ldap nmap scan", "ldapsearch", "ldapsearch_NamingContextsDump", "ldapsearch_BigDump"]
 	ldap 		= Display_class(ldap_title, ldap_comment, ldap_lst)
 	scan 		= Display(ldap)
 
