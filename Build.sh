@@ -50,6 +50,9 @@ then
 	git clone https://github.com/maurosoria/dirsearch.git
 fi
 
+#Install terminator
+apt-get install terminator -y
+
 #Verify wordlists
 wordlists=("/usr/share/wordlists/rockyou.txt" "/usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt" "/usr/share/dirbuster/wordlists/directory-list-2.3-small.txt" "/usr/share/seclists/Usernames/Names/names.txt")
 for wordlist in "${wordlists[@]}"
