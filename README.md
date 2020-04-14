@@ -1,6 +1,6 @@
 # TireFire
 * Scalable Python tool for initial enumeration.
-* TireFire is a simple platform to place your order of enumeration operations for each protocol and is easily changed to support your methodologies as they are changed and appeneded.
+* TireFire is a simple platform to place your order of enumeration operations for each protocol and is easily altered to support your methodologies as they are maleated and appeneded.
 * TireFire is a product of *19% security solutions.*
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/master/Images/Tire_fire.jpg)
 ## Easily add modules
