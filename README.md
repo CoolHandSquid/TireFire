@@ -24,7 +24,7 @@
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/master/Images/CoolHandSquid.jpg)
 ## Contact
 Please contact me at coolhandsquid@yahoo.com for suggestions and ideas!
-![alt text](<script src="https://www.hackthebox.eu/badge/150258"></script>)
+![alt text](https://www.hackthebox.eu/badge/150258)
 
 
 
