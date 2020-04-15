@@ -16,7 +16,7 @@
 ## How to build
 - git clone https://github.com/CoolHandSquid/TireFire.git
 - cd TireFire
-- sudo ./Build.sh 
+- sudo /bin/bash ./Build.sh 
 ## Useage
 * TireFire **NEEDS** to be run in terminater. 
 * Once Build.sh has been run TireFire will have been added to your path. 
