@@ -31,7 +31,7 @@ class Display_class:
 
 home_title	= "Home"
 home_comment= "#####"
-home_lst	= ["netdiscover()", "nmap()", "dns()", "web()", "webapp()", "smb()", "ldap()", "ProtoBrute()"]
+home_lst	= ["nmap()", "dns()", "web()", "webapp()", "smb()", "ldap()", "ProtoBrute()"]
 home 		= Display_class(home_title, home_comment, home_lst)
 
 yes		= [ "yes","y", "yee yee", "yee", "yeah", "yeet", "yeet cannon", "yea", "yeah", "ye"]
@@ -44,19 +44,6 @@ tfpath	= tfpath[:-12]
 ##################################################################################################################################################################################
 ##################################################################################################################################################################################
 #Main Modules Begin
-def netdiscover():
-	netdiscover_title	= "netdiscover"
-	netdiscover_comment	= "#####"
-	netdiscover_lst		= ["Netdiscover"]
-	netdiscover 		= Display_class(netdiscover_title, netdiscover_comment, netdiscover_lst)
-	scan				= Display(netdiscover)
-
-	q1	= input("What is the class C subnet you would like to scan?\nExample Syntax: 192.168.11.0\n> ")
-	if scan == 1:
-		#netdiscover
-		command = "sudo netdiscover -r {}".format(q1)
-		doit(command)
-
 def nmap():
 	nmap_title	= "nmap"
 	nmap_comment= "#####"
@@ -190,7 +177,7 @@ def ldap():
 
 	global nc
 	try:
-		q1 = input("Do you want to change the namingcontext?\nIt is currently {}\n> ".format(nc))
+		q1 = input("Do you want to change the namingcontext? (Yes or No)\nIt is currently {}\n> ".format(nc))
 	except NameError:
 		nc = "DC=YeetCannon,DC=local"			
 		q1 = input("Do you want to change the namingcontext?\nIt is currently {}\n> ".format(nc))
@@ -238,7 +225,7 @@ What is the port of the machine that we will be enumerating?
 Example Syntax: 8000
 > """)
 				portlist.append(port)
-				q1	= input("Would you like to add another port?\n> ")
+				q1	= input("Would you like to add another port? (yes or no)\n> ")
 				if q1.lower() in yes:
 					continue
 				else:
@@ -292,16 +279,18 @@ def dirsearch():
 ##################################################################################################################################################################################
 ##################################################################################################################################################################################
 ##################################################################################################################################################################################
-#Tire Fire Fundamentals Begin
+#Tire Fire Start Begin
 def start():
 	#Everything that happens before main() is called. IP is set here (can also be set manually at bottom of script to eliminate start())
+	if termstat() == False:
+		os.system("terminator -x 'TireFire'")
+		print("Later Tater")
+		quit()
 	print("Welcome to TireFire!")
 	sq1	= input("Would you like to kick this off with a netdiscover?\n> ")
 	sq1	= sq1.lower()
-	if sq1 in yes: 
-		nq1	= input("What is the class C subnet you would like to scan?\nExample Syntax: 192.168.11.0\n> ")
-		command = "sudo netdiscover -r {}".format(nq1)
-		doit(command)
+	if sq1 in yes:
+		netdiscover()
 	global ip
 	ip 	= input("""
 What is the IP of the machine that we will be enumerating?
@@ -328,6 +317,35 @@ Windows Other		128	128	255
 	else:
 		main()
 
+def termstat():
+	#used to determine if your terminator session will be able to execute --new-tab 
+	curuser	= subprocess.getoutput("id")
+	pid	= os.getpid()
+	if "uid=0(root)" not in curuser:
+		return True
+	ppid = subprocess.getoutput("ps -o ppid= {}".format(pid))
+	gpid = subprocess.getoutput("ps -o ppid= {}".format(ppid))
+	psline = subprocess.getoutput("ps -aux | grep {} | grep -v grep".format(gpid))
+	if "terminator" not in psline:
+		return False
+	else:
+		return True
+
+def netdiscover():
+	while True:
+		q1	= input("What is the class C subnet you would like to scan?\nExample Syntax: 192.168.11.0\n> ")
+		if q1[-1] == "0" and q1[-2] == ".":
+			command = "sudo netdiscover -r {}".format(q1)
+			break
+		else:
+			print("Some decent input would be nice... remember, a class c subnet will end with .0")
+	doit(command)
+
+#TireFire Start END
+##################################################################################################################################################################################
+##################################################################################################################################################################################
+##################################################################################################################################################################################
+#Tire Fire Fundamentals Begin
 def Display(foo):
 	#used to create the list of options to choose from. Display() calls input_validation() to handle input properly.
 	print(Fore.RED + foo.title)
