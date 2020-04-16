@@ -92,9 +92,13 @@ def web():
 	if scan 	== 1:
 		#QuickWebScan
 		for port in portlist:
-			command		= "nikto -host http://{}:{}".format(ip, port, ip, port)
+			if port == "443" or port == "8443":
+				protocol = "https"
+			else:
+				protocol = "http"
+			command		= "nikto -host {}://{}:{}".format(protocol, ip, port, ip, port)
 			doit(command)
-			command 	= "python3 {}/dirsearch/dirsearch.py -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -e php -f -t 20 -u http://{}:{} --simple-report dirsearchsimple_{}:{}".format(tfpath, ip, port, ip, port)
+			command 	= "python3 {}/dirsearch/dirsearch.py -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -e php -f -t 20 -u {}://{}:{} --simple-report dirsearchsimple_{}:{}".format(tfpath, protocol, ip, port, ip, port)
 			doit(command)
 			command		= "nmap -vv --reason -Pn -sV -p {} --script=`banner,(http* or ssl*) and not (brute or broadcast or dos or external or http-slowloris* or fuzzer)` {}".format(port, ip)
 			doit(command)
@@ -109,7 +113,11 @@ def web():
 	elif scan 	== 4:
 		#nikto
 		port = web_portlist(2)
-		command = "nikto -host http://{}:{}".format(ip, port, ip, port)
+		if port == "443" or port == "8443":
+				protocol = "https"
+		else:
+			protocol = "http"
+		command = "nikto -host {}://{}:{}".format(protocol, ip, port, ip, port)
 		doit(command)
 	elif scan 	== 5:
 		#dirsearch
@@ -254,25 +262,31 @@ Example Syntax: 8000
 def dirsearch():
 	#Just dirsearch, but too hefty to put in the main section
 	q1	= input("Would you like this scan to be recursive?\n> ")
-	print("What is the port of the machine that we will be enumerating?")
-	number = 1
-	for port in portlist:
-		print("{}	{}:{}".format(number, ip, port))
-		number += 1
-	while True:
-		try:	
-			port	= int(input("> "))
-			break
-		except ValueError:
-			print("Invalid input, try again... dirtbag")
-			continue
-	port -= 1
-	port = portlist[port]
-	
-	if q1 in yes:
-		command = "python3 {}/dirsearch/dirsearch.py -w /usr/share/dirbuster/wordlists/directory-list-2.3-small.txt -e php,exe,sh,py,html,pl -f -t 20 -u http://{}:{} -r -R 10 --simple-report dirsearchsimple_{}-{}".format(tfpath, ip, port, ip, port)
+	if len(portlist) != 1:
+		print("What is the port of the machine that we will be enumerating?")
+		number = 1
+		for port in portlist:
+			print("{}	{}:{}".format(number, ip, port))
+			number += 1
+		while True:
+			try:	
+				port	= int(input("> "))
+				break
+			except ValueError:
+				print("Invalid input, try again... dirtbag")
+				continue
+		port -= 1
 	else:
-		command	= "python3 {}/dirsearch/dirsearch.py -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -e php -f -t 20 -u http://{}:{} --simple-report dirsearchsimple_{}-{}".format(tfpath, ip, port, ip, port)
+		port = 0
+	port = portlist[port]
+	if port == "443" or port == "8443":
+		protocol = "https"
+	else:
+		protocol = "http"
+	if q1 in yes:
+		command = "python3 {}/dirsearch/dirsearch.py -w /usr/share/dirbuster/wordlists/directory-list-2.3-small.txt -e php,exe,sh,py,html,pl -f -t 20 -u {}://{}:{} -r -R 10 --simple-report dirsearchsimple_{}-{}".format(tfpath, protocol, ip, port, ip, port)
+	else:
+		command	= "python3 {}/dirsearch/dirsearch.py -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -e php -f -t 20 -u {}://{}:{} --simple-report dirsearchsimple_{}-{}".format(tfpath, protocol, ip, port, ip, port)
 	doit(command)
 	return
 #WEB STUFF END
