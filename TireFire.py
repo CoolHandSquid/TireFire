@@ -86,19 +86,18 @@ def web():
 	web_comment= "#####"
 	web_lst	= ["QuickWebScan", "SquidsSqlMapTool", "SquidsWfuzzTool", "nikto", "dirsearch", "nmap VulnScan", "Squids ShellShock NSE"]
 	web 		= Display_class(web_title, web_comment, web_lst)
+	create_portlist()
 	scan 		= Display(web)
-
-	web_portlist(1)
+	#create_portlist will only create the portlist one time. 
+	#Select_port will return a dictionary with the keyname being the port and the value being the protocol (http or https)
+	
 	if scan 	== 1:
 		#QuickWebScan
-		for port in portlist:
-			if port == "443" or port == "8443":
-				protocol = "https"
-			else:
-				protocol = "http"
+		portdict = select_port()
+		for port, protocol in portdict.items():
 			command		= "nikto -host {}://{}:{}".format(protocol, ip, port, ip, port)
 			doit(command)
-			command 	= "python3 {}/dirsearch/dirsearch.py -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -e php -f -t 20 -u {}://{}:{} --simple-report dirsearchsimple_{}:{}".format(tfpath, protocol, ip, port, ip, port)
+			command 	= "python3 {}/dirsearch/dirsearch.py -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -e php -f -t 20 -u {}://{}:{}".format(tfpath, protocol, ip, port)
 			doit(command)
 			command		= "nmap -vv --reason -Pn -sV -p {} --script=`banner,(http* or ssl*) and not (brute or broadcast or dos or external or http-slowloris* or fuzzer)` {}".format(port, ip)
 			doit(command)
@@ -112,21 +111,28 @@ def web():
 		doit(command)
 	elif scan 	== 4:
 		#nikto
-		port = web_portlist(2)
-		if port == "443" or port == "8443":
-				protocol = "https"
-		else:
-			protocol = "http"
-		command = "nikto -host {}://{}:{}".format(protocol, ip, port, ip, port)
-		doit(command)
+		portdict = select_port()
+		for port, protocol in portdict.items():
+			command = "nikto -host {}://{}:{}".format(protocol, ip, port)
+			doit(command)
 	elif scan 	== 5:
 		#dirsearch
-		dirsearch()
+		portdict = select_port()
+		for port, protocol in portdict.items():
+			q1	= input("Would you like this scan to be recursive?\n> ")
+			if q1 in yes:
+				command = "python3 {}/dirsearch/dirsearch.py -w /usr/share/dirbuster/wordlists/directory-list-2.3-small.txt -e php,exe,sh,py,html,pl -f -t 20 -u {}://{}:{} -r -R 10".format(tfpath, protocol, ip, port)
+				doit(command)
+			else:
+				command	= "python3 {}/dirsearch/dirsearch.py -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -e php -f -t 20 -u {}://{}:{}".format(tfpath, protocol, ip, port)
+				doit(command)
+		return
 	elif scan 	== 6:
 		#nmap VulnScan
-		port = web_portlist(2)
-		command = "nmap -vv --reason -Pn -sV -p {} --script=`banner,(http* or ssl*) and not (brute or broadcast or dos or external or http-slowloris* or fuzzer)` {}".format(port, ip)
-		doit(command)
+		portdict = select_port()
+		for port, protocol in portdict.items():
+			command = "nmap -vv --reason -Pn -sV -p {} --script=`banner,(http* or ssl*) and not (brute or broadcast or dos or external or http-slowloris* or fuzzer)` {}".format(port, ip)
+			doit(command)
 	elif scan 	== 7:
 		#Squids ShellShock NSE
 		for port in portlist:
@@ -218,46 +224,67 @@ def ProtoBrute():
 ##################################################################################################################################################################################
 ##################################################################################################################################################################################
 #WEB Extra Stuff BEGIN
-def web_portlist(use):
-	#Called to initially create the portlist (use = 1), then is called later to select a single port to scan (use = 2)
-	if use == 1:
-		global portlist
-		try: 
-			if len(portlist) > 0:
-				pass
-		except:
-			portlist	= []
-			while True:
-				port 	= input("""
+def create_portlist():
+	#creates portlist once, then is passed.
+	global portlist
+	try:
+		null = len(portlist)
+		return
+	except:
+		portlist = ["All"]
+		while True:
+			port 	= input("""
 What is the port of the machine that we will be enumerating?
 Example Syntax: 8000
 > """)
-				portlist.append(port)
-				q1	= input("Would you like to add another port? (yes or no)\n> ")
-				if q1.lower() in yes:
-					continue
-				else:
-					break
-	elif use == 2:
-		while True:
-			num = 1
+			portlist.append(port)
+			q1	= input("Would you like to add another port? (yes or no)\n> ")
+			if q1.lower() in yes:
+				continue
+			else:
+				break
+	return portlist
+
+def select_port():
+	#gives the opportunity to select a single port or all of them and then dynamicaly assigns either http or https
+	while True:
+		num = 1
+		portdict = {}
+		if len(portlist) == 2:
+			q1 = 2
+			break
+		else:
 			print("Which of these ports would you like to scan against?(left number please)")
 			for i in portlist:
 				print("{}. {}".format(num, i))
 				num += 1
-			port = int(input("> "))
-
-			if port not in range(len(portlist)):
-				print(len(portlist))
+			try:
+				q1 = int(input("> "))
+				break
+			except KeyboardInterrupt:
+				quit()
+			except:
+				print("Bad input homie. Lets try again.")
 				continue
+			if q1 not in range(len(portlist)):
+				print("Bad input homie. Lets try again.")
+				continue
+	q1 = q1 - 1		
+	port = portlist[q1]
+	print(port)
+	if port == "All":
+		for i in portlist:
+			if i == "All":
+				continue
+			if i == "443" or i == "8443":
+				portdict[i] = "https"
 			else:
-		 		port = port - 1
-		 		port = portlist[port]
-		 		break
-		print(port)
-		return port
+				portdict[i] = "http"
+	elif port == "443" or port == "8443":
+		portdict[port] = "https"
 	else:
-		return
+		portdict[port] = "http"
+	return portdict
 
 def dirsearch():
 	#Just dirsearch, but too hefty to put in the main section
@@ -284,9 +311,9 @@ def dirsearch():
 	else:
 		protocol = "http"
 	if q1 in yes:
-		command = "python3 {}/dirsearch/dirsearch.py -w /usr/share/dirbuster/wordlists/directory-list-2.3-small.txt -e php,exe,sh,py,html,pl -f -t 20 -u {}://{}:{} -r -R 10 --simple-report dirsearchsimple_{}-{}".format(tfpath, protocol, ip, port, ip, port)
+		command = "python3 {}/dirsearch/dirsearch.py -w /usr/share/dirbuster/wordlists/directory-list-2.3-small.txt -e php,exe,sh,py,html,pl -f -t 20 -u {}://{}:{} -r -R 10".format(tfpath, protocol, ip, port)
 	else:
-		command	= "python3 {}/dirsearch/dirsearch.py -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -e php -f -t 20 -u {}://{}:{} --simple-report dirsearchsimple_{}-{}".format(tfpath, protocol, ip, port, ip, port)
+		command	= "python3 {}/dirsearch/dirsearch.py -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -e php -f -t 20 -u {}://{}:{}".format(tfpath, protocol, ip, port)
 	doit(command)
 	return
 #WEB STUFF END
@@ -310,7 +337,7 @@ def start():
 What is the IP of the machine that we will be enumerating?
 Example Syntax:	192.168.11.137
 > """)
-	sq2	= input("Would you like to kick off a nmap scan?\n> ")
+	sq2	= input("Would you like to start a nmap scan?\n> ")
 	if sq2 in yes:
 		qwsq1		= os.popen("ping -c 1 {}".format(ip)).read()
 		ttl			= qwsq1.split()[12]
