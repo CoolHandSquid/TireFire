@@ -48,6 +48,7 @@ done
 if test ! -f "./dirsearch/dirsearch.py"
 then
 	git clone https://github.com/maurosoria/dirsearch.git
+	chmod -R 777 dirsearch/
 fi
 
 #Install terminator
