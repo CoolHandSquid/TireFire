@@ -119,7 +119,7 @@ def web():
 		#dirsearch
 		portdict = select_port()
 		for port, protocol in portdict.items():
-			q1	= input("Would you like this scan to be recursive?\n> ")
+			q1	= input("Would you like this scan on port {} to be recursive?\n> ".format(port))
 			if q1 in yes:
 				command = "python3 {}/dirsearch/dirsearch.py -w /usr/share/dirbuster/wordlists/directory-list-2.3-small.txt -e php,exe,sh,py,html,pl -f -t 20 -u {}://{}:{} -r -R 10".format(tfpath, protocol, ip, port)
 				doit(command)
@@ -232,17 +232,23 @@ def create_portlist():
 		return
 	except:
 		portlist = ["All"]
-		while True:
-			port 	= input("""
+		port 	= input("""
 What is the port of the machine that we will be enumerating?
 Example Syntax: 8000
 > """)
-			portlist.append(port)
-			q1	= input("Would you like to add another port? (yes or no)\n> ")
-			if q1.lower() in yes:
-				continue
-			else:
+		portlist.append(port)
+		while True:	
+			q1	= input("Add another port? (q if your list is complete)\n> ")
+			if q1.lower() == "q":
 				break
+			else:
+				try:
+					port = str(int(q1))
+					portlist.append(port)
+					continue
+				except:
+					print("That looks like bad input. Lets try again.")
+					continue
 	return portlist
 
 def select_port():
