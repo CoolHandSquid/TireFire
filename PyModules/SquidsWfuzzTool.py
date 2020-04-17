@@ -10,11 +10,12 @@ while True:
 	q1 = input("""
 Would you like to WFUZZ?
 1. The Input to a page?
-2. A URL
+2. A URL verb/noun
+3. A URL
 > """)
 	try:
 		q1 = int(q1)
-		if q1 == 1 or q1 == 2:
+		if q1 == 1 or q1 == 2 or q1 == 3:
 			break
 		else:
 			continue
@@ -61,5 +62,10 @@ example http://192.168.11.130/yee.php?verb=thing
 		command 	= 'wfuzz -c -w /usr/share/seclists/Discovery/Web-Content/burp-parameter-names.txt -w /usr/share/seclists/Fuzzing/LFI/LFI-LFISuite-pathtotest.txt -u {}'.format(q2)
 	doit(command)
 
-
-
+elif q1	== 3:
+	q2 = input("""
+What is the location you would like to scan against?
+Example syntax http://192.168.11.8/FUZZ/checklogin.php
+> """)
+	command = 'wfuzz  -w /usr/share/wordlists/dirb/common.txt --hc 404,500 -u {}'.format(q2)
+	doit(command)
