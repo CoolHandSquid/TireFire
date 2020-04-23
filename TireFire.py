@@ -152,8 +152,8 @@ def webapp():
 		#wpscan
 		command = "wpscan --url http://{} --enumerate u,tt,t,vp --passwords /usr/share/wordlists/rockyou.txt -e ".format(q1)
 	elif scan 	== 2:
-		#probably busted
-		command		= "drupwn enum http://{}".format(q1) 
+		#recomended tools for drupal
+		command		= "echo 'git clone https://github.com/immunIT/drupwn.git for low hanging fruit and git clone https://github.com/droope/droopescan.git for the deeper shit.'".format(q1) 
 	elif scan == 3:
 		#probably busted
 		command		= "ruby joomlavs.rb -u http://{} --scan-all | tee 'joomlahvs_{}'".format(q1)
@@ -166,17 +166,25 @@ def webapp():
 def smb():
 	smb_title	= "smb"
 	smb_comment= "#####"
-	smb_lst	= ["Enum4Linux", "SmbVulnNmapScan", "SquidsSmbTool"]
+	smb_lst	= ["All", "Enum4Linux", "SmbVulnNmapScan", "SquidsSmbTool"]
 	smb 		= Display_class(smb_title, smb_comment, smb_lst)
 	scan 		= Display(smb)
 
 	if scan 	== 1:
+		command = "enum4linux -a {}".format(ip)
+		doit(command)
+		command	= "nmap --script smb-vuln* -p 139,445 {}".format(ip)
+		doit(command)
+		dn 		= input("What is the domain/workgroup? (example yeet.wtf)\n> ")
+		command = "SquidsSmbTool {} {}".format(ip, dn)
+		doit(command)
+	if scan 	== 2:
 		#Enum4Linux
 		command = "enum4linux -a {}".format(ip)
-	elif scan 	== 2:
+	elif scan 	== 3:
 		#SmbVulnNmapScan
 		command	= "nmap --script smb-vuln* -p 139,445 {}".format(ip)
-	elif scan 	== 3:
+	elif scan 	== 4:
 		#SquidsSmbTool
 		dn 		= input("What is the domain/workgroup? (example yeet.wtf)\n> ")
 		command = "SquidsSmbTool {} {}".format(ip, dn)
@@ -206,6 +214,26 @@ def ldap():
 	elif scan 	== 4:
 		command = "ldapsearch -h {} -x -b '{}'".format(ip, nc)
 	doit(command)
+
+def oracle():
+	oracle_title	= "oracle"
+	oracle_comment	= "Just directions to download and install odat"
+	oracle_lst		= ["Directions"]
+	oracle 			= Display_class(oracle_title, oracle_comment, oracle_lst)
+	scan 			= Dispay(oracle)
+
+	if scan == 1:
+		odat = """
+navigate to https://github.com/quentinhardy/odat/releases/
+download the latest
+tar -xvf odat-linux-libc2.12-x86_64.tar.gz
+cd odat-libc2.12-x86_64/
+./odat-libc2.12-x86_64 all -s 10.10.10.82
+
+for more details check https://github.com/quentinhardy/odat/wiki
+"""
+		command = "echo {}".format(odat)
+		doit(command)
 
 def ProtoBrute():
 	ProtoBrute_title	= "ProtoBrute"
