@@ -52,7 +52,7 @@ then
 fi
 
 #Install terminator
-apt-get install terminator -y
+apt-get install terminator gobuster -y
 
 #Verify wordlists
 wordlists=("/usr/share/wordlists/rockyou.txt" "/usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt" "/usr/share/dirbuster/wordlists/directory-list-2.3-small.txt" "/usr/share/seclists/Usernames/Names/names.txt")

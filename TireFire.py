@@ -84,7 +84,7 @@ def dns():
 def web():
 	web_title	= "web"
 	web_comment= "#####"
-	web_lst	= ["QuickWebScan", "SquidsSqlMapTool", "SquidsWfuzzTool", "nikto", "dirsearch", "nmap VulnScan", "Squids ShellShock NSE"]
+	web_lst	= ["QuickWebScan", "SquidsSqlMapTool", "SquidsWfuzzTool", "nikto", "Directory Brute Force", "nmap VulnScan", "Squids ShellShock NSE"]
 	web 		= Display_class(web_title, web_comment, web_lst)
 	create_portlist()
 	scan 		= Display(web)
@@ -97,7 +97,7 @@ def web():
 		for port, protocol in portdict.items():
 			command		= "nikto -host {}://{}:{}".format(protocol, ip, port, ip, port)
 			doit(command)
-			command 	= "python3 {}/dirsearch/dirsearch.py -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -e php -f -t 20 -u {}://{}:{}".format(tfpath, protocol, ip, port)
+			command 	= "gobuster dir -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -u {}://{}:{}".format(protocol, ip, port)
 			doit(command)
 			command		= "nmap -vv --reason -Pn -sV -p {} --script=`banner,(http* or ssl*) and not (brute or broadcast or dos or external or http-slowloris* or fuzzer)` {}".format(port, ip)
 			doit(command)
@@ -116,7 +116,7 @@ def web():
 			command = "nikto -host {}://{}:{}".format(protocol, ip, port)
 			doit(command)
 	elif scan 	== 5:
-		#dirsearch
+		#directory brute force
 		portdict = select_port()
 		for port, protocol in portdict.items():
 			q1	= input("Would you like this scan on port {} to be recursive?\n> ".format(port))
@@ -124,7 +124,7 @@ def web():
 				command = "python3 {}/dirsearch/dirsearch.py -w /usr/share/dirbuster/wordlists/directory-list-2.3-small.txt -e php,exe,sh,py,html,pl -f -t 20 -u {}://{}:{} -r -R 10".format(tfpath, protocol, ip, port)
 				doit(command)
 			else:
-				command	= "python3 {}/dirsearch/dirsearch.py -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -e php -f -t 20 -u {}://{}:{}".format(tfpath, protocol, ip, port)
+				command	= "gobuster dir -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -u {}://{}:{}".format(protocol, ip, port)
 				doit(command)
 		return
 	elif scan 	== 6:
