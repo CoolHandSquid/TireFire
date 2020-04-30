@@ -171,13 +171,12 @@ def smb():
 	scan 		= Display(smb)
 
 	if scan 	== 1:
+		dn 		= input("What is the domain/workgroup? (example yeet.wtf)\n> ")
 		command = "enum4linux -a {}".format(ip)
 		doit(command)
 		command	= "nmap -p 139,445 -vv --script=smb-vuln-cve2009-3103.nse,smb-vuln-ms06-025.nse,smb-vuln-ms07-029.nse,smb-vuln-ms08-067.nse,smb-vuln-ms10-054.nse,smb-vuln-ms10-061.nse,smb-vuln-ms17-010.nse {}".format(ip)
 		doit(command)
-		dn 		= input("What is the domain/workgroup? (example yeet.wtf)\n> ")
 		command = "SquidsSmbTool {} {}".format(ip, dn)
-		doit(command)
 	if scan 	== 2:
 		#Enum4Linux
 		command = "enum4linux -a {}".format(ip)
