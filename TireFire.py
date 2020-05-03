@@ -84,7 +84,7 @@ def dns():
 def web():
 	web_title	= "web"
 	web_comment= "#####"
-	web_lst	= ["QuickWebScan", "SquidsSqlMapTool", "SquidsWfuzzTool", "nikto", "Directory Brute Force", "nmap VulnScan", "Squids ShellShock NSE"]
+	web_lst	= ["QuickWebScan", "SquidsSqlMapTool", "SquidsWfuzzTool", "nikto", "Directory Brute Force", "CGI Brute Force", "nmap VulnScan", "Squids ShellShock NSE"]
 	web 		= Display_class(web_title, web_comment, web_lst)
 	create_portlist()
 	scan 		= Display(web)
@@ -97,7 +97,7 @@ def web():
 		for port, protocol in portdict.items():
 			command		= "nikto -host {}://{}:{}".format(protocol, ip, port, ip, port)
 			doit(command)
-			command 	= "gobuster dir -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -u {}://{}:{}".format(protocol, ip, port)
+			command 	= "gobuster dir -w /usr/share/seclists/Discovery/Web-Content/common.txt -u {}://{}:{} && gobuster dir -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -u {}://{}:{}".format(protocol, ip, port, protocol, ip, port)
 			doit(command)
 			command		= "nmap -vv --reason -Pn -sV -p {} --script=`banner,(http* or ssl*) and not (brute or broadcast or dos or external or http-slowloris* or fuzzer)` {}".format(port, ip)
 			doit(command)
@@ -128,12 +128,18 @@ def web():
 				doit(command)
 		return
 	elif scan 	== 6:
+		#directory brute force for cgi
+		portdict = select_port()
+		for port, protocol in portdict.items():
+			command = "gobuster dir -u {}://{}:{}/ -w /usr/share/seclists/Discovery/Web-Content/CGIs.txt -s 200".format(protocol, ip, port)
+			doit(command)
+	elif scan 	== 7:
 		#nmap VulnScan
 		portdict = select_port()
 		for port, protocol in portdict.items():
 			command = "nmap -vv --reason -Pn -sV -p {} --script=`banner,(http* or ssl*) and not (brute or broadcast or dos or external or http-slowloris* or fuzzer)` {}".format(port, ip)
 			doit(command)
-	elif scan 	== 7:
+	elif scan 	== 8:
 		#Squids ShellShock NSE
 		for port in portlist:
 			command = "nmap -vv --reason -Pn -sV -p {} --script={}/http-shellshock.nse {}".format(port, tfpath, ip)
@@ -174,7 +180,7 @@ def smb():
 		dn 		= input("What is the domain/workgroup? (example yeet.wtf)\n> ")
 		command = "enum4linux -a {}".format(ip)
 		doit(command)
-		command	= "nmap -p 139,445 -vv --script=smb-vuln-cve2009-3103.nse,smb-vuln-ms06-025.nse,smb-vuln-ms07-029.nse,smb-vuln-ms08-067.nse,smb-vuln-ms10-054.nse,smb-vuln-ms10-061.nse,smb-vuln-ms17-010.nse {}".format(ip)
+		command	= "nmap -p 139,445 -vv -Pn --script=smb-vuln-cve2009-3103.nse,smb-vuln-ms06-025.nse,smb-vuln-ms07-029.nse,smb-vuln-ms08-067.nse,smb-vuln-ms10-054.nse,smb-vuln-ms10-061.nse,smb-vuln-ms17-010.nse {}".format(ip)
 		doit(command)
 		command = "SquidsSmbTool {} {}".format(ip, dn)
 	if scan 	== 2:
