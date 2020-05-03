@@ -23,6 +23,7 @@ def main():
 
 def scans():
 	print("""
+command0 = "nbtscan {}"
 command1 = "smb -H {}"
 command2 = "smb -H {} -u null -p null"
 command3 = "smbclient -N -L //{}"
@@ -40,7 +41,8 @@ command8 = "GetADUsers.py -dc-ip {} '{}/' -all"
 command9 = "GetNPUsers.py -dc-ip {} -request '{}/' -format hashcat"
 command10= "GetUserSPNs.py -dc-ip {} -request '{}/'"
 command11= "getArch.py -target {}"
-""".format(ip, ip, ip, ip, ip, ip, ip, ip, ip, dn, ip, dn, ip, dn, ip))
+""".format(ip, ip, ip, ip, ip, ip, ip, ip, ip, ip, dn, ip, dn, ip, dn, ip))
+	command0 = "nbtscan {}".format(ip)
 	command1 = "smbmap -H {}".format(ip)
 	command2 = "smbmap -H {} -u null -p null".format(ip)
 	command3 = "smbclient -N -L //{}".format(ip)
@@ -52,7 +54,7 @@ command11= "getArch.py -target {}"
 	command9 = "GetNPUsers.py -dc-ip {} -request '{}/' -format hashcat".format(ip, dn)
 	command10= "GetUserSPNs.py -dc-ip {} -request '{}/'".format(ip, dn)
 	command11= "getArch.py -target {}".format(ip)
-	commandlist	= [command1, command2, command3, command4, command5, command6, command7, command8, command9, command10, command11]
+	commandlist	= [command0, command1, command2, command3, command4, command5, command6, command7, command8, command9, command10, command11]
 	
 	for command in commandlist:
 		input(Fore.GREEN + command )
