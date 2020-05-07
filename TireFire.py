@@ -47,13 +47,13 @@ tfpath	= tfpath[:-12]
 def nmap():
 	nmap_title	= "nmap"
 	nmap_comment= "#####"
-	nmap_lst	= ["SquidsSmartScan", "Quick Scan", "Version Scan", "All Port Scan", "All Vulns Scan"]
+	nmap_lst	= ["SquidsSmartScan", "Quick Scan", "Version Scan", "All Port Scan", "All Vulns Scan", "Quiet Scan", "UDP Scan"]
 	nmap 		= Display_class(nmap_title, nmap_comment, nmap_lst)
 	scan 		= Display(nmap)
 
 	if scan		== 1:
 		#SquidsSmartScan
-		command = "nmap -Pn {} && nmap -sC -sV -Pn {} && nmap -p- -Pn {}".format(ip, ip, ip)
+		command = "nmap -Pn {} && nmap -sC -sV -Pn {} && nmap -p- -Pn {} && nmap -Pn -p- -sU {}".format(ip, ip, ip, ip)
 	elif scan 	== 2:
 		#Quick Scan
 		command = "nmap {}".format(ip)
@@ -66,6 +66,10 @@ def nmap():
 	elif scan 	== 5:
 		#All Vulns Scan
 		command = "nmap --script smb-vuln* -p 139,445 {}".format(ip)
+	elif scan 	== 6:
+		command = "echo 'sudo nmap -Pn -sS -p- {}'".format(ip)
+	elif scan 	== 7:
+		command = "nmap -Pn -p- sU {}"
 	doit(command)
 
 def dns():
@@ -391,7 +395,7 @@ Windows Other		128	128	255
 """
 		print(Fore.RED + "**Ping Hop Table**")
 		print(Fore.YELLOW + ttl_table + Fore.WHITE)
-		command	= "echo -e \"\\e[5m\\e[31m\\e[1m{}\\e[0m\"; echo \"http://www.kellyodonnell.com/content/determining-os-type-ping\" ; nmap -Pn {} && nmap -sC -sV -Pn {} && nmap -p- -Pn {}".format(ttl, ip, ip, ip)
+		command	= "echo -e \"\\e[5m\\e[31m\\e[1m{}\\e[0m\"; echo \"http://www.kellyodonnell.com/content/determining-os-type-ping\" ; nmap -Pn {} && nmap -sC -sV -Pn {} && nmap -p- -Pn {} && nmap -Pn -p- -sU {}".format(ttl, ip, ip, ip, ip)
 		doit(command)
 		main()
 	else:
