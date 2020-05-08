@@ -176,7 +176,7 @@ def webapp():
 def smb():
 	smb_title	= "smb"
 	smb_comment= "#####"
-	smb_lst	= ["All", "Enum4Linux", "SmbVulnNmapScan", "SquidsSmbTool"]
+	smb_lst	= ["All", "Enum4Linux", "SmbVulnNmapScan", "SmbVersionEnum","SquidsSmbTool"]
 	smb 		= Display_class(smb_title, smb_comment, smb_lst)
 	scan 		= Display(smb)
 
@@ -186,6 +186,8 @@ def smb():
 		doit(command)
 		command	= "nmap -p 139,445 -vv -Pn --script=smb-vuln-cve2009-3103.nse,smb-vuln-ms06-025.nse,smb-vuln-ms07-029.nse,smb-vuln-ms08-067.nse,smb-vuln-ms10-054.nse,smb-vuln-ms10-061.nse,smb-vuln-ms17-010.nse {}".format(ip)
 		doit(command)
+		command = "echo 'sudo {}/SmbVersionEnum.sh {} 139'".format(tfpath, ip)
+		doit(command)
 		command = "SquidsSmbTool {} {}".format(ip, dn)
 	if scan 	== 2:
 		#Enum4Linux
@@ -194,6 +196,9 @@ def smb():
 		#SmbVulnNmapScan
 		command	= "nmap --script smb-vuln* -p 139,445 {}".format(ip)
 	elif scan 	== 4:
+		#must be run as root becasues the tool calls tcpdump. You may have to adjust your nic in the script manually.
+		command = "echo 'sudo {}/SmbVersionEnum.sh {} 139'".format(tfpath, ip)
+	elif scan 	== 5:
 		#SquidsSmbTool
 		dn 		= input("What is the domain/workgroup? (example yeet.wtf)\n> ")
 		command = "SquidsSmbTool {} {}".format(ip, dn)
