@@ -28,6 +28,7 @@ command1 = "smb -H {}"
 command2 = "smb -H {} -u null -p null"
 command3 = "smbclient -N -L //{}"
 	smbclient -N '//{}/coolshare'
+command31= "smbclient -N '//{}/ --option='client min protocol'=LANMAN1"
 command4 = "rpcclient {}"
 command5 = "rpcclient -U '' {}"
 	enumdomusers
@@ -41,11 +42,12 @@ command8 = "GetADUsers.py -dc-ip {} '{}/' -all"
 command9 = "GetNPUsers.py -dc-ip {} -request '{}/' -format hashcat"
 command10= "GetUserSPNs.py -dc-ip {} -request '{}/'"
 command11= "getArch.py -target {}"
-""".format(ip, ip, ip, ip, ip, ip, ip, ip, ip, ip, dn, ip, dn, ip, dn, ip))
+""".format(ip, ip, ip, ip, ip, ip, ip, ip, ip, ip, ip, dn, ip, dn, ip, dn, ip))
 	command0 = "nbtscan {}".format(ip)
 	command1 = "smbmap -H {}".format(ip)
 	command2 = "smbmap -H {} -u null -p null".format(ip)
 	command3 = "smbclient -N -L //{}".format(ip)
+	command31= "smbclient -N '//{}/ --option='client min protocol'=LANMAN1"
 	command4 = "rpcclient {}".format(ip)
 	command5 = "rpcclient -U '' {}".format(ip)
 	command6 = "crackmapexec smb {}".format(ip)
