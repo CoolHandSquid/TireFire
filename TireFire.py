@@ -69,7 +69,7 @@ def nmap():
 	elif scan 	== 6:
 		command = "echo 'sudo nmap -Pn -sS -p- {}'".format(ip)
 	elif scan 	== 7:
-		command = "nmap -Pn -p- sU {}".format(ip)
+		command = "echo sudo 'nmap -Pn -p- -sU {}'".format(ip)
 	doit(command)
 
 def dns():
