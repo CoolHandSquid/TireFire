@@ -31,6 +31,7 @@ command3 = "smbclient -N -L //{}"
 command31= "smbclient -N '//{}/ --option='client min protocol'=LANMAN1"
 command4 = "rpcclient {}"
 command5 = "rpcclient -U '' {}"
+	netshareenum
 	enumdomusers
 	queryuser tony
 	queryusergroups 0x47b
