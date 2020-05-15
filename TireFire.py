@@ -194,7 +194,7 @@ def smb():
 		command = "enum4linux -a {}".format(ip)
 	elif scan 	== 3:
 		#SmbVulnNmapScan
-		command	= "nmap --script smb-vuln* -p 139,445 {}".format(ip)
+		command	= "nmap --script smb-vuln* -Pn -p 139,445 {}".format(ip)
 	elif scan 	== 4:
 		#must be run as root becasues the tool calls tcpdump. You may have to adjust your nic in the script manually.
 		command = "echo 'sudo {}/SmbVersionEnum.sh {} 139'".format(tfpath, ip)
