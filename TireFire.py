@@ -53,7 +53,7 @@ def nmap():
 
 	if scan		== 1:
 		#SquidsSmartScan
-		command = "nmap -Pn {} && nmap -sC -sV -Pn {} && nmap -p- -Pn {} && nmap -Pn -p- -sU {}".format(ip, ip, ip, ip)
+		command = "echo 'nmap -Pn -sS -p- {} && nmap -Pn {} && nmap -sC -sV -Pn {} && nmap -p- -Pn {} && sudo nmap -Pn -p- -sU {}'".format(ip, ip, ip, ip, ip, ip)
 	elif scan 	== 2:
 		#Quick Scan
 		command = "nmap {}".format(ip)
@@ -67,8 +67,10 @@ def nmap():
 		#All Vulns Scan
 		command = "nmap --script smb-vuln* -p 139,445 {}".format(ip)
 	elif scan 	== 6:
+		#Quiet scan
 		command = "echo 'sudo nmap -Pn -sS -p- {}'".format(ip)
 	elif scan 	== 7:
+		#UDP scan
 		command = "echo sudo 'nmap -Pn -p- -sU {}'".format(ip)
 	doit(command)
 
@@ -208,7 +210,7 @@ def webapp():
 	q1	= input("Where is the webapp located?\nExample Syntax	192.168.11.137:8000/wordpress\n> ")
 	if scan 	== 1:
 		#wpscan
-		command = "wpscan --url http://{} --enumerate u,tt,t,vp --passwords /usr/share/wordlists/rockyou.txt -e ".format(q1)
+		command = "wpscan --url http://{} --enumerate ap,at,cb,dbe && wpscan --url http://{} --enumerate u,tt,t,vp --passwords /usr/share/wordlists/rockyou.txt -e ".format(q1, q1)
 	elif scan 	== 2:
 		#recomended tools for drupal
 		command		= "echo 'git clone https://github.com/immunIT/drupwn.git for low hanging fruit and git clone https://github.com/droope/droopescan.git for the deeper shit.'".format(q1) 
