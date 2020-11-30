@@ -23,7 +23,7 @@
 * Type "TireFire" and you will be yeeting with a cyber **cannon!**
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/master/Images/CoolHandSquid.jpg)
 ## Contact
-Please contact me at YCSquilly@gmail.com for suggestions and ideas!
+Please contact me at CoolHandSquid32@gmail.com for suggestions and ideas!
 
 
 
