@@ -454,7 +454,7 @@ def start():
 		print("Later Tater")
 		quit()
 	print("Welcome to TireFire!")
-	sq1	= input("Would you like to kick this off with a netdiscover?\n> ")
+	sq1	= input("Would you like to kick this off with a netdiscover? (Not needed if you know what IP you are gonna be targeting)\n> ")
 	sq1	= sq1.lower()
 	if sq1 in yes:
 		netdiscover()
