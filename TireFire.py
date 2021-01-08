@@ -469,11 +469,11 @@ Example Syntax:	192.168.11.137
 		ttl			= qwsq1.split()[12]
 		ttl_table= """
 Operating System 	TCP	UDP ICMP
-Linux				64	64	255
-OS/2				64	64	255
-Solaris 2.x			255	255	255				
+Linux			64	64	255
+OS/2			64	64	255
+Solaris 2.x		255	255	255				
 MS Windows 95-ME	32	32	255
-MS WIndows 			128	128	255
+MS WIndows 		128	128	255
 Windows Other		128	128	255
 """
 		print(Fore.RED + "**Ping Hop Table**")
