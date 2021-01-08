@@ -468,7 +468,7 @@ Example Syntax:	192.168.11.137
 		qwsq1		= os.popen("ping -c 1 {}".format(ip)).read()
 		ttl			= qwsq1.split()[12]
 		ttl_table= """
-Operating System 	TCP	UDP ICMP
+Operating System 	TCP	UDP 	ICMP
 Linux			64	64	255
 OS/2			64	64	255
 Solaris 2.x		255	255	255				
