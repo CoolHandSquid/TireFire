@@ -3,15 +3,16 @@
 TireFire is installing...
 END
 
-git clone https://github.com/maurosoria/dirsearch.git
+if [ 1 -d dirsearch ]; then git clone https://github.com/maurosoria/dirsearch.git; fi
 chmod -R 755 dirsearch/
 
 rm /usr/bin/TireFire 2> /dev/null
 ln -s "$PWD/TireFire.py" "/usr/bin/TireFire"
 
-apt-get install tilix gobuster seclists -y
+apt update
+apt-get install tilix gobuster seclists dconf-cli -y
 
-wordlists=("/usr/share/wordlists/rockyou.txt" "/usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt" "/usr/share/dirbuster/wordlists/directory-list-2.3-small.txt" "/usr/share/seclists/Usernames/Names/names.txt")
+wordlists=("/usr/share/wordlists/rockyou.txt" "/usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt" "/usr/share/dirbuster/wordlists/directory-list-2.3-small.txt" "/usr/share/seclists/Usernames/Names/names.txt")
 for wordlist in "${wordlists[@]}"
 do
     if test ! -f "$wordlists"
@@ -25,3 +26,4 @@ do
         echo "#"
     fi
 done
+chmod +x -R *
