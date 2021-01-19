@@ -12,6 +12,9 @@ ln -s "$PWD/TireFire.py" "/usr/bin/TireFire"
 apt update
 apt-get install tilix gobuster seclists dconf-cli -y
 
+cp "$PWD/Tire_Fire.jpg" "/root/Pictures/Tire_Fire.jpg"
+dconf load /com/gexperts/Tilix/ < tilix.dconf
+
 wordlists=("/usr/share/wordlists/rockyou.txt" "/usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt" "/usr/share/dirbuster/wordlists/directory-list-2.3-small.txt" "/usr/share/seclists/Usernames/Names/names.txt")
 for wordlist in "${wordlists[@]}"
 do
