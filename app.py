@@ -28,28 +28,27 @@ def termstat():
 
 def check_ping(IP):
     responce    = os.system("ping -c 1 {}".format(IP))
-    if responce == 1:
-        error   = "The ping was unsuccsessful..."
-        return error
-    elif responce == 0:
+    if responce == 0:
         responce    = os.popen("ping -c 1 {}".format(IP)).read()
         ttl         = responce.split()[12]
         return ttl
+    else:
+        error   = "The ping was unsuccsessful..."
+        return error
 
-def start():
+def start(IP):
     if termstat() == False:
         print("Please run TireFire from tilix")
         quit()
     if len(sys.argv) != 2:
         print("The syntax that I am looking for is more like TireFire 10.10.10.5")
         quit()
-    IP = sys.argv[1]
     if click.confirm("Do you want to kick this off with an Nmap scan?", default=True):
         print(Fore.GREEN + check_ping(IP) + Style.RESET_ALL)
         print(Fore.YELLOW + "TTL Table\n" + Style.RESET_ALL + display_ttl())
         command = "nmap -Pn {} && nmap -sC -sV -Pn {} && nmap -p- -Pn {} && nmap -Pn -p- -sU {}".format(IP, IP, IP, IP)
         doit("Nmap", "Kickoff", command)
-    return IP
+    return
 ##################################################
 #Begin Display
 ##################################################
@@ -136,7 +135,7 @@ def input_validation(items, rawin):
         print(bad_input)
         return False
 
-IP              = start()
+IP              = sys.argv[1]
 Domain_Name     = "yee.wtf"
 Naming_Context  = "DC=YeetCannon,DC=local"
 Web_Portlist    = []
@@ -147,6 +146,7 @@ Small_Userlist      = "/usr/share/seclists/Usernames/top-usernames-shortlist.txt
 Big_Dirlist         = "/usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt"
 Small_Dirlist       = "/usr/share/seclists/Discovery/Web-Content/common.txt"
 
+start(IP)
 while True:
     try:
         display_main()
