@@ -1,6 +1,6 @@
 [/]
 app-title='TireFire'
-background-image='/root/Desktop/Tire_fire.jpg'
+background-image='/root/Pictures/Tire_Fire.jpg'
 background-image-mode='scale'
 control-scroll-zoom=true
 focus-follow-mouse=false
