@@ -11,7 +11,7 @@
 - When adding a command, keep in mind Name, Port, and Description are for the primary display screen; Cmd_Name, Cmd_Description, Cmd_Command, Cmd_Comment, and SubDisplayOrder are for the secondary display screen.
 - Cmd_Command has a few special charachters including &&&&, #, and {}.
 - &&&& is for sending commands to multiple tabs. Example: whoami &&&& id &&&& ifconfig will open three tabs and run the desired command in each. This is useful if you initially run multiple seperate commands every time you see a specific port open. 
-- # is for sending yourself notes to another tab. This will only work if the first charachter of the first line is #. This is useful if you don't want to run a command but you want to give yourself copy-paste notes for manual enumeration.
+- "#" is for sending yourself notes to another tab. This will only work if the first charachter of the first line is #. This is useful if you don't want to run a command but you want to give yourself copy-paste notes for manual enumeration.
 - {} is for grabbing a variable from TireFire. Available variables are IP, Domain_Name, Naming_Context, Web_Portlist, Big_Passwordlist, Small_Passwordlist, Big_Userlist, Small_Userlist, Big_Dirlist, Small_Dirlist.
 - Use " instead of ' due to the way that the string is being passed into TireFire.
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/master/Images/2_DB.png)
