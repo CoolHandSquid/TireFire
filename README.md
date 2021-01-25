@@ -2,6 +2,7 @@
 * Scalable Python tool for initial enumeration.
 * TireFire is a simple enumeration platform to place your order of operations for enumeration and is easily altered to support your methodologies as they are maleated and appeneded.
 * TireFire is a product of *19% security solutions.*
+* ReReleased January 25 2021 with a SQLite backend to instigate more comunity support via more straight forward scalaing.
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/master/Images/Tire_fire.jpg)
 ## Easily add modules
 - In the Main Modules section of TireFire.py add a function. Example "ftp()"
