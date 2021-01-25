@@ -16,7 +16,7 @@
 - "#" is for sending yourself notes to another tab. This will only work if the first charachter of the first line is #. This is useful if you don't want to run a command but you want to give yourself copy-paste notes for manual enumeration.
 - {} is for grabbing a variable from TireFire. Available variables are IP, Domain_Name, Naming_Context, Web_Portlist, Big_Passwordlist, Small_Passwordlist, Big_Userlist, Small_Userlist, Big_Dirlist, Small_Dirlist.
 - Use " instead of ' due to the way that the string is being passed into TireFire.
-## Easy to Use
+## Friendly Interface
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/master/Images/TireFireAction.png)
 ## How to build
 - git clone https://github.com/CoolHandSquid/TireFire.git
