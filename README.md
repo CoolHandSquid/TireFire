@@ -11,7 +11,7 @@
 - scan will be the variable passed in determining which command to run
 - Be sure to add a doit(command) to the bottom of the function.
 - Add your function to home_lst (line 32).
-![alt text](https://github.com/CoolHandSquid/TireFire/blob/master/Images/Modules.png)
+![alt text](https://github.com/CoolHandSquid/TireFire/blob/master/Images/2_DB.png)
 ## Simple syntax
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/master/Images/TireFireAction.png)
 ## How to build
