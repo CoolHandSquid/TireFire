@@ -3,7 +3,7 @@
 TireFire is installing...
 END
 
-if [ 1 -d dirsearch ]; then git clone https://github.com/maurosoria/dirsearch.git; fi
+if [ ! -d 'dirsearch' ]; then git clone https://github.com/maurosoria/dirsearch.git; fi
 chmod -R 755 dirsearch/
 
 rm /usr/bin/TireFire 2> /dev/null
