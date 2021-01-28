@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-: <<'END'
+cat <<'END'
 TireFire is installing...
 END
 
