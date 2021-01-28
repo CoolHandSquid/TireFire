@@ -10,7 +10,9 @@ rm /usr/bin/TireFire 2> /dev/null
 ln -s "$PWD/TireFire.py" "/usr/bin/TireFire"
 
 apt update
-apt-get install tilix gobuster seclists dconf-cli g++ pandasql -y
+apt-get install tilix gobuster seclists dconf-cli g++ pip -y
+wait
+python3 -m pip install pandasql
 
 cp "$PWD/Tire_Fire.jpg" "/root/Pictures/Tire_Fire.jpg"
 dconf load /com/gexperts/Tilix/ < tilix.dconf
