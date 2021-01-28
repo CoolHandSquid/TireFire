@@ -1,0 +1,7 @@
+OperatingSystem,TCP,UDP,ICMP
+Linux,64,64,255
+OS/2,64,64,255
+Solaris,255,255,255
+MS Windows 95-ME,32,32,32
+MS Windows,128,128,255
+Windows Other,128,128,255
