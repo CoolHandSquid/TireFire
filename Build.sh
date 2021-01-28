@@ -20,7 +20,7 @@ dconf load /com/gexperts/Tilix/ < tilix.dconf
 wordlists=("/usr/share/wordlists/rockyou.txt" "/usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt" "/usr/share/dirbuster/wordlists/directory-list-2.3-small.txt" "/usr/share/seclists/Usernames/Names/names.txt")
 for wordlist in "${wordlists[@]}"
 do
-    if test ! -f "$wordlists"
+    if test ! -f "$wordlist"
     then
         echo "#"
         echo "#"
