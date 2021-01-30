@@ -29,8 +29,9 @@
 * Once Build.sh has been run TireFire will have been added to your path. 
 * Type "TireFire 10.10.10.5" and you will be yeeting with a cyber **cannon!**
 ## ProTips
-- Ctrl+Z will bring you back to the main TireFire Page
-- Ctrl+PageUp/PageDown will allow you to peruse through open tabs
+- Ctrl+Z will bring you back to the main TireFire Page.
+- Ctrl+PageUp/PageDown will allow you to peruse through open tabs.
+- Editing and saving the Main.csv file will reflect in TireFire without having to restart.
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/CoolHandSquid.jpg)
 ## Contact
 Please contact me at CoolHandSquid32@gmail.com for suggestions and ideas!
