@@ -28,10 +28,10 @@
 * TireFire will not function well if not run as root.
 * Once Build.sh has been run TireFire will have been added to your path. 
 * Type "TireFire 10.10.10.5" and you will be yeeting with a cyber **cannon!**
-![alt text](https://github.com/CoolHandSquid/TireFire/blob/master/Images/CoolHandSquid.jpg)
 ## ProTips
 - Ctrl+Z will bring you back to the main TireFire Page
 - Ctrl+PageUp/PageDown will allow you to peruse through open tabs
+![alt text](https://github.com/CoolHandSquid/TireFire/blob/master/Images/CoolHandSquid.jpg)
 ## Contact
 Please contact me at CoolHandSquid32@gmail.com for suggestions and ideas!
 
