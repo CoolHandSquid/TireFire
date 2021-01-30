@@ -16,9 +16,10 @@
 - "#" is for sending yourself notes to another tab. This will only work if the first charachter of the first line is #. This is useful if you don't want to run a command but you want to give yourself copy-paste notes for manual enumeration.
 - {} is for grabbing a variable from TireFire. Available variables are IP, Domain_Name, Naming_Context, Web_Portlist, Big_Passwordlist, Small_Passwordlist, Big_Userlist, Small_Userlist, Big_Dirlist, Small_Dirlist.
 - Use " instead of ' due to the way that the string is being passed into TireFire.
-![alt text](https://github.com/CoolHandSquid/TireFire/blob/master/Images/2_DB.png)
+![alt text](https://github.com/CoolHandSquid/TireFire/blob/master/Images/1_csv.png)
 ## Friendly Interface
-![alt text](https://github.com/CoolHandSquid/TireFire/blob/master/Images/TireFireAction.png)
+![alt text](https://github.com/CoolHandSquid/TireFire/blob/master/Images/2_kickoff.png)
+![alt text](https://github.com/CoolHandSquid/TireFire/blob/master/Images/3_TireFire.png)
 ## How to build
 - git clone https://github.com/CoolHandSquid/TireFire.git
 - cd TireFire
@@ -28,6 +29,9 @@
 * Once Build.sh has been run TireFire will have been added to your path. 
 * Type "TireFire 10.10.10.5" and you will be yeeting with a cyber **cannon!**
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/master/Images/CoolHandSquid.jpg)
+## ProTips
+- Ctrl+Z will bring you back to the main TireFire Page
+- Ctrl+PageUp/PageDown will allow you to peruse through open tabs
 ## Contact
 Please contact me at CoolHandSquid32@gmail.com for suggestions and ideas!
 
