@@ -75,8 +75,20 @@ def display_sub(proto):
             command = eval("fullcmd[{}][0]".format(rawin)) 
             if command[0] == '#':
                 showit(proto, scan, command)    
+            elif command[0] == '%':
+                command = command[1:]
+                if "&&&&" in command:
+                    commands    = command.split("&&&&")
+                    for cmd in commands:
+                        for Port in Web_Portlist:
+                            tcommand    = (eval("f'" + cmd + "'"))
+                            doit(proto, scan, tcommand)
+                else:
+                    for Port in Web_Portlist:
+                        tcommand = (eval("f'" + command + "'"))
+                        doit(proto, scan, tcommand)
             elif "&&&&" in command:
-                command = (eval("f'" + command + "'"))
+                command     = (eval("f'" + command + "'"))
                 commands    = command.split("&&&&")
                 for cmd in commands:
                     doit(proto, scan, cmd)
@@ -138,7 +150,7 @@ def input_validation(items, rawin):
 IP              = sys.argv[1]
 Domain_Name     = "yee.wtf"
 Naming_Context  = "DC=YeetCannon,DC=local"
-Web_Portlist    = []
+Web_Portlist    = ["80"]
 Big_Passwordlist    = "/usr/share/wordlists/rockyou.txt"
 Small_Passwordlist  = "/usr/share/seclists/Passwords/darkweb2017-top1000.txt"
 Big_Userlist        = "/usr/share/seclists/Usernames/Names/names.txt"
