@@ -123,9 +123,14 @@ def doit(proto, scan, command):
 
 def showit(proto, scan, command):
     #Called to write output in new tilix tab
-    tab_name    = "{} {}".format(proto, scan)
-    os.system("tilix -t '{}' -x $SHELL -c 'echo \"{}\"; $SHELL'".format(tab_name, command))
-    print(Fore.GREEN + "{} {}".format(proto, scan) + Style.RESET_ALL)
+    try:
+        tab_name    = "{} {}".format(proto, scan)
+        if os.system("tilix -t '{}' -x $SHELL -c 'echo \"{}\"; $SHELL'".format(tab_name, command)) == 512:
+            raise
+        print(Fore.GREEN + "{} {}".format(proto, scan) + Style.RESET_ALL)
+    except:
+        print(Fore.YELLOW + "It looks like there is are quotes in that string. Tilix shits itself when sending quotes to new tabs. I'll print it here so you can continue cybering with your YeetCannon!" + Style.RESET_ALL)
+        print(command)
 
 def input_validation(items, rawin):
     bad_input       = "Some decent input would be nice..."
