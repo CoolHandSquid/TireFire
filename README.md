@@ -11,7 +11,7 @@
 - Cmd_Command has a few special charachters including &&&&, #, and {}.
 - % As the first Charachter will run the command on every port in Web_Portlist.
 - &&&& Any where in the command will split the line and start each command individually in seperate tabs.
--- Example: whoami &&&& id &&&& ifconfig will open three tabs and run the desired command in each. This is useful if you initially run multiple seperate commands every time you see a specific port open. 
+  - Example: whoami &&&& id &&&& ifconfig will open three tabs and run the desired command in each. This is useful if you initially run multiple seperate commands every time you see a specific port open. 
 - % and &&&& can be used together
 - "#" is for sending yourself notes to another tab. This will only work if the first charachter of the first line is #. This is useful if you don't want to run a command but you want to give yourself copy-paste notes for manual enumeration.
 - {} is for grabbing a variable from TireFire. Available variables are IP, Domain_Name, Naming_Context, Web_Portlist, Big_Passwordlist, Small_Passwordlist, Big_Userlist, Small_Userlist, Big_Dirlist, Small_Dirlist.
