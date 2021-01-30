@@ -14,7 +14,7 @@
 ## Simple syntax
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V2/Images/TireFireAction.png)
 ## How to build
-- git clone https://github.com/CoolHandSquid/TireFire.git
+- git clone --branch=TireFire_V2 https://github.com/CoolHandSquid/TireFire.git
 - cd TireFire
 - sudo /bin/bash ./Build.sh 
 ## Useage
