@@ -14,7 +14,6 @@
 *	From the "Protocol Table," click the corresponding number of a scan you would like to run. The scan will be kicked off in another tab.
 *	Hit enter to return to the "Main Table."
 *	You can change the variables by going to the "Variables Table."
-*	If you would like to go back to the "Main Table," just hit enter.
 *	If there is a scan or series of scans for a protocol, you would like to add, edit Main.csv following the guidelines in this README (it's pretty straight forward).
 *	Tables and commands can be added while TireFire is running, and it will be populated once Main.csv is saved.
 ## ProTips
