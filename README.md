@@ -11,10 +11,16 @@
 * TireFire will not function well if not run as root.
 * Once Build.sh has been run TireFire will have been added to your path. 
 * Type "TireFire 10.10.10.5" and you will be yeeting with a cyber **cannon!**
+* From "Main Table" click the corresponding number of a protocol you would like to run a scan for.
+* From the "Protocol Table" click the corresponding number of a scan you would like to run. The scan will be kicked off in another tab.
+* Hit enter to return to the "Main Table."
+* You can change the variables by going to the "Variables Table."
+* If you would like to go back to the "Main Table," just hit enter.
+* If there is a scan or series of scans for a protocol you would like to add, edit Main.csv following the guidelines in this README (it's pretty straight forward).
+* Tables and commands can be added while TireFire is running and it will be populated once Main.csv is saved.
 ## ProTips
 - Ctrl+Z will bring you back to the main TireFire Page.
 - Ctrl+PageUp/PageDown will allow you to peruse through open tabs.
-- Editing and saving the Main.csv file will reflect in TireFire without having to restart.
 ## How to Build
 - git clone https://github.com/CoolHandSquid/TireFire.git
 - cd TireFire
