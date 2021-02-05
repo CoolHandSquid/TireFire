@@ -17,6 +17,11 @@ python3 -m pip install pandasql
 cp "$PWD/Tire_Fire.jpg" "/root/Pictures/Tire_Fire.jpg"
 dconf load /com/gexperts/Tilix/ < tilix.dconf
 
+if [ -f "/usr/share/wordlists/rockyou.txt.gz" ] || [ ! -f "/usr/share/wordlists/rockyou.txt" ]
+then
+	gzip -d /usr/share/wordlists/rockyou.txt.gz
+fi
+
 wordlists=("/usr/share/wordlists/rockyou.txt" "/usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt" "/usr/share/dirbuster/wordlists/directory-list-2.3-small.txt" "/usr/share/seclists/Usernames/Names/names.txt")
 for wordlist in "${wordlists[@]}"
 do
