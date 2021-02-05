@@ -4,7 +4,7 @@
 * TireFire is a product of *19% security solutions.*
 * ReReleased March 1 2021 with a CSV backend for straightforward command adding.
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/Tire_fire.jpg)
-## Friendly Interface
+## Friendly (GUI-ish) Interface
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/2_kickoff.png)
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/3_TireFire.png)
 ## Useage
