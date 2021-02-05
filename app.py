@@ -45,7 +45,7 @@ def start(IP):
         quit()
     if click.confirm("Do you want to kick this off with an Nmap scan?", default=True):
         print(Fore.GREEN + check_ping(IP) + Style.RESET_ALL)
-        print(Fore.YELLOW + "TTL Table\n" + Style.RESET_ALL + display_ttl())
+        print(Fore.YELLOW + "Reference TTL Table\n" + Style.RESET_ALL + display_ttl())
         command = "nmap -Pn {} && nmap -sC -sV -Pn {} && nmap -p- -Pn {} && nmap -Pn -p- -sU {}".format(IP, IP, IP, IP)
         doit("Nmap", "Kickoff", command)
     return
@@ -146,11 +146,11 @@ def input_validation(items, rawin):
         else:
             raise
     except KeyboardInterrupt:
-        print(exit_message)
         sys.exit()
         return False
     except:
-        print(bad_input)
+        if rawin != "":
+            print(bad_input)
         return False
 
 IP              = sys.argv[1]
