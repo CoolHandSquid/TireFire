@@ -123,15 +123,9 @@ def doit(proto, scan, command):
 
 def showit(proto, scan, command):
     #Called to write output in new tilix tab
-    try:
-        if '"' in command or "'" in command or '`' in command:
-            raise
-        tab_name    = "{} {}".format(proto, scan)
-        os.system("tilix -t '{}' -x $SHELL -c 'echo \"{}\"; $SHELL'".format(tab_name, command)) 
-        print(Fore.GREEN + "{} {}".format(proto, scan) + Style.RESET_ALL)
-    except:
-        print(Fore.YELLOW + "It looks like there is are quotes in that string. Tilix shits itself when sending quotes to new tabs. I'll print it here so you can continue cybering with your YeetCannon!" + Style.RESET_ALL)
-        print(command)
+    tab_name    = "{} {}".format(proto, scan)
+    print(command)
+    print(Fore.GREEN + "{} {}\nI recommend copying this into a leafpad so that you can reference it in another tab.".format(proto, scan) + Style.RESET_ALL)
 
 def input_validation(items, rawin):
     bad_input       = "Some decent input would be nice..."
