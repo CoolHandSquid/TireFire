@@ -9,7 +9,7 @@
 ## Usage
 *	TireFire will not function well if not run as root.
 *	Once Build.sh has been run, TireFire will have been added to your path.
-*	Type "TireFire 10.10.10.5" and you will be yeeting with a cyber cannon!
+*	Type "TireFire 10.10.10.5" and you will be yeeting with a cyber **cannon!**
 *	From the "Main Table," type the corresponding number of a protocol for which you would like to run a scan.
 *	From the "Protocol Table," click the corresponding number of a scan you would like to run. The scan will be kicked off in another tab.
 *	Hit enter to return to the "Main Table."
