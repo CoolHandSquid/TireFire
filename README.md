@@ -7,10 +7,6 @@
 ## Friendly Interface
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/2_kickoff.png)
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/3_TireFire.png)
-## How to Build
-- git clone https://github.com/CoolHandSquid/TireFire.git
-- cd TireFire
-- sudo /bin/bash ./Build.sh 
 ## Useage
 * TireFire will not function well if not run as root.
 * Once Build.sh has been run TireFire will have been added to your path. 
@@ -19,6 +15,10 @@
 - Ctrl+Z will bring you back to the main TireFire Page.
 - Ctrl+PageUp/PageDown will allow you to peruse through open tabs.
 - Editing and saving the Main.csv file will reflect in TireFire without having to restart.
+## How to Build
+- git clone https://github.com/CoolHandSquid/TireFire.git
+- cd TireFire
+- sudo /bin/bash ./Build.sh 
 ## Easily Add modules
 - Open Main.csv with your favorite csv editor (I'm partial to ModernCSV).
 - When adding a command, keep in mind Name, Port, and Description are for the primary display screen; Cmd_Name, Cmd_Description, Cmd_Command, Cmd_Comment, and SubDisplayOrder are for the secondary display screen.
