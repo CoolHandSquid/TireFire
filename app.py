@@ -124,8 +124,12 @@ def doit(proto, scan, command):
 def showit(proto, scan, command):
     #Called to write output in new tilix tab
     tab_name    = "{} {}".format(proto, scan)
-    print(command)
-    print(Fore.GREEN + "{} {}\nI recommend copying this into a leafpad so that you can reference it in another tab.".format(proto, scan) + Style.RESET_ALL)
+    sfile = open('showit.txt', 'w')
+    sfile.write("{}\n".format(tab_name))
+    sfile.write(command)
+    sfile.close()
+    os.system("leafpad showit.txt &")
+    print(Fore.GREEN + "{} {} opened in leafpad".format(proto, scan) + Style.RESET_ALL)
 
 def input_validation(items, rawin):
     bad_input       = "Some decent input would be nice..."
