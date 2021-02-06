@@ -1,6 +1,6 @@
 Name,Port,Description,Cmd_Name,Cmd_Description,Cmd_Command,Cmd_Comment,SubDisplayOrder
 DNS,53,Domain Name Service,DNS Tool,The first step of DNS enumeration,Modules/SquidsDnsTool.py {IP} {Domain_Name},Verified,1
-FTP,21,File Transfer Protocol,,,"#ftp 10.11.1.8
+FTP,21,File Transfer Protocol,Notes,Notes for FTP,"#ftp 10.11.1.8
 Anonymous
 -bi     <<< so that your put is done via binary
 
