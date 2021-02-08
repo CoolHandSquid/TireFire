@@ -2,6 +2,7 @@
 *	TireFire is a scalable and straightforward platform for external enumeration to place your operations and workflow order. 
 *	The database for TireFire (Main.csv) is easily altered to support your methodologies as they are substituted and appended.
 *	TireFire is a product of 19% security solutions. 
+* ReRelease is scheduled for March 6 2021
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/Tire_fire.jpg)
 ## Friendly (GUI-ish) Interface
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/2_kickoff.png)
