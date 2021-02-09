@@ -122,16 +122,16 @@ SNMP,161,Simple Network Managment Protocol,Snmp Check,Enumerate SNMP,snmp-check 
 SNMP,161,Simple Network Managment Protocol,OneSixtyOne,Crack SNMP passwords,onesixtyone -c /usr/share/seclists/Discovery/SNMP/common-snmp-community-strings-onesixtyone.txt {IP} -w 100,Verified,2
 Telnet,23,Telnet,Notes,Telnet Notes,"#wireshark to hear creds being passed
 tcp.port == 23 and ip.addr != myip",Verified,1
-Web,80,Hypertext Transfer Protocol,Quick Web Scan,Nikto and GoBuster on Each Web Port,%nikto -host http://{IP}:{Port} &&&&gobuster dir -w {Small_Dirlist} -u http://{IP}:{Port} && gobuster dir -w {Big_Dirlist} -u http://{IP}:{Port},Verified,1
+Web,80,Hypertext Transfer Protocol,Quick Web Scan,Nikto and GoBuster on Each Web Port,nikto -host {Web_Proto}://{IP}:{Web_Port} &&&&gobuster dir -w {Small_Dirlist} -u {Web_Proto}://{IP}:{Web_Port} && gobuster dir -w {Big_Dirlist} -u {Web_Proto}://{IP}:{Web_Port},Verified,1
 Web,80,Hypertext Transfer Protocol,SQLMap,Tool To Aid in Running SQLMap,Modules/SquidsSqlMapTool.py,Unverified,2
 Web,80,Hypertext Transfer Protocol,WFuzz,Tool To Aid in Running WFuzz,Modules/SquidsWfuzzTool.py,Unverified,3
-Web,80,Hypertext Transfer Protocol,Nikto,Generic Web Scan,nikto -host http://{IP}:80,Verified,4
-Web,80,Hypertext Transfer Protocol,Directory Brute Force Non-Recursive,Non-Recursive Directory Brute Force,gobuster dir -w {Big_Dirlist} -u http://{IP}:80,Verified,5
-Web,80,Hypertext Transfer Protocol,Directory Brute Force Recursive,Recursive Directory Brute Force,"python3 dirsearch/dirsearch.py -w {Small_Dirlist} -e php,exe,sh,py,html,pl -f -t 20 -u http://{IP}:80 -r -R 10",Verified,6
-Web,80,Hypertext Transfer Protocol,Directory Brute Force CGI,Common Gateway Interface Brute Force,gobuster dir -u http://{IP}:80/ -w /usr/share/seclists/Discovery/Web-Content/CGIs.txt -s 200,Verified,7
-Web,80,Hypertext Transfer Protocol,Nmap Web Vuln Scan,Tailored Nmap Scan for web Vulnerabilities,"nmap -vv --reason -Pn -sV -p 80 --script=`banner,(http* or ssl*) and not (brute or broadcast or dos or external or http-slowloris* or fuzzer)` {IP}",Verified,8
-Web,80,Hypertext Transfer Protocol,Nmap ShellShock,Test for ShellShock Vulnerability with custom NSE Script,nmap -vv --reason -Pn -sV -p 80 --script=Modules/http-shellshock.nse {IP},Verified,9
-WebApp,80,Hypertext Transfer Protocol,WPScan,Enumerate WordPress,"wpscan --url http://{IP} --enumerate ap,at,cb,dbe && wpscan --url http://{IP} --enumerate u,tt,t,vp --passwords {Big_Passwordlist} -e ",Verified,1
+Web,80,Hypertext Transfer Protocol,Nikto,Generic Web Scan,nikto -host {Web_Proto}://{IP}:{Web_Port},Verified,4
+Web,80,Hypertext Transfer Protocol,Directory Brute Force Non-Recursive,Non-Recursive Directory Brute Force,gobuster dir -w {Big_Dirlist} -u {Web_Proto}://{IP}:{Web_Port},Verified,5
+Web,80,Hypertext Transfer Protocol,Directory Brute Force Recursive,Recursive Directory Brute Force,"python3 dirsearch/dirsearch.py -w {Small_Dirlist} -e php,exe,sh,py,html,pl -f -t 20 -u {Web_Proto}://{IP}:{Web_Port} -r -R 10",Verified,6
+Web,80,Hypertext Transfer Protocol,Directory Brute Force CGI,Common Gateway Interface Brute Force,gobuster dir -u {Web_Proto}://{IP}:{Web_Port}/ -w /usr/share/seclists/Discovery/Web-Content/CGIs.txt -s 200,Verified,7
+Web,80,Hypertext Transfer Protocol,Nmap Web Vuln Scan,Tailored Nmap Scan for web Vulnerabilities,"nmap -vv --reason -Pn -sV -p {Web_Port} --script=`banner,(http* or ssl*) and not (brute or broadcast or dos or external or http-slowloris* or fuzzer)` {IP}",Verified,8
+Web,80,Hypertext Transfer Protocol,Nmap ShellShock,Test for ShellShock Vulnerability with custom NSE Script,nmap -vv --reason -Pn -sV -p {Web_Port} --script=Modules/http-shellshock.nse {IP},Verified,9
+WebApp,80,Hypertext Transfer Protocol,WPScan,Enumerate WordPress,"wpscan --url {Web_Proto}://{IP} --enumerate ap,at,cb,dbe && wpscan --url {Web_Proto}://{IP} --enumerate u,tt,t,vp --passwords {Big_Passwordlist} -e ",Verified,1
 WebApp,80,Hypertext Transfer Protocol,Drupal,Drupal Notes,#git clone https://github.com/immunIT/drupwn.git for low hanging fruit and git clone https://github.com/droope/droopescan.git for the deeper shit,Verified,2
 WebApp,80,Hypertext Transfer Protocol,Joomla,Joomla Notes,#joomlavs.rb and joomblah on github are both incredibly handy,Verified,3
 Java-RMI,1100,Java Remote Method Invocation,Nmap,Dump register of java-rmi instance,nmap -sC -sV -Pn {IP} -p 1100,Verified,1

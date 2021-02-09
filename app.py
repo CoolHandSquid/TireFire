@@ -7,7 +7,6 @@ from colorama   import Fore, Style
 from tabulate   import tabulate
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 import db
-import variables
 
 ##################################################
 #Begin Start 
@@ -75,18 +74,6 @@ def display_sub(proto):
             command = eval("fullcmd[{}][0]".format(rawin)) 
             if command[0] == '#':
                 showit(proto, scan, command)    
-            elif command[0] == '%':
-                command = command[1:]
-                if "&&&&" in command:
-                    commands    = command.split("&&&&")
-                    for cmd in commands:
-                        for Port in Web_Portlist:
-                            tcommand    = (eval("f'" + cmd + "'"))
-                            doit(proto, scan, tcommand)
-                else:
-                    for Port in Web_Portlist:
-                        tcommand = (eval("f'" + command + "'"))
-                        doit(proto, scan, tcommand)
             elif "&&&&" in command:
                 command     = (eval("f'" + command + "'"))
                 commands    = command.split("&&&&")
@@ -100,12 +87,17 @@ def display_sub(proto):
             display_main()
 
 def display_variables():
-    items   = [("IP", IP), ("Domain_Name", Domain_Name), ("Naming_Context", Naming_Context), ("Web_Portlist", Web_Portlist), ("Big_Passwordlist", Big_Passwordlist), ("Small_Passwordlist", Small_Passwordlist), ("Big_Userlist", Big_Userlist), ("Small_Userlist", Small_Userlist), ("Big_Dirlist", Big_Dirlist), ("Small_Dirlist", Small_Dirlist)]
+    items   = [("IP", IP), ("Domain_Name", Domain_Name), ("Naming_Context", Naming_Context), ("Web_Proto", Web_Proto), ("Web_Port", Web_Port), ("Big_Passwordlist", Big_Passwordlist), ("Small_Passwordlist", Small_Passwordlist), ("Big_Userlist", Big_Userlist), ("Small_Userlist", Small_Userlist), ("Big_Dirlist", Big_Dirlist), ("Small_Dirlist", Small_Dirlist)]
     headers = ["Variable", "Current Value"]
     rawin   = input(Fore.YELLOW + "Variables Table\n" + Style.RESET_ALL + tabulate(items, headers=headers, tablefmt="psql", showindex="always")+ "\n> ")
     if input_validation(items, rawin) == True:
-        var = eval("items[{}][0]".format(rawin))
-        globals()[var] = variables.set(var)
+        try:
+            var = eval("items[{}][0]".format(rawin))
+            globals()[var] = input("What would you like to set the {} to?\n> ".format(var))
+            #globals()[var] = varset(var)
+            print(Fore.GREEN + "{} has been set to {}".format(var, globals()[var]) + Style.RESET_ALL)
+        except:
+            print("That did not seem to work. There was no variable change.")
     display_main()
 
 def display_ttl():
@@ -151,10 +143,15 @@ def input_validation(items, rawin):
             print(bad_input)
         return False
 
+def varset(var):
+    val = input("What would you like to set the {} to?\n> ".format(var))
+    return val
+
 IP              = sys.argv[1]
 Domain_Name     = "yee.wtf"
 Naming_Context  = "DC=YeetCannon,DC=local"
-Web_Portlist    = ["80"]
+Web_Proto       = "http"
+Web_Port        = "80"
 Big_Passwordlist    = "/usr/share/wordlists/rockyou.txt"
 Small_Passwordlist  = "/usr/share/seclists/Passwords/darkweb2017-top1000.txt"
 Big_Userlist        = "/usr/share/seclists/Usernames/Names/names.txt"
