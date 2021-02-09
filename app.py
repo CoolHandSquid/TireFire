@@ -94,7 +94,6 @@ def display_variables():
         try:
             var = eval("items[{}][0]".format(rawin))
             globals()[var] = input("What would you like to set the {} to?\n> ".format(var))
-            #globals()[var] = varset(var)
             print(Fore.GREEN + "{} has been set to {}".format(var, globals()[var]) + Style.RESET_ALL)
         except:
             print("That did not seem to work. There was no variable change.")
@@ -142,10 +141,6 @@ def input_validation(items, rawin):
         if rawin != "":
             print(bad_input)
         return False
-
-def varset(var):
-    val = input("What would you like to set the {} to?\n> ".format(var))
-    return val
 
 IP              = sys.argv[1]
 Domain_Name     = "yee.wtf"
