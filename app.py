@@ -94,6 +94,7 @@ def display_variables():
         try:
             var = eval("items[{}][0]".format(rawin))
             globals()[var] = input("What would you like to set the {} to?\n> ".format(var))
+            #globals()[var] = varset(var)
             print(Fore.GREEN + "{} has been set to {}".format(var, globals()[var]) + Style.RESET_ALL)
         except:
             print("That did not seem to work. There was no variable change.")
@@ -116,10 +117,10 @@ def showit(proto, scan, command):
     #Called to write output in new tilix tab
     tab_name    = "{} {}".format(proto, scan)
     sfile = open('showit.txt', 'w')
-    sfile.write("{}\n".format(tab_name))
-    sfile.write(command)
+    sfile.write("\n{}\n".format(command))
     sfile.close()
-    os.system("leafpad showit.txt &")
+    command = "cat showit.txt"
+    os.system("tilix -t '{}' -x $SHELL -c 'echo \"{}\"; {}; $SHELL'".format(tab_name, tab_name, command))
     print(Fore.GREEN + "{} {} opened in leafpad".format(proto, scan) + Style.RESET_ALL)
 
 def input_validation(items, rawin):
@@ -141,6 +142,10 @@ def input_validation(items, rawin):
         if rawin != "":
             print(bad_input)
         return False
+
+def varset(var):
+    val = input("What would you like to set the {} to?\n> ".format(var))
+    return val
 
 IP              = sys.argv[1]
 Domain_Name     = "yee.wtf"
