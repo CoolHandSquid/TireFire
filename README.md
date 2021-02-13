@@ -20,6 +20,9 @@
 ## ProTips
 - Ctrl+Z will bring you back to the main TireFire Page.
 - Ctrl+PageUp/PageDown will allow you to peruse through open tabs.
+- Ctrl+S will split the screen.
+- Ctrl+T for a new tab.
+- Ctrl+h for help.
 ## How to Build
 - git clone https://github.com/CoolHandSquid/TireFire.git
 - cd TireFire
