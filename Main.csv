@@ -32,7 +32,7 @@ LDAP,389,Lightweight Directory Access Prorocol,LdapSearch,Base LdapSearch,ldapse
 LDAP,389,Lightweight Directory Access Prorocol,LdapSearch Naming Context Dump,Attempt to get LDAP Naming Context,ldapsearch -h {IP} -x -s base namingcontexts,Verified,3
 LDAP,389,Lightweight Directory Access Prorocol,LdapSearch Big Dump,Need Naming Context to do big dump,"ldapsearch -h {IP} -x -b ""{Naming_Context}""",Verified,4
 MySql,3306,MySql,Nmap Scan,MySql Nmap Scan,"nmap --script=mysql-databases.nse,mysql-empty-password.nse,mysql-enum.nse,mysql-info.nse,mysql-variables.nse,mysql-vuln-cve2012-2122.nse {IP} -p 3306",Verified,1
-Nmap,0,Generic Scans,Kickoff Scan,"Quick scan, Version scan, All Port Scan, UDP Scan ran one at a time in order",nmap -Pn -sS -p- {IP} && nmap -Pn {IP} && nmap -sC -sV -Pn {IP} && nmap -p- -Pn {IP} && sudo nmap -Pn -p- -sU {IP},Verified,1
+Nmap,0,Generic Scans,Kickoff Scan,"Quick scan, Version scan, All Port Scan, UDP Scan ran one at a time in order",nmap -Pn {IP} && nmap -Pn -sS -p- {IP} && nmap -sC -sV -Pn {IP} && nmap -p- -Pn {IP} && sudo nmap -Pn -p- -sU {IP},Verified,1
 Nmap,0,Generic Scans,Quick Scan,Quick Nmap Scan,nmap {IP},Verified,2
 Nmap,0,Generic Scans,Version Scan,Scan for the Version of the Open Ports,nmap -sC -sV {IP},Verified,3
 Nmap,0,Generic Scans,All Port Scan,Scan for All Open Ports,nmap -p- -Pn {IP},Verified,4
