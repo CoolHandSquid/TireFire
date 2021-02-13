@@ -24,8 +24,13 @@ use-tabs=false
 window-style='normal'
 
 [keybindings]
+app-new-session='<Primary>t'
+app-shortcuts='<Primary>h'
+session-add-right='<Primary>s'
 session-switch-to-previous-terminal='<Alt>z'
 session-switch-to-terminal-1='<Alt>s'
+win-switch-to-next-session='<Primary>Page_Up'
+win-switch-to-previous-session='<Primary>Page_Down'
 win-switch-to-session-1='<Primary>z'
 
 [profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d]
