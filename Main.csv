@@ -38,7 +38,7 @@ Nmap,0,Generic Scans,Version Scan,Scan for the Version of the Open Ports,nmap -s
 Nmap,0,Generic Scans,All Port Scan,Scan for All Open Ports,nmap -p- -Pn {IP},Verified,4
 Nmap,0,Generic Scans,All Vulns Scan,Scan with All SMB Vuln Scripts,"nmap --script smb-vuln* -p 139,445 {IP}",Verified,5
 Nmap,0,Generic Scans,Quiet Scan,Scan Quietly,nmap -Pn -sS -p- {IP},Verified,6
-Nmap,0,Generic Scans,UDP Scan,Scan for Open UDP Ports,nmap -Pn -p- -su {IP},Verified,7
+Nmap,0,Generic Scans,UDP Scan,Scan for Open UDP Ports,nmap -Pn -p- -sU {IP},Verified,7
 Oracle,1521,Oracle Database,Oracle Notes,Notes for Oracle,"#Oracle Notes
 navigate to https://github.com/quentinhardy/odat/releases/
 download the latest
