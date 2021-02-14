@@ -5,7 +5,7 @@
 * ReRelease is scheduled for March 6 2021
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/Tire_fire.jpg)
 ## Friendly (GUI-ish) Interface
-![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/2_kickoffs.png)
+ <div style="text-align:center">![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/2_kickoffs.png)</div>
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/3_TireFire.png)
 ## Usage
 *	TireFire will not function well if not run as root.
