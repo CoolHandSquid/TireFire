@@ -19,6 +19,7 @@
 *	Tables and commands can be added while TireFire is running, and it will be populated once Main.csv is saved.
 ## ProTips
 - Run multiple commands from a table at once by splitting the command numbers with commas. EX: 0,1,2 (Spaces and periods work aswell)
+![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/4_split.png)
 - Ctrl+Z will bring you back to the main TireFire Page.
 - Ctrl+PageUp/PageDown will allow you to peruse through open tabs.
 - Ctrl+S will split the screen.
