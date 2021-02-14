@@ -124,7 +124,7 @@ def showit(proto, scan, command):
     sfile.close()
     command = "cat showit.txt"
     os.system("tilix -t '{}' -x $SHELL -c 'echo \"{}\"; {}; $SHELL'".format(tab_name, tab_name, command))
-    print(Fore.GREEN + "{} {} opened in leafpad".format(proto, scan) + Style.RESET_ALL)
+    print(Fore.GREEN + "{} {}".format(proto, scan) + Style.RESET_ALL)
 
 def input_validation(items, rawin):
     bad_input       = "Some decent input would be nice..."
