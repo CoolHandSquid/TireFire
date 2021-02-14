@@ -32,6 +32,7 @@
 ## Easily Add modules
 - Open Main.csv with your favorite csv editor (I'm partial to ModernCSV).
 - When adding a command, keep in mind Name, Port, and Description are for the primary display screen; Cmd_Name, Cmd_Description, Cmd_Command, Cmd_Comment, and SubDisplayOrder are for the secondary display screen.
+![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/1_csv.png)
 ## Special Characters and Syntax
 -	Cmd_Command has a few special characters including &&&&, #, and {}.
 -	&&&& Anywhere in the command will split the line and start each command individually in separate tabs.
@@ -40,7 +41,6 @@
 -	{} is for grabbing a variable from TireFire. Available variables are IP, Domain_Name, Naming_Context, Web_Proto, Web_Port, Big_Passwordlist, Small_Passwordlist, Big_Userlist, Small_Userlist, Big_Dirlist, Small_Dirlist.
 -	Use " instead of ' due to the way that the string is being passed into TireFire.  
 
-![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/1_csv.png)
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/CoolHandSquid.jpg)
 ## Contact
 Please contact me at CoolHandSquid32@gmail.com for suggestions and ideas!
