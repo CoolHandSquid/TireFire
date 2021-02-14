@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import os
+import re
 import sys
 import click
 import subprocess
@@ -68,23 +69,25 @@ def display_sub(proto):
     fullcmd = db.get_fullcommand(proto)
     subheaders  = ["Cmd Name", "Description", "Command", "Comment"]
     rawin   = input(Fore.YELLOW + proto + " Table\n" + Style.RESET_ALL + tabulate(items, headers=subheaders, tablefmt="psql", showindex="always")+ "\n> ")
-    if input_validation(items, rawin) == True:
-        try:
-            scan    = eval("items[{}][0]".format(rawin))
-            command = eval("fullcmd[{}][0]".format(rawin)) 
-            if command[0] == '#':
-                showit(proto, scan, command)    
-            elif "&&&&" in command:
-                command     = (eval("f'" + command + "'"))
-                commands    = command.split("&&&&")
-                for cmd in commands:
-                    doit(proto, scan, cmd)
-            else:
-                command = (eval("f'" + command + "'"))
-                doit(proto, scan, command)
-        except:
-            input("That command didn't seem to work...\nRemember that if you are going to add a command to the DB, be sure to escape single quotes.")
-            display_main()
+    rawin = re.split(',|\.| ',rawin)
+    for rawin in rawin:
+        if input_validation(items, rawin) == True:
+            try:
+                scan    = eval("items[{}][0]".format(rawin))
+                command = eval("fullcmd[{}][0]".format(rawin)) 
+                if command[0] == '#':
+                    showit(proto, scan, command)    
+                elif "&&&&" in command:
+                    command     = (eval("f'" + command + "'"))
+                    commands    = command.split("&&&&")
+                    for cmd in commands:
+                        doit(proto, scan, cmd)
+                else:
+                    command = (eval("f'" + command + "'"))
+                    doit(proto, scan, command)
+            except:
+                input("That command didn't seem to work...\nRemember that if you are going to add a command to the DB, be sure to escape single quotes.")
+                display_main()
 
 def display_variables():
     items   = [("IP", IP), ("Domain_Name", Domain_Name), ("Naming_Context", Naming_Context), ("Web_Proto", Web_Proto), ("Web_Port", Web_Port), ("Big_Passwordlist", Big_Passwordlist), ("Small_Passwordlist", Small_Passwordlist), ("Big_Userlist", Big_Userlist), ("Small_Userlist", Small_Userlist), ("Big_Dirlist", Big_Dirlist), ("Small_Dirlist", Small_Dirlist)]
