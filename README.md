@@ -18,6 +18,7 @@
 *	If there is a scan or series of scans for a protocol, you would like to add, edit Main.csv following the guidelines in this README (it's pretty straight forward).
 *	Tables and commands can be added while TireFire is running, and it will be populated once Main.csv is saved.
 ## ProTips
+- String commands together with commas. EX: 0,1,2 (Spaces and periods will work to. Whatever is more convenient)
 - Ctrl+Z will bring you back to the main TireFire Page.
 - Ctrl+PageUp/PageDown will allow you to peruse through open tabs.
 - Ctrl+S will split the screen.
