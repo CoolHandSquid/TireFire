@@ -5,7 +5,7 @@
 * ReRelease is scheduled for March 6 2021
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/Tire_fire.jpg)
 ## Demo
-[<img src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/Tire_fire.jpg" width="50%>](https://drive.google.com/file/d/1Z9YKmc5Q9ioIM2OXV12Qvq6GjJQDUKBC/view?usp=sharing)
+![Tire Fire]((https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/TireFireFinal1.gif)
 ## Friendly (GUI-ish) Interface
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/2_kickoffs.png)
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/3_TireFire.png)
