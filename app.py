@@ -76,6 +76,13 @@ def display_sub(proto):
                 scan    = eval("items[{}][0]".format(rawin))
                 command = eval("fullcmd[{}][0]".format(rawin)) 
                 if command[0] == '#':
+                    if command[1] == '#':
+                        pass
+                    else:
+                        try:
+                            command = (eval("f'" + command + "'"))
+                        except:
+                            pass
                     showit(proto, scan, command)    
                 elif "&&&&" in command:
                     command     = (eval("f'" + command + "'"))
