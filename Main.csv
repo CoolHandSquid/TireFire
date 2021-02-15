@@ -59,11 +59,11 @@ cd odat-libc2.12-x86_64/
 ./odat-libc2.12-x86_64 all -s 10.10.10.82
 
 for more details check https://github.com/quentinhardy/odat/wiki",Unverified,1
-SMB,139,Server Message Block,Enum4Linux,General SMB Scan,enum4linux -a {IP},Verified,1
-SMB,139,Server Message Block,Nmap Smb Scan 1,SMB Vuln Scan With Nmap,"nmap -p 139,445 -vv -Pn --script=smb-vuln-cve2009-3103.nse,smb-vuln-ms06-025.nse,smb-vuln-ms07-029.nse,smb-vuln-ms08-067.nse,smb-vuln-ms10-054.nse,smb-vuln-ms10-061.nse,smb-vuln-ms17-010.nse {IP}",Verified,2
-SMB,139,Server Message Block,Nmap Smb Scan 2,SMB Vuln Scan With Nmap (Less Specific),"nmap --script smb-vuln* -Pn -p 139,445 {IP}",Verified,3
-SMB,139,Server Message Block,SMB Version Enum,Use TcpDump to get SMB Version,Modules/SmbVersionEnum {IP} 139,Unverified,4
-SMB,139,Server Message Block,Notes,Notes To Aid in Manual SMB Enumeration,"#These are the commands I run in order every time I see an open SMB port
+SMB,445,Server Message Block,Enum4Linux,General SMB Scan,enum4linux -a {IP},Verified,1
+SMB,445,Server Message Block,Nmap Smb Scan 1,SMB Vuln Scan With Nmap,"nmap -p 139,445 -vv -Pn --script=smb-vuln-cve2009-3103.nse,smb-vuln-ms06-025.nse,smb-vuln-ms07-029.nse,smb-vuln-ms08-067.nse,smb-vuln-ms10-054.nse,smb-vuln-ms10-061.nse,smb-vuln-ms17-010.nse {IP}",Verified,2
+SMB,445,Server Message Block,Nmap Smb Scan 2,SMB Vuln Scan With Nmap (Less Specific),"nmap --script smb-vuln* -Pn -p 139,445 {IP}",Verified,3
+SMB,445,Server Message Block,SMB Version Enum,Use TcpDump to get SMB Version,Modules/SmbVersionEnum {IP} 139,Unverified,4
+SMB,445,Server Message Block,Notes,Notes To Aid in Manual SMB Enumeration,"#These are the commands I run in order every time I see an open SMB port
 
 With No Creds
 nbtscan {IP}
