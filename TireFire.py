@@ -9,4 +9,4 @@ if len(sys.argv) != 2:
 ip      = sys.argv[1]
 path    = subprocess.getoutput("readlink /usr/bin/TireFire")
 path    = path[:-12]
-os.system("tilix -t 'TireFire Main Page' -x $SHELL -c '{}/app.py {} ; $SHELL'".format(path, ip))
+os.system("tilix --maximize -t 'TireFire Main Page' -x $SHELL -c '{}/app.py {} ; $SHELL'".format(path, ip))
