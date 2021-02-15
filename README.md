@@ -38,7 +38,7 @@
 ### &&&&
 -	&&&& Anywhere in the command will split the line and start each command individually in separate tabs.
   -	Example: whoami &&&& id &&&& ifconfig will open three tabs and run the desired command in each. &&&& is useful if you initially run multiple separate commands every time you see a specific port open.
-### #
+### \#
 -	"#" is for sending yourself notes to another tab.  
 - "#" can be useful if you don't want to run a command, but you want to give yourself copy-paste notes for manual enumeration.
 - Set only the first character of the line to # if you want variables to be evaluated.
