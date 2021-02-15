@@ -1,5 +1,17 @@
 Name,Port,Description,Cmd_Name,Cmd_Description,Cmd_Command,Cmd_Comment,SubDisplayOrder
-DNS,53,Domain Name Service,DNS Tool,The first step of DNS enumeration,Modules/SquidsDnsTool.py {IP} {Domain_Name},Verified,1
+DNS,53,Domain Name Service,DNS Notes,The first step of DNS enumeration,"#These are the commands I run every time I see an open DNS port
+
+dnsrecon -r 127.0.0.0/24 -n {IP} -d {Domain_Name}
+dnsrecon -r 127.0.1.0/24 -n {IP} -d {Domain_Name}
+dnsrecon -r {Network}{CIDR} -n {IP} -d {Domain_Name}
+dig axfr @{IP}
+dig axfr {Domain_Name} @{IP}
+nslookup
+	SERVER {IP}
+	127.0.0.1
+	{IP}
+	Domain_Name
+	exit",Verified,1
 FTP,21,File Transfer Protocol,Notes,Notes for FTP,"#ftp 10.11.1.8
 Anonymous
 -bi     <<< so that your put is done via binary
@@ -51,7 +63,31 @@ SMB,139,Server Message Block,Enum4Linux,General SMB Scan,enum4linux -a {IP},Veri
 SMB,139,Server Message Block,Nmap Smb Scan 1,SMB Vuln Scan With Nmap,"nmap -p 139,445 -vv -Pn --script=smb-vuln-cve2009-3103.nse,smb-vuln-ms06-025.nse,smb-vuln-ms07-029.nse,smb-vuln-ms08-067.nse,smb-vuln-ms10-054.nse,smb-vuln-ms10-061.nse,smb-vuln-ms17-010.nse {IP}",Verified,2
 SMB,139,Server Message Block,Nmap Smb Scan 2,SMB Vuln Scan With Nmap (Less Specific),"nmap --script smb-vuln* -Pn -p 139,445 {IP}",Verified,3
 SMB,139,Server Message Block,SMB Version Enum,Use TcpDump to get SMB Version,Modules/SmbVersionEnum {IP} 139,Unverified,4
-SMB,139,Server Message Block,Handy SMB Tool,Tool To Aid in Manual SMB Enumeration,Modules/SquidsSmbTool.py {IP} {Domain_Name},"Unverified
+SMB,139,Server Message Block,Notes,Notes To Aid in Manual SMB Enumeration,"#These are the commands I run in order every time I see an open SMB port
+
+With No Creds
+nbtscan {IP}
+smbmap -H {IP}
+smbmap -H {IP} -u null -p null
+smbclient -N -L //{IP}
+smbclient -N //{IP}/ --option=""client min protocol""=LANMAN1
+rpcclient {IP}
+rpcclient -U """" {IP}
+crackmapexec smb {IP}
+crackmapexec smb {IP} --pass-pol -u """" -p """"
+GetADUsers.py -dc-ip {IP} ""{Domain_Name}/"" -all
+GetNPUsers.py -dc-ip {IP} -request ""{Domain_Name}/"" -format hashcat
+GetUserSPNs.py -dc-ip {IP} -request ""{Domain_Name}/""
+getArch.py -target {IP}
+
+With Creds
+smbmap -H {IP} -u {Username} -p {Password}
+smbclient -h ""\\\\{IP}\\\"" -U {Domain_Name} -W {Username} -l {IP}
+smbclient -h ""\\\\{IP}\\\"" -U {Domain_Name} -W {Username} -l {IP} --pw-nt-hash `hash`
+crackmapexec smb {IP} -u {Username} -p {Password} --shares
+GetADUsers.py {Domain_Name}/{Username}:{Password} -all
+GetNPUsers.py {Domain_Name}/{Username}:{Password} -request -format hashcat
+GetUserSPNs.py {Domain_Name}/{Username}:{Password} -request","Unverified
 ",5
 SMTP,25,Simple Mail Transfer Protocol,Nmap SMTP Scan,SMTP Vuln Scan With Nmap,"nmap --script=smtp-commands,smtp-enum-users,smtp-vuln-cve2010-4344,smtp-vuln-cve2011-1720,smtp-vuln-cve2011-1764 -p 25 {IP}",Verified,1
 SMTP,25,Simple Mail Transfer Protocol,SMTP User Enum,Enumerate uses with smtp-user-enum,smtp-user-enum -M VRFY -U {Big_Userlist} -t {IP},Verified,2
