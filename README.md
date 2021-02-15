@@ -32,7 +32,7 @@
 ## Easily Add modules
 - Open Main.csv with your favorite csv editor (I'm partial to ModernCSV).
 - When adding a command, keep in mind Name, Port, and Description are for the primary display screen; Cmd_Name, Cmd_Description, Cmd_Command, Cmd_Comment, and SubDisplayOrder are for the secondary display screen.
-![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/1_csv.png)
+![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/2_csv.png)
 ## Special Characters and Syntax
 -	Cmd_Command has a few special characters including &&&&, #, ##, and {}.
 ### &&&&
