@@ -45,8 +45,8 @@
 - Set the first two characters of the line to ## if you do not want variables to be evaluated.
 ### {}
 -	{} is for grabbing a variable from TireFire.
-- Available variables are IP, Domain_Name, Naming_Context, Web_Proto, Web_Port, Big_Passwordlist, Small_Passwordlist, Big_Userlist, Small_Userlist, Big_Dirlist, Small_Dirlist.
--	Use " instead of ' due to the way that the string is being passed into TireFire.  
+- Available variables can be viewed in the variables table.
+-	Use " instead of ' due to the way strings are being passed into TireFire.  
 
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/CoolHandSquid.jpg)
 ## Contact
