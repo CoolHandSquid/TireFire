@@ -4,8 +4,6 @@
 *	TireFire is a product of 19% security solutions. 
 * ReRelease is scheduled for March 6 2021
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/Tire_fire.jpg)
-## Demo
-![Tire Fire](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/TireFireFinal1.gif)
 ## Friendly (GUI-ish) Interface
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/3_TireFire.png)
 ## Usage
@@ -18,6 +16,8 @@
 *	You can change the variables by going to the "Variables Table."
 *	If there is a scan or series of scans for a protocol, you would like to add, edit Main.csv following the guidelines in this README (it's pretty straight forward).
 *	Tables and commands can be added while TireFire is running, and it will be populated once Main.csv is saved.
+## Demo
+![Tire Fire](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/TireFireFinal1.gif)
 ## ProTips
 - Run multiple commands from a table at once by splitting the command numbers with commas. EX: 0,1,2 (Spaces and periods work aswell)
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/4_split.png)
