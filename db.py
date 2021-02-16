@@ -1,7 +1,6 @@
 import pandas as pd
 import pandasql
 
-
 def get_display_ttl():
     df      = pd.read_csv('TTL.csv')
     q       = "SELECT * FROM df"
