@@ -7,7 +7,6 @@
 ## Demo
 ![Tire Fire](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/TireFireFinal1.gif)
 ## Friendly (GUI-ish) Interface
-![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/2_kickoffs.png)
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/3_TireFire.png)
 ## Usage
 *	TireFire will not function well if not run as root.
