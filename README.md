@@ -29,7 +29,7 @@
 ## How to Build
 - git clone https://github.com/CoolHandSquid/TireFire.git
 - cd TireFire
-- sudo /bin/bash ./Build.sh 
+- ./Build.sh
 ## Easily Add modules
 - Open Main.csv with your favorite csv editor (I'm partial to ModernCSV).
 - When adding a command, keep in mind Name, Port, and Description are for the primary display screen; Cmd_Name, Cmd_Description, Cmd_Command, Cmd_Comment, and SubDisplayOrder are for the secondary display screen.
