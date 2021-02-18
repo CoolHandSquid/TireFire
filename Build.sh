@@ -1,9 +1,22 @@
 #!/usr/bin/env bash
+
+#Verify running as root
+if [[ "$(id -u)" -ne "0" ]]; then
+	echo "You must be root to run this script."
+	exit 1
+fi
+
+#Verify in TireFire directory
+if [[ "$(pwd | awk -F"/" '{print$NF}')" != "TireFire" ]]; then
+	echo "You must be in the TireFire directory to run this script."
+	exit 1
+fi
+
 cat <<'END'
 TireFire is installing...
 END
 
-if [ ! -d 'dirsearch' ]; then git clone https://github.com/maurosoria/dirsearch.git; fi
+if [[ ! -d 'dirsearch' ]]; then git clone https://github.com/maurosoria/dirsearch.git; fi
 chmod -R 755 dirsearch/
 
 rm /usr/bin/TireFire 2> /dev/null
@@ -25,7 +38,7 @@ fi
 wordlists=("/usr/share/wordlists/rockyou.txt" "/usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt" "/usr/share/dirbuster/wordlists/directory-list-2.3-small.txt" "/usr/share/seclists/Usernames/Names/names.txt")
 for wordlist in "${wordlists[@]}"
 do
-    if test ! -f "$wordlist"
+    if [[ ! -f "$wordlist" ]]
     then
         echo "#"
         echo "#"
@@ -36,4 +49,5 @@ do
         echo "#"
     fi
 done
+chown 0 -R ./*
 chmod +x -R *
