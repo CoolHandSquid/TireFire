@@ -91,12 +91,14 @@ def display_sub(proto):
                 if command[0] == '#':
                     showit(proto, scan, command)    
                 elif "&&&&" in command:
-                    command     = (eval("f'" + command + "'"))
+                    #command     = (eval("f'" + command + "'"))
+                    command     = command.format(**globals())
                     commands    = command.split("&&&&")
                     for cmd in commands:
                         doit(proto, scan, cmd)
                 else:
-                    command = (eval("f'" + command + "'"))
+                    #command = (eval("f'" + command + "'"))
+                    command = command.format(**globals())
                     doit(proto, scan, command)
             except:
                 input("That command didn't seem to work...\nRemember that if you are going to add a command to the DB, be sure to escape single quotes.")
@@ -141,7 +143,8 @@ def showit(proto, scan, command):
         else:
             for line in scommand:
                 try:
-                    line = (eval("f'" + line + "'"))
+                    #line = (eval("f'" + line + "'"))
+                    line    = line.format(**globals())
                 except:
                     pass
                 sfile.write("{}\n".format(line))
