@@ -46,7 +46,7 @@ def start(IP):
         quit()
     if click.confirm("Do you want to kick this off with an Nmap scan?", default=True):
         print(Fore.GREEN + check_ping(IP) + Style.RESET_ALL)
-        print(Fore.YELLOW + "Reference TTL Table\n" + Style.RESET_ALL + display_ttl())
+        print(Fore.YELLOW + "Reference TTL Table\n" + Fore.CYAN + display_ttl() + Style.RESET_ALL)
         command = "nmap -Pn {} && nmap -sC -sV -Pn {} && nmap -p- -Pn {} && nmap -Pn -p- -sU {}".format(IP, IP, IP, IP)
         doit("Nmap", "Kickoff", command)
     return
