@@ -101,7 +101,10 @@ def display_sub(proto):
                     command = command.format(**globals())
                     doit(proto, scan, command)
             except:
-                input("That command didn't seem to work...\nRemember that if you are going to add a command to the DB, be sure to escape single quotes.")
+                try:
+                    print(rawin + " May be out of range.")
+                except:
+                    print("That command didn't seem to work...")
                 display_main()
 
 def display_variables():
