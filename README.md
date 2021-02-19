@@ -46,8 +46,7 @@
 - Set the first two characters of the line to ## if you do not want variables to be evaluated.
 ### {}
 -	{} is for grabbing a variable from TireFire.
-- Available variables can be viewed in the variables table.
--	Use " instead of ' due to the way strings are being passed into TireFire.  
+- Available variables can be viewed in the variables table.  
 
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/CoolHandSquid.jpg)
 ## Contact
