@@ -3,6 +3,8 @@ import os
 import re
 import sys
 import click
+import psutil
+import argparse
 import subprocess
 from netaddr    import *
 from colorama   import Fore, Style
@@ -14,24 +16,24 @@ import db
 #Begin Start 
 ##################################################
 def termstat():
-    #used to determine if your 
-    curuser = subprocess.getoutput("id")
-    pid = os.getpid()
-    if "uid=0(root)" not in curuser:
-        print("Fair Warning: You are gonna wanna run this with root privileges")
-    ppid = subprocess.getoutput("ps -o ppid= {}".format(pid))
-    gpid = subprocess.getoutput("ps -o ppid= {}".format(ppid))
-    psline = subprocess.getoutput("ps -aux | grep {} | grep -v grep".format(gpid))
-    if "tilix" not in psline:
+    #Determine if app.py was kicked off with TireFire.py 
+    tfpid   = os.getpgid(psutil.Process(os.getppid()).ppid()) 
+    psline  = subprocess.getoutput("ps -efj | grep {} | grep -v grep".format(tfpid))
+    if "/usr/bin/TireFire" not in psline:
         return False
     else:
         return True
 
 def check_ping(IP):
-    responce    = os.system("ping -c 1 {}".format(IP))
-    if responce == 0:
-        responce    = os.popen("ping -c 1 {}".format(IP)).read()
-        ttl         = responce.split()[12]
+    #Attempt to ping target and return TTL
+    cmd     = "ping -c 1 {}".format(IP)
+    try:
+        ping    = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE)
+        response= ping.wait(1)
+    except:
+        response = 1
+    if response == 0:
+        ttl         = str(ping.communicate()[0]).split()[11]
         return ttl
     else:
         error   = "The ping was unsuccsessful..."
@@ -39,10 +41,7 @@ def check_ping(IP):
 
 def start(IP):
     if termstat() == False:
-        print("Please run TireFire from tilix")
-        quit()
-    if len(sys.argv) != 2:
-        print("The syntax that I am looking for is more like TireFire 10.10.10.5")
+        print("Please run TireFire with the syntax like: TireFire 10.10.10.5")
         quit()
     if click.confirm("Do you want to kick this off with an Nmap scan?", default=True):
         print(Fore.GREEN + check_ping(IP) + Style.RESET_ALL)
@@ -119,6 +118,7 @@ def display_ttl():
     items   = db.get_display_ttl()
     headers = ["Operating Systems", "TCP", "UDP", "ICMP"]
     return tabulate(items, headers=headers, tablefmt="psql")
+
 ##################################################
 #Begin Execution 
 ##################################################
@@ -131,18 +131,17 @@ def doit(proto, scan, command):
 def showit(proto, scan, command):
     #Called to write output in new tilix tab
     tab_name    = "{} {}".format(proto, scan)
-    sfile = open('showit.txt', 'w')
-    scommand = command.split('\n')
-    if command[1] == "#":
-        sfile.write("\n{}\n".format(command))
-    else:
-        for line in scommand:
-            try:
-                line = (eval("f'" + line + "'"))
-            except:
-                pass
-            sfile.write("{}\n".format(line))
-    sfile.close()
+    with open('showit.txt', 'w') as sfile:
+        scommand = command.split('\n')
+        if command[1] == "#":
+            sfile.write("\n{}\n".format(command))
+        else:
+            for line in scommand:
+                try:
+                    line = (eval("f'" + line + "'"))
+                except:
+                    pass
+                sfile.write("{}\n".format(line))
     command = "cat showit.txt"
     os.system("tilix -t '{}' -x $SHELL -c 'echo \"{}\"; {}; $SHELL'".format(tab_name, tab_name, command))
     print(Fore.GREEN + "{} {}".format(proto, scan) + Style.RESET_ALL)
@@ -167,25 +166,30 @@ def input_validation(items, rawin):
             print(bad_input)
         return False
 
-IP              = sys.argv[1]
-Network         = get_network(IP)[0]
-CIDR            = get_network(IP)[1]
-Domain_Name     = "yee.wtf"
-Naming_Context  = "DC=YeetCannon,DC=local"
-Web_Proto       = "http"
-Web_Port        = "80"
-Username        = "Squid"
-Password        = "Y337C4nn0n!"
-Big_Passwordlist    = "/usr/share/wordlists/rockyou.txt"
-Small_Passwordlist  = "/usr/share/seclists/Passwords/darkweb2017-top1000.txt"
-Big_Userlist        = "/usr/share/seclists/Usernames/Names/names.txt"
-Small_Userlist      = "/usr/share/seclists/Usernames/top-usernames-shortlist.txt"
-Big_Dirlist         = "/usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt"
-Small_Dirlist       = "/usr/share/seclists/Discovery/Web-Content/common.txt"
+if __name__ == "__main__":
+    parser  = argparse.ArgumentParser()
+    parser.add_argument("IP", help="IP address of the target", type=str)
+    args    = parser.parse_args()
 
-start(IP)
-while True:
-    try:
-        display_main()
-    except:
-        exit()
+    IP              = args.IP
+    Network         = get_network(IP)[0]
+    CIDR            = get_network(IP)[1]
+    Domain_Name     = "yee.wtf"
+    Naming_Context  = "DC=YeetCannon,DC=local"
+    Web_Proto       = "http"
+    Web_Port        = "80"
+    Username        = "Squid"
+    Password        = "Y337C4nn0n!"
+    Big_Passwordlist    = "/usr/share/wordlists/rockyou.txt"
+    Small_Passwordlist  = "/usr/share/seclists/Passwords/darkweb2017-top1000.txt"
+    Big_Userlist        = "/usr/share/seclists/Usernames/Names/names.txt"
+    Small_Userlist      = "/usr/share/seclists/Usernames/top-usernames-shortlist.txt"
+    Big_Dirlist         = "/usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt"
+    Small_Dirlist       = "/usr/share/seclists/Discovery/Web-Content/common.txt"
+
+    start(IP)
+    while True:
+        try:
+            display_main()
+        except:
+            exit()

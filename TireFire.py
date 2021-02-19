@@ -1,12 +1,17 @@
 #!/usr/bin/env python3
 import os
-import sys
+import pwd
+import argparse
 import subprocess
 
-if len(sys.argv) != 2:
-    print("The syntax I am looking for is more like TireFire 10.10.10.5")
+parser  = argparse.ArgumentParser()
+parser.add_argument("IP", help="IP address of the target", type=str)
+args    = parser.parse_args()
+
+if pwd.getpwuid(os.getuid())[0] != "root":
+    print("TireFire needs to be run as root. Try again.")
     exit()
-ip      = sys.argv[1]
+IP      = args.IP
 path    = subprocess.getoutput("readlink /usr/bin/TireFire")
 path    = path[:-12]
-os.system("tilix --maximize -t 'TireFire Main Page' -x $SHELL -c '{}/app.py {} ; $SHELL'".format(path, ip))
+os.system("tilix --maximize -t 'TireFire Main Page' -x $SHELL -c '{}/app.py {} ; $SHELL'".format(path, IP))
