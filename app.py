@@ -3,6 +3,7 @@ import os
 import re
 import sys
 import click
+import shlex
 import psutil
 import argparse
 import subprocess
@@ -28,7 +29,7 @@ def check_ping(IP):
     #Attempt to ping target and return TTL
     cmd     = "ping -c 1 {}".format(IP)
     try:
-        ping    = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE)
+        ping    = subprocess.Popen(shlex.split(cmd), stdout=subprocess.PIPE)
         response= ping.wait(1)
     except:
         response = 1
@@ -125,7 +126,9 @@ def display_ttl():
 def doit(proto, scan, command):
     #Called to execute command in new tilix tab
     tab_name    = "{} {}".format(proto, scan)
-    os.system("tilix -t '{}' -x $SHELL -c 'echo \"{}\"; {}; $SHELL'".format(tab_name, command, command))
+    cmd = "tilix -t '{}' -x bash -c 'echo \"{}\"; {}; bash'".format(tab_name, command, command) 
+    subprocess.Popen(shlex.split(cmd)) 
+    #os.system("tilix -t '{}' -x $SHELL -c 'echo \"{}\"; {}; $SHELL'".format(tab_name, command, command))
     print(Fore.GREEN + "{}".format(command) + Style.RESET_ALL)
 
 def showit(proto, scan, command):
@@ -143,7 +146,9 @@ def showit(proto, scan, command):
                     pass
                 sfile.write("{}\n".format(line))
     command = "cat showit.txt"
-    os.system("tilix -t '{}' -x $SHELL -c 'echo \"{}\"; {}; $SHELL'".format(tab_name, tab_name, command))
+    cmd     = "tilix -t '{}' -x bash -c 'echo \"{}\"; {}; bash'".format(tab_name, tab_name, command) 
+    subprocess.Popen(shlex.split(cmd))
+    #os.system("tilix -t '{}' -x $SHELL -c 'echo \"{}\"; {}; $SHELL'".format(tab_name, tab_name, command))
     print(Fore.GREEN + "{} {}".format(proto, scan) + Style.RESET_ALL)
 
 def input_validation(items, rawin):
