@@ -67,7 +67,7 @@ def get_network(IP):
 ##################################################
 def display_main():
     items   = db.get_display_main()
-    items.append(("Variables", "Z", "Set Global Variables"))
+    items.insert(0, ("Variables", "Vars", "Set Global Variables"))
     headers = ["Name", "Port", "Description"]
     rawin   = input(Fore.YELLOW + "MAIN Table\n" + Style.RESET_ALL + tabulate(items, headers=headers, tablefmt="psql", showindex="always")+ "\n> ")
     if input_validation(items, rawin) == True:        

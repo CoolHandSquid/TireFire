@@ -9,7 +9,8 @@ def get_display_ttl():
 
 def get_display_main():
     Main    = pd.read_csv('Main.csv')
-    q       ="SELECT Name, Port, Description from Main GROUP BY Name ORDER By Port ASC"
+    #q       ="SELECT Name, Port, Description from Main GROUP BY Name ORDER By Port ASC"
+    q       ="SELECT Name, Port, Description from Main GROUP BY Name ORDER By ABS(Port)"
     items   = pandasql.sqldf(q, locals())
     items   = items.values.tolist()
     return items
