@@ -239,7 +239,7 @@ import winrm
 s = winrm.Session('windows-host.example.com', auth=('john.smith', 'secret'))
 print(s.run_cmd('ipconfig'))
 print(s.run_ps('ipconfig'))",Verified,2
-Help,99999,Help Menu,Pro Tips,Pro Tips and Hot Keys,"#Pro Tips
+Help,Help,Help Menu,Pro Tips,Pro Tips and Hot Keys,"#Pro Tips
 
 Run multiple commands from a table at once by splitting the command numbers with commas. EX: 0,1,2 (Spaces and periods work aswell)
 Ctrl+Z will bring you back to the main TireFire Page.
@@ -248,7 +248,7 @@ Ctrl+S will split the screen.
 Ctrl+T for a new tab.
 Ctrl+h for help.
 ",Verified,1
-Help,99999,Help Menu,Adding rows to Main.csv,Substitute and append your methodology,"#Adding Rows
+Help,Help,Help Menu,Adding rows to Main.csv,Substitute and append your methodology,"#Adding Rows
 
 Open Main.csv with your favorite csv editor (I'm partial to ModernCSV).
 When adding a command, keep in mind Name, Port, and Description are for the primary display screen; Cmd_Name, Cmd_Description, Cmd_Command, Cmd_Comment, and SubDisplayOrder are for the secondary display screen.
@@ -266,7 +266,7 @@ Set the first two characters of the line to ## if you do not want variables to b
 {}
 {} is for grabbing a variable from TireFire.
 Available variables can be viewed in the variables table.",Verified,2
-Help,99999,Help Menu,Usage,In case you are uncomfortable at first,"#Usage
+Help,Help,Help Menu,Usage,In case you are uncomfortable at first,"#Usage
 
 TireFire will not function well if not run as root.
 Once Build.sh has been run, TireFire will have been added to your path.
@@ -277,7 +277,7 @@ Hit enter to return to the ""Main Table.""
 You can change the variables by going to the ""Variables Table.""
 If there is a scan or series of scans for a protocol, you would like to add, edit Main.csv following the guidelines in this README (it's pretty straight forward).
 Tables and commands can be added while TireFire is running, and it will be populated once Main.csv is saved.",Verified,3
-Help,99999,Help Menu,Contact Me,"Report bugs, ask for assistance, request add-on’s","#Contact me at CoolHandSquid@gmail.com
+Help,Help,Help Menu,Contact Me,"Report bugs, ask for assistance, request add-on’s","#Contact me at CoolHandSquid@gmail.com
 
 You can also find me on:
 GitHub:		https://github.com/CoolHandSquid
