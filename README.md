@@ -51,7 +51,7 @@
 ```
 ?What is the location of the wp-login.php? Example: /Yeet/cannon/wp-login.php
 ?What is a known password you would like to brute force?
-wpscan --url {Web_Proto}://{IP}{1} --enumerate ap,at,cb,dbe && wpscan --url {Web_Proto}://{IP}{1} --enumerate u,tt,t,vp --password {2} -e 
+wpscan --url {Web_Proto}://{IP}{1} --enumerate u,tt,t,vp --password {2} -e 
 ```
 ### {}
 -	{} is for grabbing a variable from TireFire.
