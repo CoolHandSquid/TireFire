@@ -45,7 +45,7 @@
 - Set only the first character of the line to # if you want variables to be evaluated.
 - Set the first two characters of the line to ## if you do not want variables to be evaluated.
 ### ?
-- "?" is for sending a question to the user. The responce will be set to a variable.
+- "?" is for sending a question to the user. The responce will be set to a numbered variable.
 - You can send multiple lines of questions for multiple variables.
 - Example:
 ```
