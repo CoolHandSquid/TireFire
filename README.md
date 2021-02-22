@@ -35,7 +35,7 @@
 - When adding a command, keep in mind Name, Port, and Description are for the primary display screen; Cmd_Name, Cmd_Description, Cmd_Command, Cmd_Comment, and SubDisplayOrder are for the secondary display screen.
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/2_csv.png)
 ## Special Characters and Syntax
--	Cmd_Command has a few special characters including &&&&, #, ##, and {}.
+-	Cmd_Command has a few special characters including &&&&, #, ##, ?, and {}.
 ### &&&&
 -	&&&& Anywhere in the command will split the line and start each command individually in separate tabs.
   -	Example: whoami &&&& id &&&& ifconfig will open three tabs and run the desired command in each. &&&& is useful if you initially run multiple separate commands every time you see a specific port open.
@@ -44,6 +44,13 @@
 - "#" can be useful if you don't want to run a command, but you want to give yourself copy-paste notes for manual enumeration.
 - Set only the first character of the line to # if you want variables to be evaluated.
 - Set the first two characters of the line to ## if you do not want variables to be evaluated.
+### ?
+- "?" is for sending a question to the user. The responce will be set to a variable.
+- You can send multiple lines of questions for multiple variables.
+- Example:
+- ?What is the location of the wp-login.php? Example: /Yeet/cannon/wp-login.php
+- ?What is a known password you would like to brute force?
+- wpscan --url {Web_Proto}://{IP}{1} --enumerate ap,at,cb,dbe && wpscan --url {Web_Proto}://{IP}{1} --enumerate u,tt,t,vp --password {2} -e 
 ### {}
 -	{} is for grabbing a variable from TireFire.
 - Available variables can be viewed in the variables table.  
