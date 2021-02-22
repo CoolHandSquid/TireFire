@@ -88,6 +88,8 @@ def display_sub(proto):
             try:
                 scan    = eval("items[{}][0]".format(rawin))
                 command = eval("fullcmd[{}][0]".format(rawin)) 
+                if command[0] == '?':
+                    command = hotvar(command)
                 if command[0] == '#':
                     showit(proto, scan, command)    
                 elif "&&&&" in command:
@@ -157,6 +159,21 @@ def showit(proto, scan, command):
     #os.system("tilix -t '{}' -x $SHELL -c 'echo \"{}\"; {}; $SHELL'".format(tab_name, tab_name, command))
     print(Fore.GREEN + "{} {}".format(proto, scan) + Style.RESET_ALL)
 
+def hotvar(command):
+    try:
+        hotdic  = {}
+        key     = 0
+        while command[0] == '?':
+            key     += 1
+            raw_var = input(Fore.CYAN+Style.BRIGHT+"Current Command: "+command.split("\n")[-1]+Style.RESET_ALL+"\n"+str(key)+". "+command[1:command.index('\n')] +"\n> ")
+            hotdic[key] = raw_var
+            command = command[command.index('\n')+1:]
+            command =command.replace("{"+str(key)+"}",hotdic[key])
+        return command
+    except:
+        print("Something went wrong. The error more than likley resides in the DB. Sending the command without HotVariables.")
+        return command
+
 def input_validation(items, rawin):
     bad_input       = "Some decent input would be nice..."
     exit_message    = "Later Tater"
@@ -165,7 +182,7 @@ def input_validation(items, rawin):
         sys.exit()
     try:
         rawin   = int(rawin)
-        if rawin in range(len(items) + 1):
+        if rawin in range(len(items)):
             return True
         else:
             raise

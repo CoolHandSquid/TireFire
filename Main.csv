@@ -44,13 +44,13 @@ LDAP,389,Lightweight Directory Access Prorocol,LdapSearch,Base LdapSearch,ldapse
 LDAP,389,Lightweight Directory Access Prorocol,LdapSearch Naming Context Dump,Attempt to get LDAP Naming Context,ldapsearch -h {IP} -x -s base namingcontexts,Verified,3
 LDAP,389,Lightweight Directory Access Prorocol,LdapSearch Big Dump,Need Naming Context to do big dump,"ldapsearch -h {IP} -x -b ""{Naming_Context}""",Verified,4
 MySql,3306,MySql,Nmap Scan,MySql Nmap Scan,"nmap --script=mysql-databases.nse,mysql-empty-password.nse,mysql-enum.nse,mysql-info.nse,mysql-variables.nse,mysql-vuln-cve2012-2122.nse {IP} -p 3306",Verified,1
-Nmap,0,Generic Scans,Kickoff Scan,"Quick scan, Version scan, All Port Scan, UDP Scan ran one at a time in order",nmap -Pn {IP} && nmap -Pn -sS -p- {IP} && nmap -sC -sV -Pn {IP} && nmap -p- -Pn {IP} && sudo nmap -Pn -p- -sU {IP},Verified,1
-Nmap,0,Generic Scans,Quick Scan,Quick Nmap Scan,nmap {IP},Verified,2
-Nmap,0,Generic Scans,Version Scan,Scan for the Version of the Open Ports,nmap -sC -sV {IP},Verified,3
-Nmap,0,Generic Scans,All Port Scan,Scan for All Open Ports,nmap -p- -Pn {IP},Verified,4
-Nmap,0,Generic Scans,All Vulns Scan,Scan with All SMB Vuln Scripts,"nmap --script smb-vuln* -p 139,445 {IP}",Verified,5
-Nmap,0,Generic Scans,Quiet Scan,Scan Quietly,nmap -Pn -sS -p- {IP},Verified,6
-Nmap,0,Generic Scans,UDP Scan,Scan for Open UDP Ports,nmap -Pn -p- -sU {IP},Verified,7
+Nmap,1,Generic Scans,Kickoff Scan,"Quick scan, Version scan, All Port Scan, UDP Scan ran one at a time in order",nmap -Pn {IP} && nmap -Pn -sS -p- {IP} && nmap -sC -sV -Pn {IP} && nmap -p- -Pn {IP} && sudo nmap -Pn -p- -sU {IP},Verified,1
+Nmap,1,Generic Scans,Quick Scan,Quick Nmap Scan,nmap {IP},Verified,2
+Nmap,1,Generic Scans,Version Scan,Scan for the Version of the Open Ports,nmap -sC -sV {IP},Verified,3
+Nmap,1,Generic Scans,All Port Scan,Scan for All Open Ports,nmap -p- -Pn {IP},Verified,4
+Nmap,1,Generic Scans,All Vulns Scan,Scan with All SMB Vuln Scripts,"nmap --script smb-vuln* -p 139,445 {IP}",Verified,5
+Nmap,1,Generic Scans,Quiet Scan,Scan Quietly,nmap -Pn -sS -p- {IP},Verified,6
+Nmap,1,Generic Scans,UDP Scan,Scan for Open UDP Ports,nmap -Pn -p- -sU {IP},Verified,7
 Oracle,1521,Oracle Database,Oracle Notes,Notes for Oracle,"#Oracle Notes
 navigate to https://github.com/quentinhardy/odat/releases/
 download the latest
@@ -167,7 +167,8 @@ Web,80,Hypertext Transfer Protocol,Directory Brute Force Recursive,Recursive Dir
 Web,80,Hypertext Transfer Protocol,Directory Brute Force CGI,Common Gateway Interface Brute Force,gobuster dir -u {Web_Proto}://{IP}:{Web_Port}/ -w /usr/share/seclists/Discovery/Web-Content/CGIs.txt -s 200,Verified,7
 Web,80,Hypertext Transfer Protocol,Nmap Web Vuln Scan,Tailored Nmap Scan for web Vulnerabilities,"nmap -vv --reason -Pn -sV -p {Web_Port} --script=`banner,(http* or ssl*) and not (brute or broadcast or dos or external or http-slowloris* or fuzzer)` {IP}",Verified,8
 Web,80,Hypertext Transfer Protocol,Nmap ShellShock,Test for ShellShock Vulnerability with custom NSE Script,nmap -vv --reason -Pn -sV -p {Web_Port} --script=Modules/http-shellshock.nse {IP},Verified,9
-WebApp,80,Hypertext Transfer Protocol,WPScan,Enumerate WordPress,"wpscan --url {Web_Proto}://{IP} --enumerate ap,at,cb,dbe && wpscan --url {Web_Proto}://{IP} --enumerate u,tt,t,vp --passwords {Big_Passwordlist} -e ",Verified,1
+WebApp,80,Hypertext Transfer Protocol,WPScan,Enumerate WordPress,"?What is the location of the wp-login.php? Example: /Yeet/cannon/wp-login.php
+wpscan --url {Web_Proto}://{IP}{1} --enumerate ap,at,cb,dbe && wpscan --url {Web_Proto}://{IP}{1} --enumerate u,tt,t,vp --passwords {Big_Passwordlist} -e ",Verified,1
 WebApp,80,Hypertext Transfer Protocol,Drupal,Drupal Notes,#git clone https://github.com/immunIT/drupwn.git for low hanging fruit and git clone https://github.com/droope/droopescan.git for the deeper shit,Verified,2
 WebApp,80,Hypertext Transfer Protocol,Joomla,Joomla Notes,#joomlavs.rb and joomblah on github are both incredibly handy,Verified,3
 Java-RMI,1100,Java Remote Method Invocation,Nmap,Dump register of java-rmi instance,nmap -sC -sV -Pn {IP} -p 1100,Verified,1
@@ -254,15 +255,26 @@ Open Main.csv with your favorite csv editor (I'm partial to ModernCSV).
 When adding a command, keep in mind Name, Port, and Description are for the primary display screen; Cmd_Name, Cmd_Description, Cmd_Command, Cmd_Comment, and SubDisplayOrder are for the secondary display screen.
 
 Special Characters and Syntax
-Cmd_Command has a few special characters including &&&&, #, ##, and {}.
+Cmd_Command has a few special characters including &&&&, #, ##, ?, and {}.
+
 &&&&
 &&&& Anywhere in the command will split the line and start each command individually in separate tabs.
 Example: whoami &&&& id &&&& ifconfig will open three tabs and run the desired command in each. &&&& is useful if you initially run multiple separate commands every time you see a specific port open.
+
 # and ##
 ""#"" is for sending yourself notes to another tab.
 ""#"" can be useful if you don't want to run a command, but you want to give yourself copy-paste notes for manual enumeration.
 Set only the first character of the line to # if you want variables to be evaluated.
 Set the first two characters of the line to ## if you do not want variables to be evaluated.
+
+?
+""?"" is for sending a question to the user. The responce will be set to a numbered variable.
+You can send multiple lines of questions for multiple variables.
+Example:
+?What is the location of the wp-login.php? Example: /Yeet/cannon/wp-login.php
+?What is a known password you would like to brute force?
+wpscan --url {Web_Proto}://{IP}{1} --enumerate ap,at,cb,dbe && wpscan --url {Web_Proto}://{IP}{1} --enumerate u,tt,t,vp --password {2} -e 
+
 {}
 {} is for grabbing a variable from TireFire.
 Available variables can be viewed in the variables table.",Verified,2
