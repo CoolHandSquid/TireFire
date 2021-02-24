@@ -34,7 +34,7 @@ put authorized_keys
 !!!now you can ssh as the user who's directory you were in!!!",Verified,1
 Ident,113,Identification Protocol,Ident User Enum,Enumerate Users,#apt install ident-user-enum    ident-user-enum {IP} 22 23 139 445 (try all open ports),Verified,1
 Kerberos,88,AD Domain Authentication Service,"Pre Creds
-",Brute Force to get Usernames,"nmap -p 88 --script=krb5-enum-users --script-args krb5-enum-users.realm=\'{Domain_Name}\',userdb={Big_Userlist} {IP}",Verified,1
+",Brute Force to get Usernames,"nmap -p 88 --script=krb5-enum-users --script-args krb5-enum-users.realm=""{Domain_Name}"",userdb={Big_Userlist} {IP}",Verified,1
 Kerberos,88,AD Domain Authentication Service,With Users,Brute Force with Usernames and Passwords,#consider git clonehttps://github.com/ropnop/kerbrute.git ./kerbrute -h,Verified,2
 Kerberos,88,AD Domain Authentication Service,With Creds,Attempt to get a list of user service principal names,#https://rootsecdev.medium.com/installing-impacket-on-kali-linux-2020-1d9ad69d10bb        GetUserSPNs.py -request -dc-ip {IP} active.htb/svc_tgs,"Unverified
 ",3
@@ -59,11 +59,11 @@ cd odat-libc2.12-x86_64/
 ./odat-libc2.12-x86_64 all -s 10.10.10.82
 
 for more details check https://github.com/quentinhardy/odat/wiki",Unverified,1
-SMB,445,Server Message Block,Enum4Linux,General SMB Scan,enum4linux -a {IP},Verified,1
-SMB,445,Server Message Block,Nmap Smb Scan 1,SMB Vuln Scan With Nmap,"nmap -p 139,445 -vv -Pn --script=smb-vuln-cve2009-3103.nse,smb-vuln-ms06-025.nse,smb-vuln-ms07-029.nse,smb-vuln-ms08-067.nse,smb-vuln-ms10-054.nse,smb-vuln-ms10-061.nse,smb-vuln-ms17-010.nse {IP}",Verified,2
-SMB,445,Server Message Block,Nmap Smb Scan 2,SMB Vuln Scan With Nmap (Less Specific),"nmap --script smb-vuln* -Pn -p 139,445 {IP}",Verified,3
-SMB,445,Server Message Block,SMB Version Enum,Use TcpDump to get SMB Version,Modules/SmbVersionEnum {IP} 139,Unverified,4
-SMB,445,Server Message Block,Notes,Notes To Aid in Manual SMB Enumeration,"#These are the commands I run in order every time I see an open SMB port
+SMB,"139,445",Server Message Block,Enum4Linux,General SMB Scan,enum4linux -a {IP},Verified,1
+SMB,"139,445",Server Message Block,Nmap Smb Scan 1,SMB Vuln Scan With Nmap,"nmap -p 139,445 -vv -Pn --script=smb-vuln-cve2009-3103.nse,smb-vuln-ms06-025.nse,smb-vuln-ms07-029.nse,smb-vuln-ms08-067.nse,smb-vuln-ms10-054.nse,smb-vuln-ms10-061.nse,smb-vuln-ms17-010.nse {IP}",Verified,2
+SMB,"139,445",Server Message Block,Nmap Smb Scan 2,SMB Vuln Scan With Nmap (Less Specific),"nmap --script smb-vuln* -Pn -p 139,445 {IP}",Verified,3
+SMB,"139,445",Server Message Block,SMB Version Enum,Use TcpDump to get SMB Version,Modules/SmbVersionEnum {IP} 139,Unverified,4
+SMB,"139,445",Server Message Block,Notes,Notes To Aid in Manual SMB Enumeration,"#These are the commands I run in order every time I see an open SMB port
 
 With No Creds
 nbtscan {IP}
