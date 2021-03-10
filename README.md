@@ -84,7 +84,7 @@ Please contact me at CoolHandSquid32@gmail.com for contribution, suggestions, an
 <img src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/TireFireLogo1.png" width="200" />  
 </p>
 <p align="center">
-<img href="https://coolhandsquid.github.io/" src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/CoolHandSquid.jpg" width="200" /> 
+<img src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/CoolHandSquid.jpg" width="200" /> 
 </p>
 
 
