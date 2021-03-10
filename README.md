@@ -17,9 +17,8 @@
   - [ProTips](#protips)
   - [Adding Modules](#adding-modules)
   - [Contact](#contact)
-<!-- ## Interface
-![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/3_TireFire.png) -->
-
+## Interface
+![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/3_TireFire.png)
 ## Demo
 ![Tire Fire](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/TireFireFinal1.gif)
 ## Build
