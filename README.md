@@ -9,14 +9,20 @@
 
 ## Contents
   - [Interface](#interface)
-  - [Usage](#usage)
   - [Demo](#demo)
-  - [ProTips](#protips)
   - [Build](#build)
+  - [Usage](#usage)
+  - [ProTips](#protips)
   - [Adding Modules](#adding-modules)
   - [Contact](#contact)
 ## Interface
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/3_TireFire.png)
+## Demo
+![Tire Fire](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/TireFireFinal1.gif)
+## Build
+- git clone https://github.com/CoolHandSquid/TireFire.git
+- cd TireFire
+- ./Build.sh
 ## Usage
 *	TireFire will not function well if not run as root.
 *	Once Build.sh has been run, TireFire will have been added to your path.
@@ -27,8 +33,6 @@
 *	You can change the variables by going to the "Variables Table."
 *	If there is a scan or series of scans for a protocol, you would like to add, edit Main.csv following the guidelines in this README (it's pretty straight forward).
 *	Tables and commands can be added while TireFire is running, and it will be populated once Main.csv is saved.
-## Demo
-![Tire Fire](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/TireFireFinal1.gif)
 ## ProTips
 - Run multiple commands from a table at once by splitting the command numbers with commas. EX: 0,1,2 (Spaces and periods work aswell)
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/4_split.png)
@@ -37,10 +41,6 @@
 - Ctrl+S will split the screen.
 - Ctrl+T for a new tab.
 - Ctrl+h for help.
-## Build
-- git clone https://github.com/CoolHandSquid/TireFire.git
-- cd TireFire
-- ./Build.sh
 ## Adding Modules
 - Open Main.csv with your favorite csv editor (I'm partial to ModernCSV).
 - When adding a command, keep in mind Name, Port, and Description are for the primary display screen; Cmd_Name, Cmd_Description, Cmd_Command, Cmd_Comment, and SubDisplayOrder are for the secondary display screen.
