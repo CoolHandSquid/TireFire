@@ -7,7 +7,7 @@
   <img style="float: right;" src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/Tire_fire.jpg" width="200">  
 </p> -->
 
-## Summary
+## Contents
   - [Interface](#interface)
   - [Usage](#usage)
   - [Demo](#demo)
