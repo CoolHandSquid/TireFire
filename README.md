@@ -1,4 +1,5 @@
-![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/TireFireLogo1.png)
+<!-- ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/TireFireLogo1.png) -->
+
 # TireFire
 ![Price](https://img.shields.io/badge/price-FREE-0098f7.svg)
 ![license](https://img.shields.io/github/license/mashape/apistatus.svg)
