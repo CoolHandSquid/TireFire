@@ -15,7 +15,7 @@
 <!--
 <p align="center">
   <img src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/3_TireFire.png" width="200" />
-  <img src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/TireFire.jpg" width="200" />
+  <img src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/Tire_fire.jpg" width="200" />
   <img src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/CoolHandSquid.jpg" width="200" /> 
 </p>
 -->
