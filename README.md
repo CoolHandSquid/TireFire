@@ -10,7 +10,7 @@
   - [Demo](#demo)
   - [ProTips](#protips)
   - [Build](#build)
-  - [Adding-Modules](#adding-modules)
+  - [Adding Modules](#adding-modules)
   - [Contact](#contact)
 ## Interface
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/3_TireFire.png)
