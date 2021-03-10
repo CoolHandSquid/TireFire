@@ -5,7 +5,7 @@
 *	TireFire is a product of 19% security solutions.    
 <p align="center">
   <img src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/Tire_fire.jpg" width="200" />
-  <img src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/Tire_fire.jpg" width="200" /> 
+  <img src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/CoolHandSquid.jpg" width="200" /> 
 </p>
 
 ## Contents
@@ -69,7 +69,6 @@ wpscan --url {Web_Proto}://{IP}{1} --enumerate u,tt,t,vp --password {2} -e
 -	{} is for grabbing a variable from TireFire.
 - Available variables can be viewed in the variables table.  
 
-![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/CoolHandSquid.jpg)
 ## Contact
 Please contact me at CoolHandSquid32@gmail.com for contribution, suggestions, and ideas!
 
