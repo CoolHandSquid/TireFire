@@ -3,7 +3,8 @@
 *	Great for HTB and OSCP like machines.
 *	The database for TireFire (Main.csv) is easily altered to support your methodologies as they are substituted and appended.
 *	TireFire is a product of 19% security solutions.   
-![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/Tire_fire_25.jpg "Tired Fire") 
+![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/Tire_fire_25.jpg)  
+<img src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/Tire_fire_25.jpg">  
 ## Summary
   - [Interface](#interface)
   - [Usage](#usage)
