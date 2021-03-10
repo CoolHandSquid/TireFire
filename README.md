@@ -80,12 +80,8 @@ wpscan --url {Web_Proto}://{IP}{1} --enumerate u,tt,t,vp --password {2} -e
 
 ## Contact
 Please contact me at CoolHandSquid32@gmail.com for contribution, suggestions, and ideas!
-<p align="center">
-  <img src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/3_TireFire.png" width="200" />
-  <img src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/Tire_fire.jpg" width="200" />
-  <img src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/CoolHandSquid.jpg" width="200" /> 
-</p>
-
+<img align=center src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/TireFireLogo1.png" width="200" />
+<img align="center" src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/CoolHandSquid.jpg" width="200" /> 
 
 
 
