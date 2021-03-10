@@ -1,5 +1,5 @@
-![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/Tire_fire.jpg)
-<img src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/Tire_fire.jpg" alt="TireFire" width="200"/>
+<!-- ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/Tire_fire.jpg) -->
+<img src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/Tire_fire.jpg" alt="TireFire" width="500"/>
 # TireFire
 *	TireFire is a scalable and straightforward platform for external enumeration to place your operations and workflow order. 
 *	Great for HTB and OSCP like machines.
