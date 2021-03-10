@@ -5,9 +5,13 @@
 * ReRelease is scheduled for March 6 2021
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/Tire_fire.jpg)
 ## Summary
-  - [Interface](#friendly-(gui-ish)-interface)
+  - [Interface](#interface)
   - [Usage](#usage)
-## Friendly (GUI-ish) Interface
+  - [Demo](#demo)
+  - [ProTips](#protips)
+  - [Build](#build)
+  - [Adding-Modules](#adding-modules)
+## Interface
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/3_TireFire.png)
 ## Usage
 *	TireFire will not function well if not run as root.
@@ -29,15 +33,15 @@
 - Ctrl+S will split the screen.
 - Ctrl+T for a new tab.
 - Ctrl+h for help.
-## How to Build
+## Build
 - git clone https://github.com/CoolHandSquid/TireFire.git
 - cd TireFire
 - ./Build.sh
-## Easily Add modules
+## Adding modules
 - Open Main.csv with your favorite csv editor (I'm partial to ModernCSV).
 - When adding a command, keep in mind Name, Port, and Description are for the primary display screen; Cmd_Name, Cmd_Description, Cmd_Command, Cmd_Comment, and SubDisplayOrder are for the secondary display screen.
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/2_csv.png)
-## Special Characters and Syntax
+### Special Characters and Syntax
 -	Cmd_Command has a few special characters including &&&&, #, ##, ?, and {}.
 ### &&&&
 -	&&&& Anywhere in the command will split the line and start each command individually in separate tabs.
