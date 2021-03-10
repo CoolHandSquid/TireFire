@@ -1,8 +1,9 @@
 # ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/TireFireLogo1.png)
+![Price](https://img.shields.io/badge/price-FREE-0098f7.svg)
 ![license](https://img.shields.io/github/license/mashape/apistatus.svg)
 ![os](https://img.shields.io/badge/OS-Linux-yellow.svg)
 ![pythonver](https://img.shields.io/badge/python-3.7%2B-blue.svg)
-![raccoonver](https://img.shields.io/badge/version-3.2.0-lightgrey.svg)
+![tirefirever](https://img.shields.io/badge/version-3.2.0-lightgrey.svg)
 <!-- [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Get%20over%20170%20free%20design%20blocks%20based%20on%20Bootstrap%204&url=https://froala.com/design-blocks&via=froala&hashtags=bootstrap,design,templates,blocks,developers) --> 
 
 *	TireFire is a scalable and straightforward platform for external enumeration to place your operations and workflow order. 
