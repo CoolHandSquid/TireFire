@@ -1,4 +1,3 @@
-![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/Tire_fire.jpg)
 <img src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/Tire_fire.jpg" width="100" height="100">
 # TireFire
 *	TireFire is a scalable and straightforward platform for external enumeration to place your operations and workflow order. 
