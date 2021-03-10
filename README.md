@@ -1,4 +1,4 @@
-# ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/TireFire_180.png)
+# ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/TireFireLogo1.png)
 *	TireFire is a scalable and straightforward platform for external enumeration to place your operations and workflow order. 
 *	Great for HTB and OSCP like machines.
 *	The database for TireFire (Main.csv) is easily altered to support your methodologies as they are substituted and appended.
