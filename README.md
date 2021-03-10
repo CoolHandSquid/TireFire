@@ -3,7 +3,7 @@
   <img src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/TireFireLogo1.png />
 </p>
 
-# a
+# ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/TireFireLogo1.png)
 ![license](https://img.shields.io/github/license/mashape/apistatus.svg)
 ![os](https://img.shields.io/badge/OS-Linux-yellow.svg)
 ![pythonver](https://img.shields.io/badge/python-3.7%2B-blue.svg)
