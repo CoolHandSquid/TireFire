@@ -1,5 +1,5 @@
 <!-- ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/TireFireLogo1.png) -->
-<p align="center"><a href="https://github.com/coolhandsquid/TireFire#coolhandsquid"><img src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/circle-cropped.png" alt="Circle-TireFire" height="60"/></a></p>
+<p align="center"><a href="https://github.com/coolhandsquid/TireFire"><img src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/circle-cropped.png"  height="60"/></a></p>
 
 # TireFire
 ![Price](https://img.shields.io/badge/price-FREE-0098f7.svg)
