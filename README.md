@@ -8,7 +8,7 @@
   <a><img src="https://img.shields.io/badge/OS-Kali-yellow.svg" height="20"/></a>
   <a><img src="https://img.shields.io/badge/python-3.7%2B-blue.svg" height="20"/></a>
   <a><img src="https://img.shields.io/badge/version-3.2.0-lightgrey.svg" height="20"/></a>
-  <a href="https://twitter.com/intent/tweet?text=If%20you%20want%20to%20automate%20scanning%20and%20enumeration%20machines%20externally%20while%20still%20maintaining%20full%20control%20over%20the%20commands%20sent%20to%20the%20target%2C%20TireFire%20is%20your%20tool%20of%20choice%21%20Great%20for%20OSCP%2FHTB%20type%20Machines%21&url=https://github.com/CoolHandSquid/TireFire&via=CoolHandSquid&hashtags=infosec,oscp,hacking"><img="https://img.shields.io/twitter/url/http/shields.io.svg?style=social" alt="Tweet" height="20"></a>
+  <a><img="https://img.shields.io/twitter/url/http/shields.io.svg?style=social" alt="Tweet" height="20"></a>
 </p><br/><br/>
 
 <!-- # TireFire
