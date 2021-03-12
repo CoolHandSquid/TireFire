@@ -7,6 +7,7 @@ import shlex
 import psutil
 import argparse
 import subprocess
+from math       import ceil
 from netaddr    import *
 from colorama   import Fore, Style
 from tabulate   import tabulate
@@ -45,9 +46,9 @@ def start(IP):
         print("Please run TireFire with the syntax like: TireFire 10.10.10.5")
         quit()
     if click.confirm("Do you want to kick this off with an Nmap scan?", default=True):
-        print(Fore.GREEN + check_ping(IP) + Style.RESET_ALL)
-        print(Fore.YELLOW + "Reference TTL Table\n" + Fore.CYAN + display_ttl() + Style.RESET_ALL)
-        command = "nmap -Pn {} && nmap -sC -sV -Pn {} && nmap -p- -Pn {} && nmap -Pn -p- -sU {}".format(IP, IP, IP, IP)
+        sendtext(Fore.GREEN + check_ping(IP) + "\n" + Fore.YELLOW + "Reference TTL Table\n" +Fore.CYAN + display_ttl() + Style.RESET_ALL)
+        subprocess.run(shlex.split("cat sendtext.txt"), stdout=subprocess.PIPE, universal_newlines=True) 
+        command = "cat {} && nmap -Pn {} && nmap -sC -sV -Pn {} && nmap -p- -Pn {} && nmap -Pn -p- -sU {}".format("sendtext.txt", IP, IP, IP, IP)
         doit("Nmap", "Kickoff", command)
     return
 
@@ -66,16 +67,37 @@ def get_network(IP):
 #Begin Display
 ##################################################
 def display_main():
+    subprocess.run(shlex.split("clear"))
+    for cmd in cmd_history:
+        print(cmd)
     items   = db.get_display_main()
-    items.insert(0, ("Variables", "Vars", "Set Global Variables"))
-    headers = ["Name", "Port", "Description"]
-    rawin   = input(Fore.YELLOW + "MAIN Table\n" + Style.RESET_ALL + tabulate(items, headers=headers, tablefmt="psql", showindex="always")+ "\n> ")
+    items.insert(0, ["Variables", "Vars", "Set Global Variables"])
+    rawin   = input(Fore.YELLOW + "MAIN Table\n" + Style.RESET_ALL + display_horizontal(items) + "\n> ")
+    ###Display NormalVVV
+    #rawin   = input(Fore.YELLOW + "MAIN Table\n" + Style.RESET_ALL + tabulate(items, headers=["Name", "Port", "Description", "Name"], tablefmt="psql", showindex="always")+ "\n> ")
+    ###I should not have to do this. Ask Andrew
+    items   = db.get_display_main()
+    items.insert(0, ["Variables", "Vars", "Set Global Variables"])
     if input_validation(items, rawin) == True:        
         proto   = eval("items[{}][0]".format(int(rawin)))
         if proto == "Variables":
             display_variables()
         else:
             display_sub(eval("items[{}][0]".format(int(rawin))))
+
+def display_horizontal(items):
+    aitems  = items.copy()
+    lines   = ceil(len(aitems)/2)
+    nitems  = []
+    for line in range(lines):
+        try:
+            aitems[line].insert(0,str(line))
+            aitems[lines+line].insert(0,str(lines+line))
+            nitems.append(aitems[line]+aitems[line+lines])
+        except:
+            nitems.append(aitems[line])
+    return tabulate(nitems,headers=[" ", "Name", "Port", "Description", " ", "Name", "Port", "Description"], tablefmt="psql")
+
 
 def display_sub(proto):
     items   = db.get_display_sub(proto) 
@@ -117,7 +139,7 @@ def display_variables():
         try:
             var = eval("items[{}][0]".format(rawin))
             globals()[var] = input("What would you like to set the {} to?\n> ".format(var))
-            print(Fore.GREEN + "{} has been set to {}".format(var, globals()[var]) + Style.RESET_ALL)
+            cmd_history.append(Fore.GREEN + "{} has been set to {}".format(var, globals()[var]) + Style.RESET_ALL)
         except:
             print("That did not seem to work. There was no variable change.")
     display_main()
@@ -136,10 +158,10 @@ def doit(proto, scan, command):
     cmd = "tilix -t '{}' -x bash -c 'echo \"{}\"; {}; bash'".format(tab_name, command, command) 
     subprocess.Popen(shlex.split(cmd)) 
     #os.system("tilix -t '{}' -x $SHELL -c 'echo \"{}\"; {}; $SHELL'".format(tab_name, command, command))
-    print(Fore.GREEN + "{}".format(command) + Style.RESET_ALL)
+    cmd_history.append(Fore.GREEN + "{}".format(command) + Style.RESET_ALL)
 
 def showit(proto, scan, command):
-    #Called to write output in new tilix tab
+    #Called to write output in new tilix tab from DB
     tab_name    = "{} {}".format(proto, scan)
     with open('showit.txt', 'w') as sfile:
         scommand = command.split('\n')
@@ -157,7 +179,12 @@ def showit(proto, scan, command):
     cmd     = "tilix -t '{}' -x bash -c 'echo \"{}\"; {}; bash'".format(tab_name, tab_name, command) 
     subprocess.Popen(shlex.split(cmd))
     #os.system("tilix -t '{}' -x $SHELL -c 'echo \"{}\"; {}; $SHELL'".format(tab_name, tab_name, command))
-    print(Fore.GREEN + "{} {}".format(proto, scan) + Style.RESET_ALL)
+    cmd_history.append(Fore.GREEN + "{} {}".format(proto, scan) + Style.RESET_ALL)
+
+def sendtext(text):
+    #Called to write to sendtext.txt
+    with open('sendtext.txt', 'w') as sfile:
+        sfile.write("{}\n".format(text))
 
 def hotvar(command):
     try:
@@ -199,6 +226,7 @@ if __name__ == "__main__":
     parser.add_argument("IP", help="IP address of the target", type=str)
     args    = parser.parse_args()
 
+    cmd_history     = []
     IP              = args.IP
     Network         = get_network(IP)[0]
     CIDR            = get_network(IP)[1]
