@@ -1,7 +1,7 @@
 <!-- ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/TireFireLogo1.png) -->
 <p align="center"><a href="https://github.com/coolhandsquid/TireFire#tirefire"><img src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/circle-cropped.png"  height="60"/></a></p>
 <h1 align="center">TireFire</h1>
-<p align="center">The most convenient tool to automate the scanning and enumeration of machines externally while still maintaining full control over the commands sent to the target. Great for OSCP/HTB type Machines as well as penetration testing! </p>
+<p align="center">The most convenient tool to automate the scanning and enumeration of machines externally while still maintaining full control over the commands sent to the target. Comfortable GUI-ish platform. Great for OSCP/HTB type Machines as well as penetration testing! </p>
 <p align="center">
   <a><img src="https://img.shields.io/badge/price-FREE-0098f7.svg" height="20"/></a>
   <a><img src="https://img.shields.io/github/license/mashape/apistatus.svg" height="20"/></a>
