@@ -1,37 +1,55 @@
 <!-- ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/TireFireLogo1.png) -->
+<p align="center"><a href="https://github.com/coolhandsquid/TireFire#tirefire"><img src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/circle-cropped.png"  height="60"/></a></p>
+<h1 align="center">TireFire</h1>
+<p align="center">The most convenient tool to automate the scanning and enumeration of machines externally while still maintaining full control over the commands sent to the target. Great for OSCP/HTB type Machines as well as penetration testing! </p>
+<p align="center">
+  <a><img src="https://img.shields.io/badge/price-FREE-0098f7.svg" height="20"/></a>
+  <a><img src="https://img.shields.io/github/license/mashape/apistatus.svg" height="20"/></a>
+  <a><img src="https://img.shields.io/badge/OS-Kali-yellow.svg" height="20"/></a>
+  <a><img src="https://img.shields.io/badge/python-3.7%2B-blue.svg" height="20"/></a>
+  <a><img src="https://img.shields.io/badge/version-3.2.0-lightgrey.svg" height="20"/></a>
+  <a href="https://twitter.com/intent/tweet?text=If%20you%20want%20to%20automate%20scanning%20and%20enumeration%20machines%20externally%20while%20still%20maintaining%20full%20control%20over%20the%20commands%20sent%20to%20the%20target%2C%20TireFire%20is%20your%20tool%20of%20choice%21%20Great%20for%20OSCP%2FHTB%20type%20Machines%21&url=https://github.com/CoolHandSquid/TireFire&via=CoolHandSquid&hashtags=infosec,oscp,hacking"><img src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social" alt="tweet" height="20"></a>
+</p>
+<p align="center"><img src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/3_TireFire-Horizontal-2.png" height="250"/></p>
 
-# TireFire
+<!-- # TireFire
 ![Price](https://img.shields.io/badge/price-FREE-0098f7.svg)
 ![license](https://img.shields.io/github/license/mashape/apistatus.svg)
 ![os](https://img.shields.io/badge/OS-Kali-yellow.svg)
 ![pythonver](https://img.shields.io/badge/python-3.7%2B-blue.svg)
 ![tirefirever](https://img.shields.io/badge/version-3.2.0-lightgrey.svg)
-[![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=If%20you%20want%20to%20automate%20scanning%20and%20enumeration%20machines%20externally%20while%20still%20maintaining%20full%20control%20over%20the%20commands%20sent%20to%20the%20target%2C%20TireFire%20is%20your%20tool%20of%20choice%21%20Great%20for%20OSCP%2FHTB%20type%20Machines%21&url=https://github.com/CoolHandSquid/TireFire&via=CoolHandSquid&hashtags=infosec,oscp,hacking)
-*	TireFire is a scalable and straightforward platform for external enumeration to place your operations and workflow order. 
-*	Great for HTB and OSCP like machines.
-*	The database for TireFire (Main.csv) is easily altered to support your methodologies as they are substituted and appended.
-*	TireFire is a product of 19% security solutions.    
+[![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=If%20you%20want%20to%20automate%20scanning%20and%20enumeration%20machines%20externally%20while%20still%20maintaining%20full%20control%20over%20the%20commands%20sent%20to%20the%20target%2C%20TireFire%20is%20your%20tool%20of%20choice%21%20Great%20for%20OSCP%2FHTB%20type%20Machines%21&url=https://github.com/CoolHandSquid/TireFire&via=CoolHandSquid&hashtags=infosec,oscp,hacking) -->
+
 ## Contents
-  - [Interface](#interface)
+  - [About](#about)
   - [Demo](#demo)
-  - [Build](#build)
   - [Usage](#usage)
+  - [Build](#build)
+  - [HowTo](#howto)
   - [ProTips](#protips)
   - [Adding Modules](#adding-modules)
   - [Supporters](#supporters)
   - [Contact](#contact)
-## Interface
-![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/3_TireFire.png)
+## About
+*	TireFire is a scalable and straightforward platform for external enumeration to place your operations and workflow order. 
+*	Great for HTB and OSCP like machines.
+*	The database for TireFire (Main.csv) is easily altered to support your methodologies as they are substituted and appended.
+*	TireFire is a product of 19% security solutions. 
 ## Demo
 ![Tire Fire](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/TireFireFinal1.gif)
-## Build
-- git clone https://github.com/CoolHandSquid/TireFire.git
-- cd TireFire
-- ./Build.sh
 ## Usage
+```
+TireFire 10.10.10.5
+```
+## Build
+```
+git clone https://github.com/CoolHandSquid/TireFire.git
+cd TireFire
+./Build.sh
+```
+## HowTo
 *	TireFire will not function well if not run as root.
 *	Once Build.sh has been run, TireFire will have been added to your path.
-*	Type "TireFire 10.10.10.5" and you will be yeeting with a cyber **cannon!**
 *	From the "Main Table," type the corresponding number of a protocol for which you would like to run a scan.
 *	From the "Protocol Table," click the corresponding number of a scan you would like to run. The scan will be kicked off in another tab.
 *	Hit enter to return to the "Main Table."
