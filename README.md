@@ -31,7 +31,8 @@
   - [Supporters](#supporters)
   - [Contact](#contact)
 ## About
-*	TireFire is a scalable and straightforward platform to place your operational workflow for external enumeration. 
+* Think Metasploit, but for external enumeration...
+*	TireFire is a scalable and straightforward platform to place your operational workflow. 
 *	Based on the terminal emulator Tilix to give a GUI feel with the convenience of CLI.
 *	The database for TireFire (Main.csv) is easily altered to support your methodologies as they are substituted and appended.
 *	Great for HTB and OSCP like machines.
