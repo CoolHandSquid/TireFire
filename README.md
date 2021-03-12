@@ -93,6 +93,8 @@ Please contact me at CoolHandSquid32@gmail.com for contribution, suggestions, an
 <img src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/CoolHandSquid.jpg" width="200" /> 
 </p>
 
+<p align="center"><a href="https://github.com/coolhandsquid/TireFire#"><img src="http://randojs.com/images/backToTopButton.png" alt="Back to top" height="29"/></a></p>
+
 
 
 
