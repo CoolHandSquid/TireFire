@@ -32,8 +32,9 @@
   - [Contact](#contact)
 ## About
 *	TireFire is a scalable and straightforward platform to place your operational workflow for external enumeration. 
-*	Great for HTB and OSCP like machines.
+*	Based on the terminal emulator Tilix to give a GUI feel with the convenience of CLI.
 *	The database for TireFire (Main.csv) is easily altered to support your methodologies as they are substituted and appended.
+*	Great for HTB and OSCP like machines.
 *	TireFire is a product of 19% security solutions. 
 ## Demo
 ![Tire Fire](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/TireFireFinal1.gif)
