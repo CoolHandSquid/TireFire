@@ -23,8 +23,9 @@
 ## Contents
   - [About](#about)
   - [Demo](#demo)
-  - [Build](#build)
   - [Usage](#usage)
+  - [Build](#build)
+  - [HowTo](#howto)
   - [ProTips](#protips)
   - [Adding Modules](#adding-modules)
   - [Supporters](#supporters)
@@ -36,11 +37,15 @@
 *	TireFire is a product of 19% security solutions. 
 ## Demo
 ![Tire Fire](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/TireFireFinal1.gif)
+## Usage
+```
+TireFire 10.10.10.5
+```
 ## Build
 - git clone https://github.com/CoolHandSquid/TireFire.git
 - cd TireFire
 - ./Build.sh
-## Usage
+## HowTo
 *	TireFire will not function well if not run as root.
 *	Once Build.sh has been run, TireFire will have been added to your path.
 *	Type "TireFire 10.10.10.5" and you will be yeeting with a cyber **cannon!**
