@@ -31,7 +31,7 @@
   - [Supporters](#supporters)
   - [Contact](#contact)
 ## About
-*	TireFire is a scalable and straightforward platform for external enumeration to place your operations and workflow order. 
+*	TireFire is a scalable and straightforward platform to place your operational workflow for external enumeration. 
 *	Great for HTB and OSCP like machines.
 *	The database for TireFire (Main.csv) is easily altered to support your methodologies as they are substituted and appended.
 *	TireFire is a product of 19% security solutions. 
