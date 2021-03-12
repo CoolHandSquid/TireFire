@@ -11,14 +11,6 @@
 *	Great for HTB and OSCP like machines.
 *	The database for TireFire (Main.csv) is easily altered to support your methodologies as they are substituted and appended.
 *	TireFire is a product of 19% security solutions.    
-<!--
-<p align="center">
-  <img src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/3_TireFire.png" width="200" />
-  <img src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/Tire_fire.jpg" width="200" />
-  <img src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/CoolHandSquid.jpg" width="200" /> 
-</p>
--->
-
 ## Contents
   - [Interface](#interface)
   - [Demo](#demo)
@@ -26,6 +18,7 @@
   - [Usage](#usage)
   - [ProTips](#protips)
   - [Adding Modules](#adding-modules)
+  - [Supporters](#supporters)
   - [Contact](#contact)
 ## Interface
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/3_TireFire.png)
@@ -80,9 +73,9 @@ wpscan --url {Web_Proto}://{IP}{1} --enumerate u,tt,t,vp --password {2} -e
 -	{} is for grabbing a variable from TireFire.
 - Available variables can be viewed in the variables table.  
 
-## :clap:  Supporters
-[![Stargazers repo roster for @coolhandsquid/TireFire](https://reporoster.com/stars/coolhandsquid/TireFire)](https://github.com/coolhandsquid/TireFire/stargazers)
-[![Forkers repo roster for coolhandsquid/TireFire](https://reporoster.com/forks/coolhandsquid/TireFire)](https://github.com/coolhandsquid/TireFire/network/members)
+## Supporters
+![Stargazers repo roster for @coolhandsquid/TireFire](https://reporoster.com/stars/coolhandsquid/TireFire)](https://github.com/coolhandsquid/TireFire/stargazers)
+![Forkers repo roster for coolhandsquid/TireFire](https://reporoster.com/forks/coolhandsquid/TireFire)](https://github.com/coolhandsquid/TireFire/network/members)
 
 ## Contact
 Please contact me at CoolHandSquid32@gmail.com for contribution, suggestions, and ideas!  
