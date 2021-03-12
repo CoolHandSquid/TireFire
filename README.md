@@ -3,7 +3,7 @@
 <h1 align="center">TireFire</h1>
 <p align="center">The most convenient tool to automate the scanning and enumeration of machines externally while still maintaining full control over the commands sent to the target. Great for OSCP/HTB type Machines as well as penetration testing! </p>
 
-# TireFire
+<!-- # TireFire -->
 ![Price](https://img.shields.io/badge/price-FREE-0098f7.svg)
 ![license](https://img.shields.io/github/license/mashape/apistatus.svg)
 ![os](https://img.shields.io/badge/OS-Kali-yellow.svg)
