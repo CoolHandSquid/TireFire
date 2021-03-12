@@ -104,7 +104,7 @@ Please contact me at CoolHandSquid32@gmail.com for contribution, suggestions, an
 <img src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/CoolHandSquid.jpg" width="200" /> 
 </p>
 
-<p align="center"><a href="https://github.com/coolhandsquid/TireFire#"><img src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/backToTopButton.png" alt="Back to top" height="29"/></a></p>
+<p align="center"><a href="https://github.com/coolhandsquid/TireFire#tirefire"><img src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/backToTopButton.png" alt="Back to top" height="29"/></a></p>
 
 
 
