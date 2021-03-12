@@ -42,9 +42,11 @@
 TireFire 10.10.10.5
 ```
 ## Build
-- git clone https://github.com/CoolHandSquid/TireFire.git
-- cd TireFire
-- ./Build.sh
+```
+git clone https://github.com/CoolHandSquid/TireFire.git
+cd TireFire
+./Build.sh
+```
 ## HowTo
 *	TireFire will not function well if not run as root.
 *	Once Build.sh has been run, TireFire will have been added to your path.
