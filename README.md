@@ -24,10 +24,10 @@
 ## Contents
   - [About](#about)
   - [Demo](#demo)
+  - [Kickoff](#Kickoff)
   - [Usage](#usage)
-  - [Build](#build)
-  - [HowTo](#howto)
   - [ProTips](#protips)
+  - [Build](#build)
   - [Adding Modules](#adding-modules)
   - [Supporters](#supporters)
   - [Contact](#contact)
@@ -40,16 +40,11 @@
 *	TireFire is a product of 19% security solutions. 
 ## Demo
 ![Tire Fire](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/TireFireFinal1.gif)
-## Usage
+## Kickoff
 ```
 TireFire 10.10.10.5
 ```
-## Build
-```
-git clone https://github.com/CoolHandSquid/TireFire.git
-cd TireFire
-./Build.sh
-```
+<!--
 ## HowTo
 *	TireFire will not function well if not run as root.
 *	Once Build.sh has been run, TireFire will have been added to your path.
@@ -59,6 +54,13 @@ cd TireFire
 *	You can change the variables by going to the "Variables Table."
 *	If there is a scan or series of scans for a protocol, you would like to add, edit Main.csv following the guidelines in this README (it's pretty straight forward).
 *	Tables and commands can be added while TireFire is running, and it will be populated once Main.csv is saved.
+-->
+## Methodology
+1. Kickoff TireFire (TireFire 10.10.10.5).
+2. Type "Y" to kickoff a Quick, Banner, All-Port, and UDP nmap scan.
+3. Depending upon the ports returned, run scans for those ports. 
+4. Choose lower numbered scans for the corresponding port and then higher ones as you need to get more specific.
+5. Change variables as you need to suite your target (Example: HTTP running on port 8500).
 ## ProTips
 - Run multiple commands from a table at once by splitting the command numbers with commas. EX: 0,1,2 (Spaces and periods work aswell)
 ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/4_split.png)
@@ -67,6 +69,12 @@ cd TireFire
 - Ctrl+S will split the screen.
 - Ctrl+T for a new tab.
 - Ctrl+h for help.
+## Build
+```
+git clone https://github.com/CoolHandSquid/TireFire.git
+cd TireFire
+./Build.sh
+```
 ## Adding Modules
 - Open Main.csv with your favorite csv editor (I'm partial to ModernCSV).
 - When adding a command, keep in mind Name, Port, and Description are for the primary display screen; Cmd_Name, Cmd_Description, Cmd_Command, Cmd_Comment, and SubDisplayOrder are for the secondary display screen.
