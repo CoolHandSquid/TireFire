@@ -17,8 +17,8 @@ def get_display_main():
 
 def get_display_sub(proto):
     Main    = pd.read_csv('Main.csv')
-    q       = "SELECT Cmd_Name, SUBSTRING(Cmd_Description, 1, 50), SUBSTRING(replace(Cmd_Command, X'0A', ' '), 1, 50) AS Cmd_Command, CMD_Comment from Main WHERE Name = '{}'".format(proto)
-#    q   = "SELECT Cmd_Name, Cmd_comment FROM Main WHERE Name = '{}'".format(proto)
+    q       = "SELECT Cmd_Name, SUBSTRING(Cmd_Description, 1, 50), SUBSTRING(replace(Cmd_Command, X'0A', ' '), 1, 50) AS Cmd_Command from Main WHERE Name = '{}'".format(proto)
+#    q   = "SELECT Cmd_Name FROM Main WHERE Name = '{}'".format(proto)
     items   = pandasql.sqldf(q, locals())
     items   = items.values.tolist()
     return items

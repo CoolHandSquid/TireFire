@@ -102,7 +102,7 @@ def display_horizontal(items):
 def display_sub(proto):
     items   = db.get_display_sub(proto) 
     fullcmd = db.get_fullcommand(proto)
-    subheaders  = ["Cmd Name", "Description", "Command", "Comment"]
+    subheaders  = ["Cmd Name", "Description", "Command"]
     rawin   = input(Fore.YELLOW + proto + " Table\n" + Style.RESET_ALL + tabulate(items, headers=subheaders, tablefmt="psql", showindex="always")+ "\n> ")
     rawin = re.split(',|\.| ',rawin)
     for rawin in rawin:
