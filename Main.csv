@@ -133,11 +133,11 @@ Web,80,Hypertext Transfer Protocol,Directory Brute Force Recursive,Recursive Dir
 Web,80,Hypertext Transfer Protocol,Directory Brute Force CGI,Common Gateway Interface Brute Force,gobuster dir -u {Web_Proto}://{IP}:{Web_Port}/ -w /usr/share/seclists/Discovery/Web-Content/CGIs.txt -s 200,Verified,8
 Web,80,Hypertext Transfer Protocol,Nmap Web Vuln Scan,Tailored Nmap Scan for web Vulnerabilities,"nmap -vv --reason -Pn -sV -p {Web_Port} --script=`banner,(http* or ssl*) and not (brute or broadcast or dos or external or http-slowloris* or fuzzer)` {IP}",Verified,9
 Web,80,Hypertext Transfer Protocol,Nmap ShellShock,Test for ShellShock Vulnerability with custom NSE Script,nmap -vv --reason -Pn -sV -p {Web_Port} --script=Modules/http-shellshock.nse {IP},Verified,10
-Web,80,Hypertext Transfer Protocol,WPScan,Enumerate WordPress,"?What is the location of the wp-login.php? Example: /Yeet/cannon/wp-login.php
+WebApp,80,Hypertext Transfer Protocol,WPScan,Enumerate WordPress,"?What is the location of the wp-login.php? Example: /Yeet/cannon/wp-login.php
 wpscan --url {Web_Proto}://{IP}{1} --enumerate ap,at,cb,dbe && wpscan --url {Web_Proto}://{IP}{1} --enumerate u,tt,t,vp --passwords {Big_Passwordlist} -e ",Verified,1
 WebApp,80,Hypertext Transfer Protocol,Drupal,Drupal Notes,#git clone https://github.com/immunIT/drupwn.git for low hanging fruit and git clone https://github.com/droope/droopescan.git for the deeper shit,Verified,2
 WebApp,80,Hypertext Transfer Protocol,Joomla,Joomla Notes,#joomlavs.rb and joomblah on github are both incredibly handy,Verified,3
-WebApp,88,AD Domain Authentication Service,"Pre Creds
+Kerberos,88,AD Domain Authentication Service,"Pre Creds
 ",Brute Force to get Usernames,"nmap -p 88 --script=krb5-enum-users --script-args krb5-enum-users.realm=""{Domain_Name}"",userdb={Big_Userlist} {IP}",Verified,1
 Kerberos,88,AD Domain Authentication Service,With Users,Brute Force with Usernames and Passwords,#consider git clonehttps://github.com/ropnop/kerbrute.git ./kerbrute -h,Verified,2
 Kerberos,88,AD Domain Authentication Service,With Creds,Attempt to get a list of user service principal names,#https://rootsecdev.medium.com/installing-impacket-on-kali-linux-2020-1d9ad69d10bb        GetUserSPNs.py -request -dc-ip {IP} active.htb/svc_tgs,Verified,3
