@@ -98,7 +98,6 @@ def display_horizontal(items):
             nitems.append(aitems[line])
     return tabulate(nitems,headers=[" ", "Name", "Port", "Description", " ", "Name", "Port", "Description"], tablefmt="psql")
 
-
 def display_sub(proto):
     items   = db.get_display_sub(proto) 
     fullcmd = db.get_fullcommand(proto)
