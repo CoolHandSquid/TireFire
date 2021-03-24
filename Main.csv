@@ -1,11 +1,11 @@
 Name,Port,Description,Cmd_Name,Cmd_Description,Cmd_Command,Cmd_Comment,SubDisplayOrder
-Nmap,1,Generic Scans,Kickoff Scan,"Quick scan, Version scan, All Port Scan, UDP Scan ran one at a time in order",nmap -Pn {IP} && nmap -Pn -sS -p- {IP} && nmap -sC -sV -Pn {IP} && nmap -p- -Pn {IP} && sudo nmap -Pn -p- -sU {IP},Verified,1
-Nmap,1,Generic Scans,Quick Scan,Quick Nmap Scan,nmap {IP},Verified,2
-Nmap,1,Generic Scans,Version Scan,Scan for the Version of the Open Ports,nmap -sC -sV {IP},Verified,3
-Nmap,1,Generic Scans,All Port Scan,Scan for All Open Ports,nmap -p- -Pn {IP},Verified,4
-Nmap,1,Generic Scans,All Vulns Scan,Scan with All SMB Vuln Scripts,"nmap --script smb-vuln* -p 139,445 {IP}",Verified,5
-Nmap,1,Generic Scans,Quiet Scan,Scan Quietly,nmap -Pn -sS -p- {IP},Verified,6
-Nmap,1,Generic Scans,UDP Scan,Scan for Open UDP Ports,nmap -Pn -p- -sU {IP},Verified,7
+Nmap,Nmap,Generic Scans,Kickoff Scan,"Quick scan, Version scan, All Port Scan, UDP Scan ran one at a time in order",nmap -Pn {IP} && nmap -Pn -sS -p- {IP} && nmap -sC -sV -Pn {IP} && nmap -p- -Pn {IP} && sudo nmap -Pn -p- -sU {IP},Verified,1
+Nmap,Nmap,Generic Scans,Quick Scan,Quick Nmap Scan,nmap {IP},Verified,2
+Nmap,Nmap,Generic Scans,Version Scan,Scan for the Version of the Open Ports,nmap -sC -sV {IP},Verified,3
+Nmap,Nmap,Generic Scans,All Port Scan,Scan for All Open Ports,nmap -p- -Pn {IP},Verified,4
+Nmap,Nmap,Generic Scans,All Vulns Scan,Scan with All SMB Vuln Scripts,"nmap --script smb-vuln* -p 139,445 {IP}",Verified,5
+Nmap,Nmap,Generic Scans,Quiet Scan,Scan Quietly,nmap -Pn -sS -p- {IP},Verified,6
+Nmap,Nmap,Generic Scans,UDP Scan,Scan for Open UDP Ports,nmap -Pn -p- -sU {IP},Verified,7
 FTP,21,File Transfer Protocol,Notes,Notes for FTP,"#ftp 10.11.1.8
 Anonymous
 -bi     <<< so that your put is done via binary
