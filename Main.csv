@@ -123,7 +123,7 @@ DNS,53,Domain Name Service,Vuln Nmap Scan,Nmap,"nmap -n --script ""(default and 
 DNS,53,Domain Name Service,Banner Grab,Grab Banner,dig version.bind CHAOS TXT @DNS,Verified,3
 DNS,53,Domain Name Service,Zone Transfer,Three commands to attempt a zone transfer,dig axfr @{IP} && dix axfr @{IP} {Domain_Name} && fierce -dns {Domain_Name},Verified,4
 DNS,53,Domain Name Service,Active Directory,Eunuerate a DC via DNS,"dig -t _gc._{Domain_Name} && dig -t _ldap._{Domain_Name} && dig -t _kerberos._{Domain_Name} && dig -t _kpasswd._{Domain_Name} && nmap --script dns-srv-enum --script-args ""dns-srv-enum.domain={Domain_Name}""",Verified,5
-Web,80,Hypertext Transfer Protocol,Quick Web Scan,Nikto and GoBuster on Each Web Port,nikto -host {Web_Proto}://{IP}:{Web_Port} &&&&gobuster dir -w {Small_Dirlist} -u {Web_Proto}://{IP}:{Web_Port} && gobuster dir -w {Big_Dirlist} -u {Web_Proto}://{IP}:{Web_Port},Verified,1
+Web,80,Hypertext Transfer Protocol,Quick Web Scan,Nikto and GoBuster,nikto -host {Web_Proto}://{IP}:{Web_Port} &&&&gobuster dir -w {Small_Dirlist} -u {Web_Proto}://{IP}:{Web_Port} && gobuster dir -w {Big_Dirlist} -u {Web_Proto}://{IP}:{Web_Port},Verified,1
 Web,80,Hypertext Transfer Protocol,SQLMap,Tool To Aid in Running SQLMap,Modules/SquidsSqlMapTool.py,Verified,2
 Web,80,Hypertext Transfer Protocol,WFuzz,Tool To Aid in Running WFuzz,Modules/SquidsWfuzzTool.py,Verified,3
 Web,80,Hypertext Transfer Protocol,Nikto,Generic Web Scan,nikto -host {Web_Proto}://{IP}:{Web_Port},Verified,4
