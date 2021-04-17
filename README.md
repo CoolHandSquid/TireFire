@@ -8,7 +8,7 @@
   <a><img src="https://img.shields.io/github/license/mashape/apistatus.svg" height="20"/></a>
   <a><img src="https://img.shields.io/badge/OS-Kali-yellow.svg" height="20"/></a>
   <a><img src="https://img.shields.io/badge/python-3.7%2B-blue.svg" height="20"/></a>
-  <a><img src="https://img.shields.io/badge/version-3.2.0-lightgrey.svg" height="20"/></a>
+  <a><img src="https://img.shields.io/badge/version-3.3.0-lightgrey.svg" height="20"/></a>
   <a href="https://twitter.com/intent/tweet?text=Tool%20to%20automate%20the%20scanning%20and%20enumeration%20of%20machines%20remotely.%20Comfortable%20GUI-ish%20platform%21&url=https://github.com/CoolHandSquid/TireFire&via=CoolHandSquid&hashtags=infosec,oscp,HackTheBox,kalilinux,pentesting"><img src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social" alt="tweet" height="20"></a>
 </p>
 <p align="center"><img src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/3_TireFire-Horizontal-2.png" height="500"/></p>
