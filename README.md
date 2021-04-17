@@ -25,7 +25,7 @@
   - [About](#about)
   - [Demo](#demo)
   - [Kickoff](#Kickoff)
-  - [Usage](#usage)
+  - [Methodology](#methodology)
   - [ProTips](#protips)
   - [Build](#build)
   - [Adding Modules](#adding-modules)
