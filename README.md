@@ -42,7 +42,7 @@
 ![Tire Fire](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/TireFireFinal1.gif)
 ## Kickoff
 ```
-TireFire 10.10.10.5
+sudo TireFire 10.10.10.5
 ```
 <!--
 ## HowTo
@@ -73,7 +73,7 @@ TireFire 10.10.10.5
 ```
 git clone https://github.com/CoolHandSquid/TireFire.git
 cd TireFire
-./Build.sh
+sudo ./Build.sh
 ```
 ## Adding Modules
 - Open Main.csv with your favorite csv editor (I'm partial to ModernCSV and Excel).
