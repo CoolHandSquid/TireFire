@@ -8,7 +8,7 @@ fi
 
 #Verify in TireFire directory
 if [[ "$(pwd | awk -F"/" '{print$NF}')" != "TireFire" ]]; then
-	echo "You must be in the TireFire directory to run this script."
+	echo "You must be in the TireFire directory to run this script (case sensitive)."
 	exit 1
 fi
 
