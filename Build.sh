@@ -23,7 +23,7 @@ rm /usr/bin/TireFire 2> /dev/null
 ln -s "$PWD/TireFire.py" "/usr/bin/TireFire"
 
 apt update
-apt-get install tilix gobuster seclists dconf-cli g++ pip libreoffice smtp-user-enum leafpad -y
+apt-get install tilix dbus-x11 gobuster seclists dconf-cli g++ pip libreoffice smtp-user-enum leafpad -y
 wait
 python3 -m pip install pandasql
 
