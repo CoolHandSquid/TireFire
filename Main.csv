@@ -129,7 +129,7 @@ Web,80,Hypertext Transfer Protocol,WFuzz,Tool To Aid in Running WFuzz,Modules/Sq
 Web,80,Hypertext Transfer Protocol,Nikto,Generic Web Scan,nikto -host {Web_Proto}://{IP}:{Web_Port},Verified,4
 Web,80,Hypertext Transfer Protocol,WhatWeb,General purpose auto scanner,whatweb -a 4 {IP},Verified,5
 Web,80,Hypertext Transfer Protocol,Directory Brute Force Non-Recursive,Non-Recursive Directory Brute Force,gobuster dir -w {Big_Dirlist} -u {Web_Proto}://{IP}:{Web_Port},Verified,6
-Web,80,Hypertext Transfer Protocol,Directory Brute Force Recursive,Recursive Directory Brute Force,"python3 dirsearch/dirsearch.py -w {Small_Dirlist} -e php,exe,sh,py,html,pl -f -t 20 -u {Web_Proto}://{IP}:{Web_Port} -r -R 10",Verified,7
+Web,80,Hypertext Transfer Protocol,Directory Brute Force Recursive,Recursive Directory Brute Force,"python3 dirsearch/dirsearch.py -w {Small_Dirlist} -e php,exe,sh,py,html,pl -f -t 20 -u {Web_Proto}://{IP}:{Web_Port} -r 10",Verified,7
 Web,80,Hypertext Transfer Protocol,Directory Brute Force CGI,Common Gateway Interface Brute Force,gobuster dir -u {Web_Proto}://{IP}:{Web_Port}/ -w /usr/share/seclists/Discovery/Web-Content/CGIs.txt -s 200,Verified,8
 Web,80,Hypertext Transfer Protocol,Nmap Web Vuln Scan,Tailored Nmap Scan for web Vulnerabilities,"nmap -vv --reason -Pn -sV -p {Web_Port} --script=`banner,(http* or ssl*) and not (brute or broadcast or dos or external or http-slowloris* or fuzzer)` {IP}",Verified,9
 Web,80,Hypertext Transfer Protocol,Nmap ShellShock,Test for ShellShock Vulnerability with custom NSE Script,nmap -vv --reason -Pn -sV -p {Web_Port} --script=Modules/http-shellshock.nse {IP},Verified,10
