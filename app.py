@@ -2,6 +2,7 @@
 import os
 import re
 import sys
+import time
 import click
 import shlex
 import psutil
@@ -179,6 +180,7 @@ def showit(proto, scan, command):
     subprocess.Popen(shlex.split(cmd))
     #os.system("tilix -t '{}' -x $SHELL -c 'echo \"{}\"; {}; $SHELL'".format(tab_name, tab_name, command))
     cmd_history.append(Fore.GREEN + "{} {}".format(proto, scan) + Style.RESET_ALL)
+    time.sleep(0.5)
 
 def sendtext(text):
     #Called to write to sendtext.txt
