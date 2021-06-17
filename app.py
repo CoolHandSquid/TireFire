@@ -249,5 +249,11 @@ if __name__ == "__main__":
     while True:
         try:
             display_main()
+        except KeyboardInterrupt:
+            if click.confirm("\nDo you want to exit TireFire?", default=False):
+                print("Later Tater")
+                exit()
+            else:
+                continue
         except:
             exit()
