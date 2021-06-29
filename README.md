@@ -41,7 +41,7 @@
 ## Demo
 ![Tire Fire](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/TireFireFinal1.gif)
 ## Kickoff
-```
+```bash
 sudo TireFire 10.10.10.5
 ```
 <!--
@@ -70,7 +70,7 @@ sudo TireFire 10.10.10.5
 - Ctrl+T for a new tab.
 - Ctrl+h for help.
 ## Build
-```
+```bash
 git clone https://github.com/CoolHandSquid/TireFire.git
 cd TireFire
 sudo ./Build.sh
