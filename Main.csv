@@ -324,7 +324,7 @@ Website:	http://CoolHandSquid.com
 LinkedIn:	https://www.linkedin.com/in/christopherschmid32/",Verified,4
 Hydra,Hydra,Brute Force,Resource,Link to Cheetsheet,#https://github.com/frizb/Hydra-Cheatsheet,Verified,1
 Hydra,Hydra,Brute Force,FTP,Need=User,hydra -t 1 -l {Username} -P {Big_Passwordlist} -vV {IP} ftp,Verified,2
-Hydra,Hydra,Brute Force,SSH,Need=Neither or One,hydra -v -V -u -L {Big_Userlist} -P {Big_Passwordlist} -t 1 -u {IP} ssh,Verified,3
+Hydra,Hydra,Brute Force,SSH,Need=Neither or One,hydra -v -V -u -l {Username} -P {Big_Passwordlist} -t 1 -u {IP} ssh,Verified,3
 Hydra,Hydra,Brute Force,SMTP,Need=Nothing,hydra -P {Big_Passwordlist} {IP} smtp -V,Verified,4
 Hydra,Hydra,Brute Force,WordPress,Need=User (admin is default),hydra -l admin -P {Big_Passwordlist} {IP} -V http-form-post '/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log In&testcookie=1:S=Location',Verified,5
 Hydra,Hydra,Brute Force,POP3,Need=User,hydra -l {Username} -P {Big_Passwordlist} -f {IP} pop3 -V,Verified,6
