@@ -25,7 +25,7 @@ ln -s "$PWD/TireFire.py" "/usr/bin/TireFire"
 apt update
 apt-get install tilix dbus-x11 gobuster seclists dconf-cli g++ pip libreoffice smtp-user-enum leafpad enum4linux smbmap -y
 wait
-python3 -m pip install pandasql
+python3 -m pip install pandasql psutil
 
 cp "$PWD/Tire_Fire.jpg" "/root/Pictures/Tire_Fire.jpg"
 dconf load /com/gexperts/Tilix/ < tilix.dconf
