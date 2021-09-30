@@ -1,7 +1,8 @@
 <!-- ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/TireFireLogo1.png) -->
 <p align="center"><a href="https://github.com/coolhandsquid/TireFire#tirefire"><img src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/circle-cropped.png"  height="60"/></a></p>
 <h1 align="center">TireFire</h1>
-<P align="center">TireFire is cool <a href="https://github.com/CoolHandSquid/HackTricks-Automatic-Commands">HackTricks-Automatic-Commands</a> is better. Check it out!</p> 
+<P align="center">TireFire is cool.<a href="https://github.com/CoolHandSquid/HackTricks-Automatic-Commands">HackTricks-Automatic-Commands</a> is better. Check it out!</p> 
+---
 <p align="center">Automate the scanning and enumeration of machines externally while maintaining complete control over scans shot to the target. Comfortable GUI-ish platform. Great for OSCP/HTB type Machines as well as penetration testing. </p>
 <p align="center">"The Metasploit of External Enumeration"</p>
 <p align="center">
