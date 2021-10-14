@@ -56,7 +56,8 @@ def doit(command):
 	return
 
 def main():
-	while True:
+	input("Be advised, this module is not currently supported in HAC")
+    while True:
 		sqlmap()
 
 main()

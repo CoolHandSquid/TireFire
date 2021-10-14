@@ -7,7 +7,8 @@ def doit(command):
 	return
 
 while True:
-	q1 = input("""
+    input("Be advised, this module is not currently supported in HAC")
+    q1 = input("""
 Would you like to WFUZZ?
 1. The Input to a page?
 2. A URL verb/noun

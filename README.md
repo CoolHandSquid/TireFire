@@ -1,129 +1,161 @@
-<!-- ![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/TireFireLogo1.png) -->
-<p align="center"><a href="https://github.com/coolhandsquid/TireFire#tirefire"><img src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/circle-cropped.png"  height="60"/></a></p>
-<h1 align="center">TireFire</h1>
-<p align="center">TireFire is cool. <a href="https://github.com/CoolHandSquid/HackTricks-Automatic-Commands">HackTricks-Automatic-Commands</a> is better. Check it out!</p> 
-<p align="center">Automate the scanning and enumeration of machines externally while maintaining complete control over scans shot to the target. Comfortable GUI-ish platform. Great for OSCP/HTB type Machines as well as penetration testing. </p>
-<p align="center">"The Metasploit of External Enumeration"</p>
+<h1 align="center">TireFire "TireFire"</h1>
+<p align="center">TireFire (TireFire) is an enumeration platform powered by <a href="https://book.hacktricks.xyz">HackTricks</a>!</p>
 <p align="center">
   <a><img src="https://img.shields.io/badge/price-FREE-0098f7.svg" height="20"/></a>
   <a><img src="https://img.shields.io/github/license/mashape/apistatus.svg" height="20"/></a>
   <a><img src="https://img.shields.io/badge/OS-Kali-yellow.svg" height="20"/></a>
   <a><img src="https://img.shields.io/badge/python-3.7%2B-blue.svg" height="20"/></a>
-  <a><img src="https://img.shields.io/badge/version-4.0.1-lightgrey.svg" height="20"/></a>
-  <a href="https://twitter.com/intent/tweet?text=Tool%20to%20automate%20the%20scanning%20and%20enumeration%20of%20machines%20remotely.%20Comfortable%20GUI-ish%20platform%21&url=https://github.com/CoolHandSquid/TireFire&via=CoolHandSquid&hashtags=infosec,oscp,HackTheBox,kalilinux,pentesting"><img src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social" alt="tweet" height="20"></a>
+  <a><img src="https://img.shields.io/badge/version-1.0.0-lightgrey.svg" height="20"/></a>
+  <a href="https://twitter.com/intent/tweet?text=I%20love%20automating%20the%20scanning%20and%20enumeration%20capabilities%20I%20have%20with%20the%20enumeration%20platform%20powered%20by%20https%3A%2F%2Fbook.HackTricks.xyz%21%20It%20is%20so%20convenient%21&url=https://github.com/CoolHandSquid/TireFire&via=CoolHandSquid&hashtags=infosec,oscp,HackTheBox,kalilinux,pentesting"><img src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social" alt="tweet" height="20"></a>
 </p>
-<p align="center"><img src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/3_TireFire-Horizontal-2.png" height="500"/></p>
-
-<!-- # TireFire
-![Price](https://img.shields.io/badge/price-FREE-0098f7.svg)
-![license](https://img.shields.io/github/license/mashape/apistatus.svg)
-![os](https://img.shields.io/badge/OS-Kali-yellow.svg)
-![pythonver](https://img.shields.io/badge/python-3.7%2B-blue.svg)
-![tirefirever](https://img.shields.io/badge/version-3.2.0-lightgrey.svg)
-[![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=If%20you%20want%20to%20automate%20scanning%20and%20enumeration%20machines%20externally%20while%20still%20maintaining%20full%20control%20over%20the%20commands%20sent%20to%20the%20target%2C%20TireFire%20is%20your%20tool%20of%20choice%21%20Great%20for%20OSCP%2FHTB%20type%20Machines%21&url=https://github.com/CoolHandSquid/TireFire&via=CoolHandSquid&hashtags=infosec,oscp,hacking) -->
 
 ## Contents
   - [About](#about)
+  - [Philosophy](#philosophy)
   - [Demo](#demo)
-  - [Kickoff](#Kickoff)
+    - [Tmux](#tmux)
+    - [Tilix](#tilix)
+  - [Build and Kickoff](#build-and-kickoff)
   - [Methodology](#methodology)
   - [ProTips](#protips)
-  - [Build](#build)
-  - [Adding Modules](#adding-modules)
+  - [How To Contribute](#how-to-contribute)
   - [Supporters](#supporters)
   - [Contact](#contact)
+
 ## About
-* Think Metasploit, but for external enumeration...
-*	TireFire is a scalable and straightforward platform to place your operational workflow. 
-*	Based on the terminal emulator Tilix to give a GUI feel with the convenience of CLI.
-*	The database for TireFire (Main.csv) is easily altered to support your methodologies as they are substituted and appended.
-*	Great for HTB and OSCP like machines.
-*	TireFire is a product of 19% security solutions. 
+- TireFire (TireFire) is an enumeration platform powered by [HackTricks](https://book.hacktricks.xyz)
+- Updated weekly from "TireFire" YAML code blocks in Hacktricks
+- Product of 19% Security Solutions
+
+## Philosophy
+Where other enumeration tools are fire and forget (sometimes running hundreds of scans without your control), TireFire is semi-automatic, meaning that you initiate every scan. Scan control is a valuable trait because you
+- can limit your footprint
+- end with a convenient list of all scans sent from TireFire to the target
+- will gain more profitable experience on training boxes (OSCP, HTB, TryHackMe)
+- can approach network penetration tests with confidence and reliability
+
 ## Demo
-![Tire Fire](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/TireFireFinal1.gif)
-## Kickoff
-```bash
-sudo TireFire 10.10.10.5
+
+### Tmux
+![TmuxRecon](https://github.com/CoolHandSquid/HackTricks-Automatic-Commands/blob/main/Images/TmuxRecon.gif)
+### Tilix
+![Tire Fire](https://github.com/CoolHandSquid/HackTricks-Automatic-Commands/blob/main/Images/TireFire_tilix_demo.gif)
+
+## Build and Kickoff
 ```
-<!--
-## HowTo
-*	TireFire will not function well if not run as root.
-*	Once Build.sh has been run, TireFire will have been added to your path.
-*	From the "Main Table," type the corresponding number of a protocol for which you would like to run a scan.
-*	From the "Protocol Table," click the corresponding number of a scan you would like to run. The scan will be kicked off in another tab.
-*	Hit enter to return to the "Main Table."
-*	You can change the variables by going to the "Variables Table."
-*	If there is a scan or series of scans for a protocol, you would like to add, edit Main.csv following the guidelines in this README (it's pretty straight forward).
-*	Tables and commands can be added while TireFire is running, and it will be populated once Main.csv is saved.
--->
+git clone https://github.com/CoolHandSquid/HackTricks-Automatic-Commands.git
+cd HackTricks-Automatic-Commands
+./Build.sh
+
+#cd /dir/you/want/to/enumerate/from
+TireFire x.x.x.x -i tmux #Chose "tmux" or "tilix" as your interface.
+```
+
 ## Methodology
-1. Kickoff TireFire (TireFire 10.10.10.5).
-2. When prompted, type "Y" to kickoff a Quick, Banner, All-Port, and UDP nmap scan.
-3. Depending upon the ports returned, run scans for those ports. 
-4. Choose lower numbered scans for the corresponding port and then higher ones as you need to get more specific.
+1. Kickoff TireFire (TireFire 10.10.10.5 -i tmux).  
+  ![alt text](https://github.com/CoolHandSquid/HackTricks-Automatic-Commands/blob/main/Images/TireFire_Kickoff_1.png)
+2. C-b w (Move into the TireFire tmux Session).
+  ![alt text](https://github.com/CoolHandSquid/HackTricks-Automatic-Commands/blob/main/Images/TireFire_Kickoff_2.png)
+3. When prompted, type "Y" to kickoff a Quick, Banner, All-Port, and UDP nmap scan.
+  ![alt text](https://github.com/CoolHandSquid/HackTricks-Automatic-Commands/blob/main/Images/TmuxRecon_Init_2.png)
+4. Notice that new windows were opened, kicking off those scans. Depending upon the ports returned, run scans for those ports.
+  ![alt text](https://github.com/CoolHandSquid/HackTricks-Automatic-Commands/blob/main/Images/TmuxRecon_InAction_3.png)
 5. Change variables as you need to suit your target (Example: HTTP running on port 8500).
+  ![alt text](https://github.com/CoolHandSquid/HackTricks-Automatic-Commands/blob/main/Images/TmuxRecon_Variables_6.png)
+
 ## ProTips
-- Run multiple commands from a table at once by splitting the command numbers with commas. EX: 0,1,2 (Spaces and periods work aswell)
-![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/4_split.png)
-- Ctrl+Z will bring you back to the main TireFire Page.
-- Ctrl+PageUp/PageDown will allow you to peruse through open tabs.
-- Ctrl+S will split the screen.
-- Ctrl+T for a new tab.
-- Ctrl+h for help.
-## Build
-```bash
-git clone https://github.com/CoolHandSquid/TireFire.git
-cd TireFire
-sudo ./Build.sh
+- Run multiple commands from a table at once by splitting the command numbers with commas. EX: 0,1,2 (Spaces and periods work as well)
+![alt text](https://github.com/CoolHandSquid/HackTricks-Automatic-Commands/blob/main/Images/4_split.png)
+- Tilix Specific ProTips
+  - Ctrl+Z will bring you back to the main table Page.
+  - Ctrl+PageUp/PageDown will allow you to peruse through open tabs.
+  - Ctrl+S will split the screen.
+  - Ctrl+T for a new tab.
+  - Ctrl+h for help.
+
+## How To Contribute
+What makes TireFire so powerful is the People! You can help contribute by sending a PR to book.hacktricks.xyz (into an existing TireFire YAML code block or create your own), or shooting an email to coolhandsquid@gmail.com. Simply follow this template when creating your own. Notice that
+- the title must be correct (It is used for parsing)
+- each entry has a different name
+- each entry has either a "Note" or a "Command" section. A Command section will get executed, where a Note section will only be read to screen
 ```
-## Adding Modules
-- Open Main.csv with your favorite csv editor (I'm partial to ModernCSV and Excel).
-- When adding a command, keep in mind Name, Port, and Description are for the primary display screen; Cmd_Name, Cmd_Description, Cmd_Command, Cmd_Comment, and SubDisplayOrder are for the secondary display screen.
-![alt text](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/2_csv.png)
-### Special Characters and Syntax
--	Cmd_Command has a few special characters including &&&&, #, ##, ?, and {}.
-### &&&&
--	&&&& Anywhere in the command will split the line and start each command individually in separate tabs.
-  -	Example: whoami &&&& id &&&& ifconfig will open three tabs and run the desired command in each. &&&& is useful if you initially run multiple separate commands every time you see a specific port open.
-### \# and \#\#
--	"#" is for sending yourself notes to another tab.  
-- "#" can be useful if you don't want to run a command, but you want to give yourself copy-paste notes for manual enumeration.
-- Set only the first character of the line to # if you want variables to be evaluated.
-- Set the first two characters of the line to ## if you do not want variables to be evaluated.
-### ?
-- "?" is for sending a question to the user. The responce will be set to a numbered variable.
-- You can send multiple lines of questions for multiple variables.
-- Example:
+## TireFire
+
+```text
+Protocol_Name: DNS    #Protocol Abbreviation if there is one.
+Port_Number:  53     #Comma separated if there is more than one.
+Protocol_Description: Domain Name Service        #Protocol Abbreviation Spelled out
+
+Entry_1:
+  Name: Notes
+  Description: Notes for DNS
+  Note: |
+    #These are the commands I run every time I see an open DNS port
+
+    dnsrecon -r 127.0.0.0/24 -n {IP} -d {Domain_Name}
+    dnsrecon -r 127.0.1.0/24 -n {IP} -d {Domain_Name}
+    dnsrecon -r {Network}{CIDR} -n {IP} -d {Domain_Name}
+    dig axfr @{IP}
+    dig axfr {Domain_Name} @{IP}
+    nslookup
+        SERVER {IP}
+        127.0.0.1
+        {IP}
+        Domain_Name
+        exit
+
+    https://book.hacktricks.xyz/pentesting/pentesting-dns
+
+Entry_2:
+  Name: Banner Grab
+  Description: Grab DNS Banner
+  Command: dig version.bind CHAOS TXT @DNS
 ```
+
+### TireFire Meta Language
+```
+&&&&
+&&&& Anywhere in the command will split the line and start each command individually in separate tabs.
+Example: whoami &&&& id &&&& ifconfig will open three tabs and run the desired command in each. &&&& is useful if you initially run multiple separate commands every time you see a specific port open.
+
+?
+"?" is for sending a question to the user. The response will be set to a numbered variable.
+You can send multiple lines of questions for numerous variables.
+Example:
 ?What is the location of the wp-login.php? Example: /Yeet/cannon/wp-login.php
 ?What is a known password you would like to brute force?
-wpscan --url {Web_Proto}://{IP}{1} --enumerate u,tt,t,vp --password {2} -e 
-```
-### {}
--	{} is for grabbing a variable from TireFire.
-- Available variables can be viewed in the variables table.  
+wpscan --url {Web_Proto}://{IP}{1} --enumerate ap,at,cb,dbe && wpscan --url {Web_Proto}://{IP}{1} --enumerate u,tt,t,vp --password {2} -e 
 
+{}
+{} is for grabbing a variable from TireFire.
+Available variables are:
+  IP
+  Network
+  CIDR
+  Domain_Name
+  Naming_Context
+  Web_Proto
+  Web_Port
+  Username
+  Password
+  Big_Passwordlist
+  Small_Passwordlist
+  Big_Dirlist
+  Small_Dirlist
+  Tool_Dir
+The current variable values can be viewed in the variables table.
+```
 ## Supporters
-[![Stargazers repo roster for @coolhandsquid/TireFire](https://reporoster.com/stars/coolhandsquid/TireFire)](https://github.com/coolhandsquid/TireFire/stargazers)
-[![Forkers repo roster for coolhandsquid/TireFire](https://reporoster.com/forks/coolhandsquid/TireFire)](https://github.com/coolhandsquid/TireFire/network/members)
+[![Stargazers repo roster for @coolhandsquid/HackTricks-Automatic-Commands](https://reporoster.com/stars/coolhandsquid/HackTricks-Automatic-Commands)](https://github.com/coolhandsquid/HackTricks-Automatic-Commands/stargazers)
+[![Forkers repo roster for coolhandsquid/HackTricks-Automatic-Commands](https://reporoster.com/forks/coolhandsquid/HackTricks-Automatic-Commands)](https://github.com/coolhandsquid/HackTricks-Automatic-Commands/network/members)
 
 ## Contact
-Please contact me at CoolHandSquid32@gmail.com for contribution, suggestions, and ideas!  
+Please contact me at CoolHandSquid32@gmail.com for contributions, suggestions, and ideas!  
 <p align="center">
-<img src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/TireFireLogo1.png" width="200" />  
+<img src="https://github.com/CoolHandSquid/HackTricks-Automatic-Commands/blob/main/Images/TireFireLogo1.png" width="200" />  
 </p>
 <p align="center">
-<img src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/CoolHandSquid.jpg" width="200" /> 
+<img src="https://github.com/CoolHandSquid/HackTricks-Automatic-Commands/blob/main/Images/CoolHandSquid.jpg" width="200" /> 
 </p>
 
-<p align="center"><a href="https://github.com/coolhandsquid/TireFire#tirefire"><img src="https://github.com/CoolHandSquid/TireFire/blob/TireFire_V3/Images/backToTopButton.png" alt="Back to top" height="29"/></a></p>
-
-
-
-
-
-
-
-
-
-
+<p align="center"><a href="https://github.com/coolhandsquid/HackTricks-Automatic-Commands#Contents"><img src="https://github.com/CoolHandSquid/HackTricks-Automatic-Commands/blob/main/Images/backToTopButton.png" alt="Back to top" height="29"/></a></p>
