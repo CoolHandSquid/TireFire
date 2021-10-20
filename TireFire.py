@@ -15,7 +15,7 @@ args    = parser.parse_args()
 
 cwd     = os.getcwd()
 tfdir   = subprocess.getoutput("readlink /usr/bin/TireFire")
-tfdir   = tfdir[:-11]
+tfdir   = tfdir[:-12]
 
 try:
     IP      = IPAddress(args.IP)
