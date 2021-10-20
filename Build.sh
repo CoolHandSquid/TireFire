@@ -23,7 +23,7 @@ ln -s "$PWD/TireFire.py" "/usr/bin/TireFire"
 apt update
 apt-get install gobuster seclists dconf-cli g++ pip libreoffice smtp-user-enum leafpad enum4linux smbmap tilix dbus-x11 -y
 wait
-python3 -m pip install pandasql psutil
+python3 -m pip install pandasql psutil colorama tabulate
 
 if [[ ! -d 'dirsearch' ]]; then git clone https://github.com/maurosoria/dirsearch.git; fi
 chmod -R 755 dirsearch/
