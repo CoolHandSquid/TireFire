@@ -99,7 +99,6 @@ def display_vertical(items):
     for line in range(lines):
         aitems[line].insert(0, str(line))
         nitems.append(aitems[line])
-
     return tabulate(nitems, headers=["Name", "Port", "Description"], tablefmt="psql")
 
 def display_sub(proto):
