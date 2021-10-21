@@ -37,15 +37,9 @@ Where other enumeration tools are fire and forget (sometimes running hundreds of
 ## Demo
 
 ### Tmux
-
-<!--![TmuxRecon](https://coolhandsquid.github.io/TireFire/Images/TmuxRecon.gif)-->
-
-[![Alt text](https://coolhandsquid.github.io/TireFire/Images/TmuxRecon_InAction_3.png)](https://i.imgur.com/8Dygqhu.gif)
-
-
-
+![TmuxRecon](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V4/Images/TmuxRecon.gif)
 ### Tilix
-![Tire Fire](https://coolhandsquid.github.io/TireFire/Images/TireFire_tilix_demo.gif)
+![Tire Fire](https://github.com/CoolHandSquid/TireFire/blob/TireFire_V4/Images/TireFire_tilix_demo.gif)
 
 ## Build and Kickoff
 ```
