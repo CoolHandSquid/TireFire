@@ -23,7 +23,7 @@ ln -s "$PWD/TireFire.py" "/usr/local/bin/TireFire"
 apt update
 apt-get install gobuster seclists dconf-cli g++ pip libreoffice smtp-user-enum leafpad enum4linux smbmap tilix dbus-x11 -y
 wait
-python3 -m pip install pandasql psutil colorama tabulate
+python3 -m pip install -r requirements.txt
 
 if [[ ! -d 'dirsearch' ]]; then git clone https://github.com/maurosoria/dirsearch.git; fi
 chmod -R 755 dirsearch/
@@ -56,5 +56,5 @@ do
         echo "#"
     fi
 done
-chown 0 -R ./*
+# chown 0 -R ./*
 chmod +x -R *

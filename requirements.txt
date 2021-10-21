@@ -1,0 +1,7 @@
+netaddr
+click
+psutil
+colorama
+tabulate
+pandas
+pandasql
