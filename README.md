@@ -40,7 +40,7 @@ Where other enumeration tools are fire and forget (sometimes running hundreds of
 
 <!--![TmuxRecon](https://coolhandsquid.github.io/TireFire/Images/TmuxRecon.gif)-->
 
-![Imgur](https://i.imgur.com/8Dygqhu.gif)
+[Imgur](https://i.imgur.com/8Dygqhu.gif)
 
 <!--
 <blockquote class="imgur-embed-pub" lang="en" data-id="a/8Dygqhu" data-context="false" ><a href="//imgur.com/a/8Dygqhu"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
