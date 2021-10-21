@@ -61,6 +61,10 @@ def display_main():
         print(cmd)
     items   = db.get_display_main()
     items.insert(0, ["Variables", "Vars", "Set Global Variables"])
+    if os.get_terminal_size()[0] < 130:
+        rawin   = input(Fore.YELLOW + "MAIN Table\n" + Style.RESET_ALL + display_vertical(items) + "\n> ")
+    else:
+        rawin   = input(Fore.YELLOW + "MAIN Table\n" + Style.RESET_ALL + display_horizontal(items) + "\n> ")
     rawin   = input(Fore.YELLOW + "MAIN Table\n" + Style.RESET_ALL + display_horizontal(items) + "\n> ")
     ###Display NormalVVV
     #rawin   = input(Fore.YELLOW + "MAIN Table\n" + Style.RESET_ALL + tabulate(items, headers=["Name", "Port", "Description", "Name"], tablefmt="psql", showindex="always")+ "\n> ")
@@ -86,6 +90,17 @@ def display_horizontal(items):
         except:
             nitems.append(aitems[line])
     return tabulate(nitems,headers=[" ", "Name", "Port", "Description", " ", "Name", "Port", "Description"], tablefmt="psql")
+
+def display_vertical(items):
+    aitems  = items.copy()
+    lines   = len(aitems)
+    nitems  = []
+    
+    for line in range(lines):
+        aitems[line].insert(0, str(line))
+        nitems.append(aitems[line])
+
+    return tabulate(nitems, headers=["Name", "Port", "Description"], tablefmt="psql")
 
 def display_sub(proto):
     items   = db.get_display_sub(proto) 
