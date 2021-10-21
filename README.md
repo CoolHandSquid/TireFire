@@ -43,6 +43,8 @@ Where other enumeration tools are fire and forget (sometimes running hundreds of
 
 <blockquote class="imgur-embed-pub" lang="en" data-id="a/8Dygqhu" data-context="false" ><a href="//imgur.com/a/8Dygqhu"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
 
+<img src="https://static01.bbi.io/8Dygqhu.gif"/>
+
 ### Tilix
 ![Tire Fire](https://coolhandsquid.github.io/TireFire/Images/TireFire_tilix_demo.gif)
 
