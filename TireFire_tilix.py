@@ -65,7 +65,6 @@ def display_main():
         rawin   = input(Fore.YELLOW + "MAIN Table\n" + Style.RESET_ALL + display_vertical(items) + "\n> ")
     else:
         rawin   = input(Fore.YELLOW + "MAIN Table\n" + Style.RESET_ALL + display_horizontal(items) + "\n> ")
-    rawin   = input(Fore.YELLOW + "MAIN Table\n" + Style.RESET_ALL + display_horizontal(items) + "\n> ")
     ###Display NormalVVV
     #rawin   = input(Fore.YELLOW + "MAIN Table\n" + Style.RESET_ALL + tabulate(items, headers=["Name", "Port", "Description", "Name"], tablefmt="psql", showindex="always")+ "\n> ")
     ###I should not have to do this. Ask Andrew
