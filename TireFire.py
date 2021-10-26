@@ -32,7 +32,7 @@ except:
 def init_updatedb():
     print("Updating database")
     subprocess.run(shlex.split("curl https://raw.githubusercontent.com/CoolHandSquid/TireFire/TireFire_V4/Main.csv --output {}/Main.csv".format(tfdir)), stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-    print("Updating database complete")
+    print("Database update complete")
 
 def init_TireFire_tmux():
     hassession  = subprocess.run(shlex.split("tmux has-session -t TireFire_{}".format(hostname)), stderr=subprocess.DEVNULL)
