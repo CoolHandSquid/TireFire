@@ -1,5 +1,6 @@
 dirsearch/
 impacket/
+Main.csv
 #!Build.sh
 #!db.py
 #!LICENSE
