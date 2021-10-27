@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import os
+import sys
 import pprint
 import pwd
 import argparse
@@ -9,18 +10,19 @@ from netaddr import *
 
 parser = argparse.ArgumentParser(
         description='TireFire is Powered by book.hacktricks.xyz.',
-        epilog="sudo TireFire -i tilix --update 10.169.254.56",)
+        epilog="sudo TireFire -i tilix --update 10.169.254.56")
 parser.add_argument("IP", help="IP adress or hostname of the target", type=str)
 parser.add_argument('-i', '--interaction_terminal', default='tmux', help='Interact with TireFire via "tmux" or "tilix". tmux is default')
 parser.add_argument('-u', '--updatedb', action="store_true", help='Update to the latest TireFire database') 
-try:
-    args    = parser.parse_args()
-except:
-    print("example_syntax: {}".format(parser.epilog))
+
+if len(sys.argv) <= 1:
+    parser.print_help()
     exit()
 
+args    = parser.parse_args()
+
 cwd     = os.getcwd()
-tfdir   = subprocess.getoutput("readlink /usr/local/bin/TireFire")
+tfdir   = subprocess.getoutput("readlink /usr/bin/TireFire")
 tfdir   = tfdir[:-11]
 
 try:
@@ -55,12 +57,30 @@ def check_nested_tmux():
     Returns:
         bool: status of current user level and tmux usage
     """
-    if os.environ['TERM'] == "screen" and os.environ['TMUX'] != None:
-        if os.geteuid() == 0: # if root
-            return False
-        return True
-    return False
+    # term = os.environ['TERM']
+    # try:
+    #     term_uid = os.environ['TMUX'].split('/')[2].split('-')[1]
+    # except KeyError:
+    #     # if no tmux env var return false since tmux hasnt spawned
+    #     return False
 
+    # if term == "screen":
+    #     # possibly in tmux
+    #     if term_uid != '0':
+    #         # not root
+    #         return True
+    #     else:
+    #         return False
+    if subprocess.getoutput("echo $TERM") == "screen":
+        try:
+            tmuxpid = subprocess.getoutput("cat /proc/{}/environ | grep -z TMUX=".format(os.getppid())).split(',')[1]
+            tmuxpiduid  = subprocess.getoutput("ps -p {} -o uid=".format(tmuxpid)).strip()
+            if tmuxpiduid != 0:
+                return True
+        except:
+            return False
+    else:
+        return False
 
 def init_TireFire_tilix():
     #Commented out because root check happens in main now. Will delete after testing
