@@ -44,22 +44,22 @@ def init_TireFire_tmux():
     subprocess.run(shlex.split("tmux new-session -s TireFire_{} -n Main -c {} -d".format(hostname, cwd)))
     subprocess.run(shlex.split("tmux send-keys -t TireFire_{}:0.0 '{}TireFire_tmux.py {} {} {} {}' Enter".format(hostname, tfdir, IP, hostname, cwd, tfdir)))
     print("TireFire session for {} named TireFire_{} has started successfully!".format(IP, hostname))
-    if ru_user_running_tmux() == True:
+    if check_nested_tmux() == True:
         print("It looks like you are running TireFire from a user level tmux session. To attach to TireFire open a new tab in your terminal emulator and copy-paste:\nsudo tmux a -t TireFire_{}".format(hostname))
     else:
         print("copy-paste (or hotkey w if already inside tmux):\ntmux a -t TireFire_{}".format(hostname))
 
-def ru_user_running_tmux():
-    if subprocess.getoutput("echo $TERM") == "screen":
-        try:        
-            tmuxpid     = subprocess.getoutput("cat /proc/{}/environ | grep -z TMUX=".format(os.getppid())).split(',')[1]
-            tmuxpiduid  = subprocess.getoutput("ps -p {} -o uid=".format(tmuxpid)).strip()
-            if tmuxpiduid != 0:
-                return True
-        except:
+def check_nested_tmux():
+    """Check if in tmux and not root since user level nested tmux is bugged
+
+    Returns:
+        bool: status of current user level and tmux usage
+    """
+    if os.environ['TERM'] == "screen" and os.environ['TMUX'] != None:
+        if os.geteuid() == 0: # if root
             return False
-    else:
-        return False
+        return True
+    return False
 
 
 def init_TireFire_tilix():
