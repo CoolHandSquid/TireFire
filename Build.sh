@@ -56,5 +56,3 @@ do
         echo "#"
     fi
 done
-#chown 0 -R ./*
-#chmod +x -R *
