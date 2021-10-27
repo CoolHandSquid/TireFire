@@ -44,12 +44,12 @@ def init_TireFire_tmux():
     subprocess.run(shlex.split("tmux new-session -s TireFire_{} -n Main -c {} -d".format(hostname, cwd)))
     subprocess.run(shlex.split("tmux send-keys -t TireFire_{}:0.0 '{}TireFire_tmux.py {} {} {} {}' Enter".format(hostname, tfdir, IP, hostname, cwd, tfdir)))
     print("TireFire session for {} named TireFire_{} has started successfully!".format(IP, hostname))
-    if ru_user_running_tmux() == True:
+    if check_nested_tmux() == True:
         print("It looks like you are running TireFire from a user level tmux session. To attach to TireFire open a new tab in your terminal emulator and copy-paste:\nsudo tmux a -t TireFire_{}".format(hostname))
     else:
         print("copy-paste (or hotkey w if already inside tmux):\ntmux a -t TireFire_{}".format(hostname))
 
-def ru_user_running_tmux():
+def check_nested_tmux():
     """Check if in tmux and not root since user level nested tmux is bugged
 
     Returns:
