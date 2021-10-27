@@ -50,16 +50,16 @@ def init_TireFire_tmux():
         print("copy-paste (or hotkey w if already inside tmux):\ntmux a -t TireFire_{}".format(hostname))
 
 def ru_user_running_tmux():
-    if subprocess.getoutput("echo $TERM") == "screen":
-        try:        
-            tmuxpid     = subprocess.getoutput("cat /proc/{}/environ | grep -z TMUX=".format(os.getppid())).split(',')[1]
-            tmuxpiduid  = subprocess.getoutput("ps -p {} -o uid=".format(tmuxpid)).strip()
-            if tmuxpiduid != 0:
-                return True
-        except:
+    """Check if in tmux and not root since user level nested tmux is bugged
+
+    Returns:
+        bool: status of current user level and tmux usage
+    """
+    if os.environ['TERM'] == "screen" and os.environ['TMUX'] != None:
+        if os.geteuid() == 0: # if root
             return False
-    else:
-        return False
+        return True
+    return False
 
 
 def init_TireFire_tilix():
