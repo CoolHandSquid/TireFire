@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import os
+import sys
 import pprint
 import pwd
 import argparse
@@ -9,15 +10,16 @@ from netaddr import *
 
 parser = argparse.ArgumentParser(
         description='TireFire is Powered by book.hacktricks.xyz.',
-        epilog="sudo TireFire -i tilix --update 10.169.254.56",)
+        epilog="sudo TireFire -i tilix --update 10.169.254.56")
 parser.add_argument("IP", help="IP adress or hostname of the target", type=str)
 parser.add_argument('-i', '--interaction_terminal', default='tmux', help='Interact with TireFire via "tmux" or "tilix". tmux is default')
 parser.add_argument('-u', '--updatedb', action="store_true", help='Update to the latest TireFire database') 
-try:
-    args    = parser.parse_args()
-except:
-    print("example_syntax: {}".format(parser.epilog))
+
+if len(sys.argv) <= 1:
+    parser.print_help()
     exit()
+
+args    = parser.parse_args()
 
 cwd     = os.getcwd()
 tfdir   = subprocess.getoutput("readlink /usr/bin/TireFire")
