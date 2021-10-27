@@ -17,8 +17,8 @@ TireFire is installing...
 END
 
 #Make TireFire links
-rm /usr/local/bin/TireFire 2> /dev/null
-ln -s "$PWD/TireFire.py" "/usr/local/bin/TireFire"
+rm /usr/bin/TireFire 2> /dev/null
+ln -s "$PWD/TireFire.py" "/usr/bin/TireFire"
 
 apt update
 apt-get install gobuster seclists dconf-cli g++ pip libreoffice smtp-user-enum leafpad enum4linux smbmap tilix dbus-x11 -y
