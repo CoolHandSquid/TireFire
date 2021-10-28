@@ -34,6 +34,7 @@ python3 -m pip install -r ./requirements.txt
 python3 ./setup.py install
 cd ..
 
+mkdir /root/Pictures/
 cp "$PWD/Tire_Fire.jpg" "/root/Pictures/Tire_Fire.jpg"
 dconf load /com/gexperts/Tilix/ < tilix.dconf
 
