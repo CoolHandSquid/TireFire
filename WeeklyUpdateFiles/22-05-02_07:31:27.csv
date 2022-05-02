@@ -1,0 +1,88 @@
+Name,Port,Description,Cmd_Name,Cmd_Description,Cmd_Command,Cmd_Comment,SubDisplayOrder
+Nmap,Nmap,Generic Scans,Kickoff Scan,"Quick scan, Version scan, All Port Scan, UDP Scan ran one at a time in order",nmap -Pn {IP} && nmap -Pn -sS -p- {IP} && nmap -sC -sV -Pn {IP} && nmap -p- -Pn {IP} && sudo nmap -Pn -p- -sU {IP},Verified,1
+Nmap,Nmap,Generic Scans,Quick Scan,Quick Nmap Scan,nmap {IP},Verified,2
+Nmap,Nmap,Generic Scans,Version Scan,Scan for the Version of the Open Ports,nmap -sC -sV {IP},Verified,3
+Nmap,Nmap,Generic Scans,All Port Scan,Scan for all open ports,nmap -p- -Pn {IP},Verified,4
+Nmap,Nmap,Generic Scans,Quiet Scan,Scan Quietly,nmap -Pn -sS -p- {IP},Verified,5
+Nmap,Nmap,Generic Scans,UDP Scan,Scan for Open UDP Ports,nmap -Pn -p- -sU {IP},Verified,6
+LDAP,"389,636",Lightweight Directory Access Protocol,Notes,Notes for LDAP,"#LDAP (Lightweight Directory Access Protocol) is a software protocol for enabling anyone to locate organizations, individuals, and other resources such as files and devices in a network, whether on the public Internet or on a corporate intranet. LDAP is a ""lightweight"" (smaller amount of code) version of Directory Access Protocol (DAP).
+
+https://book.hacktricks.xyz/pentesting/pentesting-ldap
+",Verified,1
+LDAP,"389,636",Lightweight Directory Access Protocol,Banner Grab,Grab LDAP Banner,nmap -p 389 --script ldap-search -Pn {IP},Verified,2
+LDAP,"389,636",Lightweight Directory Access Protocol,LdapSearch,Base LdapSearch,ldapsearch -h {IP} -x,Verified,3
+LDAP,"389,636",Lightweight Directory Access Protocol,LdapSearch Naming Context Dump,Attempt to get LDAP Naming Context,ldapsearch -h {IP} -x -s base namingcontexts,Verified,4
+LDAP,"389,636",Lightweight Directory Access Protocol,LdapSearch Big Dump,Need Naming Context to do big dump,"ldapsearch -h {IP} -x -b ""{Naming_Context}""",Verified,5
+LDAP,"389,636",Lightweight Directory Access Protocol,Hydra Brute Force,Need User,hydra -l {Username} -P {Big_Passwordlist} {IP} ldap2 -V -f,Verified,6
+Web,"80,443",Web,Notes,Notes for Web,"#https://book.hacktricks.xyz/pentesting/pentesting-web
+",Verified,1
+Web,"80,443",Web,Quick Web Scan,Nikto and GoBuster,nikto -host {Web_Proto}://{IP}:{Web_Port} &&&& gobuster dir -w {Small_Dirlist} -u {Web_Proto}://{IP}:{Web_Port} && gobuster dir -w {Big_Dirlist} -u {Web_Proto}://{IP}:{Web_Port},Verified,2
+Web,"80,443",Web,Nikto,Basic Site Info via Nikto,nikto -host {Web_Proto}://{IP}:{Web_Port},Verified,3
+Web,"80,443",Web,WhatWeb,General purpose auto scanner,whatweb -a 4 {IP},Verified,4
+Web,"80,443",Web,Directory Brute Force Non-Recursive,Non-Recursive Directory Brute Force,gobuster dir -w {Big_Dirlist} -u {Web_Proto}://{IP}:{Web_Port},Verified,5
+Web,"80,443",Web,Directory Brute Force Recursive,Recursive Directory Brute Force,"python3 {Tool_Dir}dirsearch/dirsearch.py -w {Small_Dirlist} -e php,exe,sh,py,html,pl -f -t 20 -u {Web_Proto}://{IP}:{Web_Port} -r 10",Verified,6
+Web,"80,443",Web,Directory Brute Force CGI,Common Gateway Interface Brute Force,gobuster dir -u {Web_Proto}://{IP}:{Web_Port}/ -w /usr/share/seclists/Discovery/Web-Content/CGIs.txt -s 200,Verified,7
+Web,"80,443",Web,Nmap Web Vuln Scan,Tailored Nmap Scan for web Vulnerabilities,"nmap -vv --reason -Pn -sV -p {Web_Port} --script=`banner,(http* or ssl*) and not (brute or broadcast or dos or external or http-slowloris* or fuzzer)` {IP}",Verified,8
+Web,"80,443",Web,Drupal,Drupal Enumeration Notes,"#git clone https://github.com/immunIT/drupwn.git for low hanging fruit and git clone https://github.com/droope/droopescan.git for deeper enumeration
+",Verified,9
+Web,"80,443",Web,WordPress,WordPress Enumeration with WPScan,"?What is the location of the wp-login.php? Example: /Yeet/cannon/wp-login.php
+wpscan --url {Web_Proto}://{IP}{1} --enumerate ap,at,cb,dbe && wpscan --url {Web_Proto}://{IP}{1} --enumerate u,tt,t,vp --passwords {Big_Passwordlist} -e
+",Verified,10
+Web,"80,443",Web,WordPress Hydra Brute Force,Need User (admin is default),hydra -l admin -P {Big_Passwordlist} {IP} -V http-form-post '/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log In&testcookie=1:S=Location',Verified,11
+NFS,2049,Network File System,Notes,Notes for NFS,"#It is a client/server system that allows users to access files across a network and treat them as if they resided in a local file directory.
+
+#apt install nfs-common
+showmount 10.10.10.180      ~or~showmount -e 10.10.10.180
+should show you available shares (example /home)
+
+mount -t nfs -o ver=2 10.10.10.180:/home /mnt/
+cd /mnt
+nano into /etc/passwd and change the uid (probably 1000 or 1001) to match the owner of the files if you are not able to get in
+
+https://book.hacktricks.xyz/pentesting/nfs-service-pentesting
+",Verified,1
+NFS,2049,Network File System,Nmap,Nmap with NFS Scripts,"nmap --script=nfs-ls.nse,nfs-showmount.nse,nfs-statfs.nse -p 2049 {IP}",Verified,2
+Kerberos,88,AD Domain Authentication,Notes,Notes for Kerberos,"#Firstly, Kerberos is an authentication protocol, not authorization. In other words, it allows to identify each user, who provides a secret password, however, it does not validates to which resources or services can this user access.
+Kerberos is used in Active Directory. In this platform, Kerberos provides information about the privileges of each user, but it is responsability of each service to determine if the user has access to its resources.
+
+https://book.hacktricks.xyz/pentesting/pentesting-kerberos-88
+",Verified,1
+Kerberos,88,AD Domain Authentication,Pre-Creds,Brute Force to get Usernames,"nmap -p 88 --script=krb5-enum-users --script-args krb5-enum-users.realm=""{Domain_Name}"",userdb={Big_Userlist} {IP}",Verified,2
+Kerberos,88,AD Domain Authentication,With Usernames,Brute Force with Usernames and Passwords,#consider git clonehttps://github.com/ropnop/kerbrute.git ./kerbrute -h,Verified,3
+Kerberos,88,AD Domain Authentication,With Creds,Attempt to get a list of user service principal names,GetUserSPNs.py -request -dc-ip {IP} active.htb/svc_tgs,Verified,4
+Netbios,"137,138,139",Netbios,Notes,Notes for NetBios,"#Name service for name registration and resolution (ports: 137/udp and 137/tcp).
+Datagram distribution service for connectionless communication (port: 138/udp).
+Session service for connection-oriented communication (port: 139/tcp).
+
+Every machine should have a name inside the NetBios network. To request a name, a machine should send a ""Name Query"" packet in broadcast and if anyone answer that it is already using that name, the machine can use that name. If there is a Name Service server, the computer could ask the Name Service server if someone is using the name that it wants to use.
+
+https://book.hacktricks.xyz/pentesting/137-138-139-pentesting-netbios
+",Verified,1
+Netbios,"137,138,139",Netbios,Find Names,Three scans to find the names of the server,nmblookup -A {IP} &&&& nbtscan {IP}/30 &&&& nmap -sU -sV -T4 --script nbstat.nse -p 137 -Pn -n {IP},Verified,2
+Oracle,1521,Oracle TNS Listener,Notes,Notes for Oracle,"#Oracle database (Oracle DB) is a relational database management system (RDBMS) from the Oracle Corporation
+
+#great oracle enumeration tool
+navigate to https://github.com/quentinhardy/odat/releases/
+download the latest
+tar -xvf odat-linux-libc2.12-x86_64.tar.gz
+cd odat-libc2.12-x86_64/
+./odat-libc2.12-x86_64 all -s 10.10.10.82
+
+for more details check https://github.com/quentinhardy/odat/wiki
+
+https://book.hacktricks.xyz/pentesting/1521-1522-1529-pentesting-oracle-listener
+",Verified,1
+Oracle,1521,Oracle TNS Listener,Nmap,Nmap with Oracle Scripts,"nmap --script ""oracle-tns-version"" -p 1521 -T4 -sV {IP}",Verified,2
+RDP,3389,Remote Desktop Protocol,Notes,Notes for RDP,"#Remote Desktop Protocol (RDP) is a proprietary protocol developed by Microsoft, which provides a user with a graphical interface to connect to another computer over a network connection. The user employs RDP client software for this purpose, while the other computer must run RDP server software 
+
+https://book.hacktricks.xyz/pentesting/pentesting-rdp
+",Verified,1
+RDP,3389,Remote Desktop Protocol,Nmap,Nmap with RDP Scripts,"nmap --script ""rdp-enum-encryption or rdp-vuln-ms12-020 or rdp-ntlm-info"" -p 3389 -T4 {IP}",Verified,2
+Help,Help,Help Menu,Pro Tips,Pro Tips and Hot Keys,"#Pro Tips Run multiple commands from a table at once by splitting the command numbers with commas. EX: 0,1,2 (Spaces and periods work aswell)
+",Verified,1
+Help,Help,Help Menu,Adding Commands and Notes,Substitue and append your methodology to HAC,"#Adding Rows Open Main.csv with your favorite csv editor (I'm partial to ModernCSV). When adding a command, keep in mind Name, Port, and Description are for the primary display screen; Cmd_Name, Cmd_Description, Cmd_Command, Cmd_Comment, and SubDisplayOrder are for the secondary display screen. Special Characters and Syntax Cmd_Command has a few special characters including &&&&, #, ##, ?, and {}. &&&& &&&& Anywhere in the command will split the line and start each command individually in separate tabs. Example: whoami &&&& id &&&& ifconfig will open three tabs and run the desired command in each. &&&& is useful if you initially run multiple separate commands every time you see a specific port open. # and ## ""#"" is for sending yourself notes to another tab. ""#"" can be useful if you don't want to run a command, but you want to give yourself copy-paste notes for manual enumeration. Set only the first character of the line to # if you want variables to be evaluated. Set the first two characters of the line to ## if you do not want variables to be evaluated. ? ""?"" is for sending a question to the user. The responce will be set to a numbered variable. You can send multiple lines of questions for multiple variables. Example: ?What is the location of the wp-login.php? Example: /Yeet/cannon/wp-login.php ?What is a known password you would like to brute force? wpscan --url {Web_Proto}://{IP}{1} --enumerate ap,at,cb,dbe && wpscan --url {Web_Proto}://{IP}{1} --enumerate u,tt,t,vp --password {2} -e {} {} is for grabbing a variable from TmuxRecon. Available variables can be viewed in the variables table.
+",Verified,2
+Help,Help,Help Menu,Usage,In case you are uncomfortable at first,"#Usage Once Build.sh has been run, HackTricks-Automatic-Commands will have been added to your path. Type ""HAC 10.10.10.5 -i tilix"" or ""HAC 10.10.10.5 -i tmux"" and you will be yeeting with a cyber cannon! From the ""Main Table,"" type the corresponding number of a protocol for which you would like to run a scan. From the ""Protocol Table,"" click the corresponding number of a scan you would like to run. The scan will be kicked off in another tab. Hit enter to return to the ""Main Table."" You can change the variables by going to the ""Variables Table."" If there is a scan or series of scans for a protocol, you would like to add, edit Main.csv following the guidelines in this README (it's pretty straight forward). Tables and commands can be added while TmuxRecon is running, and it will be populated once Main.csv is saved. 
+",Verified,3
+Help,Help,Help Menu,Contact Me,"Report bugs, ask for assistance, request add-on's","#Contact me at CoolHandSquid@gmail.com You can also find me on: GitHub: https://github.com/CoolHandSquid Twitter: https://twitter.com/CoolHandSquid Facebook: https://www.facebook.com/CoolHandSquid/ Website: http://CoolHandSquid.com LinkedIn: https://www.linkedin.com/in/christopherschmid32/
+",Verified,4
