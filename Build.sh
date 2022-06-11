@@ -21,9 +21,14 @@ rm /usr/bin/TireFire 2> /dev/null
 ln -s "$PWD/TireFire.py" "/usr/bin/TireFire"
 
 apt update
-apt-get install gobuster seclists dconf-cli g++ pip libreoffice smtp-user-enum leafpad enum4linux smbmap tilix dbus-x11 -y
+apt remove tilix
+apt-get install gobuster seclists dconf-cli g++ pip libreoffice smtp-user-enum leafpad enum4linux smbmap dbus-x11 -y
 wait
 python3 -m pip install -r requirements.txt
+
+wget https://github.com/gnunn1/tilix/releases/download/1.9.3/tilix.zip
+unzip tilix.zip -d /
+glib-compile-schemas /usr/share/glib-2.0/schemas/
 
 if [[ ! -d 'dirsearch' ]]; then git clone https://github.com/maurosoria/dirsearch.git; fi
 chmod -R 755 dirsearch/
