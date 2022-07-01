@@ -5,7 +5,7 @@
   <a><img src="https://img.shields.io/github/license/mashape/apistatus.svg" height="20"/></a>
   <a><img src="https://img.shields.io/badge/OS-Kali-yellow.svg" height="20"/></a>
   <a><img src="https://img.shields.io/badge/python-3.7%2B-blue.svg" height="20"/></a>
-  <a><img src="https://img.shields.io/badge/version-4.1.4-lightgrey.svg" height="20"/></a>
+  <a><img src="https://img.shields.io/badge/version-4.2.0-lightgrey.svg" height="20"/></a>
   <a href="https://twitter.com/intent/tweet?text=I%20love%20automating%20the%20scanning%20and%20enumeration%20capabilities%20I%20have%20with%20the%20enumeration%20platform%20powered%20by%20https%3A%2F%2Fbook.HackTricks.xyz%21%20It%20is%20so%20convenient%21&url=https://github.com/CoolHandSquid/TireFire&via=CoolHandSquid&hashtags=infosec,oscp,HackTheBox,kalilinux,pentesting"><img src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social" alt="tweet" height="20"></a>
 </p>
 
