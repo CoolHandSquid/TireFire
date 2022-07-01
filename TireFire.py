@@ -9,11 +9,13 @@ import subprocess
 from netaddr import *
 
 parser = argparse.ArgumentParser(
-        description='TireFire is Powered by book.hacktricks.xyz.',
-        epilog="sudo TireFire -i tilix --update 10.169.254.56")
+    #description='TireFire is Powered by book.hacktricks.xyz.',
+    usage="\nsudo TireFire 1.1.1.1\nsudo TireFire -i tmux 1.1.1.1\nsudo TireFire --updatedb -m 1.1.1.1",
+    epilog='TireFire is Powered by book.hacktricks.xyz.')
 parser.add_argument("IP", help="IP adress or hostname of the target", type=str)
-parser.add_argument('-i', '--interaction_terminal', default='tmux', help='Interact with TireFire via "tmux" or "tilix". tmux is default')
+parser.add_argument('-i', '--interface', default='tilix', help='Interact via "tmux" or "tilix". tilix is default', metavar='')
 parser.add_argument('-u', '--updatedb', action="store_true", help='Update to the latest TireFire database') 
+parser.add_argument('-m', '--metasploit', action="store_true", help='Run TireFire with metasploit scans. NOT OSCP SAFE!')
 
 if len(sys.argv) <= 1:
     parser.print_help()
@@ -44,7 +46,7 @@ def init_TireFire_tmux():
     else:
         pass
     subprocess.run(shlex.split("tmux new-session -s TireFire_{} -n Main -c {} -d".format(hostname, cwd)))
-    subprocess.run(shlex.split("tmux send-keys -t TireFire_{}:0.0 '{}TireFire_tmux.py {} {} {} {}' Enter".format(hostname, tfdir, IP, hostname, cwd, tfdir)))
+    subprocess.run(shlex.split("tmux send-keys -t TireFire_{}:0.0 '{}TireFire_tmux.py {} {} {} {} {}' Enter".format(hostname, tfdir, IP, hostname, cwd, tfdir, args.metasploit)))
     print("TireFire session for {} named TireFire_{} has started successfully!".format(IP, hostname))
     if check_nested_tmux() == True:
         print("It looks like you are running TireFire from a user level tmux session. To attach to TireFire open a new tab in your terminal emulator and copy-paste:\nsudo tmux a -t TireFire_{}".format(hostname))
@@ -73,7 +75,7 @@ def init_TireFire_tilix():
         print("The shell environment user must be root. Try: sudo TireFire x.x.x.x -i tilix")
         exit()
     
-    os.system("tilix --maximize -t 'TireFire  Main Page' -x $SHELL -c '{}TireFire_tilix.py {} ; $SHELL'".format(tfdir, IP))
+    os.system("tilix --maximize -t 'TireFire  Main Page' -x $SHELL -c '{}TireFire_tilix.py {} {}; $SHELL'".format(tfdir, IP, args.metasploit))
     
 if __name__ == "__main__":
     uid         = subprocess.getoutput("id -u")
@@ -82,11 +84,11 @@ if __name__ == "__main__":
         exit()
     if args.updatedb == True:
         init_updatedb()
-    if args.interaction_terminal == "tmux":
+    if args.interface == "tmux":
         init_TireFire_tmux()
-    elif args.interaction_terminal == "tilix":
+    elif args.interface == "tilix":
         init_TireFire_tilix()
     else:
-        print("That interaction_terminal is not valid. Please chose tmux or tilix (ex: --interaction_terminal tilix).")
+        print("That interface is not valid. Please chose tmux or tilix (ex: --interface tilix).")
         exit()
 

@@ -102,7 +102,7 @@ def display_vertical(items):
     return tabulate(nitems, headers=["Name", "Port", "Description"], tablefmt="psql")
 
 def display_sub(proto):
-    items   = db.get_display_sub(proto) 
+    items   = db.get_display_sub(proto, metasploit) 
     fullcmd = db.get_fullcommand(proto)
     subheaders  = ["Cmd Name", "Description", "Command"]
     rawin   = input(Fore.YELLOW + proto + " Table\n" + Style.RESET_ALL + tabulate(items, headers=subheaders, tablefmt="psql", showindex="always")+ "\n> ")
@@ -235,6 +235,7 @@ if __name__ == "__main__":
     parser.add_argument("LastOct", help="Last octet of the IP address of the target", type=str)
     parser.add_argument("CWD", help="Directory that TireFire was kicked off from", type=str)
     parser.add_argument("Tool_Dir", help="Directory that TireFire resides in", type=str)
+    parser.add_argument("metasploit", help="If msf scans will populate in db")
     args    = parser.parse_args()
     
     cmd_history     = []
@@ -256,6 +257,7 @@ if __name__ == "__main__":
     Small_Userlist      = "/usr/share/seclists/Usernames/top-usernames-shortlist.txt"
     Big_Dirlist         = "/usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt"
     Small_Dirlist       = "/usr/share/seclists/Discovery/Web-Content/common.txt"
+    metasploit      = args.metasploit
 
     start(IP)
     while True:

@@ -15,11 +15,14 @@ def get_display_main():
     items   = items.values.tolist()
     return items
 
-def get_display_sub(proto):
+def get_display_sub(proto, metasploit):
     Main    = pd.read_csv('Main.csv')
 #    q       = "SELECT Cmd_Name, SUBSTRING(Cmd_Description, 1, 50), SUBSTRING(replace(Cmd_Command, X'0A', ' '), 1, 50) AS Cmd_Command from Main WHERE Name = '{}'".format(proto)
-    q       = "SELECT Cmd_Name, SUBSTRING(Cmd_Description, 1, 50), SUBSTRING(replace(Cmd_Command, X'0A', ' '), 1, 50) AS Cmd_Command from Main WHERE Name = '{}' ORDER By SubDisplayOrder".format(proto)
 #    q   = "SELECT Cmd_Name FROM Main WHERE Name = '{}'".format(proto)
+    if metasploit == "True":
+        q       = "SELECT Cmd_Name, SUBSTRING(Cmd_Description, 1, 50), SUBSTRING(replace(Cmd_Command, X'0A', ' '), 1, 50) AS Cmd_Command from Main WHERE Name='{}' ORDER By SubDisplayOrder".format(proto)
+    else:
+        q       = "SELECT Cmd_Name, SUBSTRING(Cmd_Description, 1, 50), SUBSTRING(replace(Cmd_Command, X'0A', ' '), 1, 50) AS Cmd_Command from Main WHERE Name='{}' AND Cmd_Command NOT LIKE 'msfconsole%' ORDER By SubDisplayOrder".format(proto)
     items   = pandasql.sqldf(q, locals())
     items   = items.values.tolist()
     return items
