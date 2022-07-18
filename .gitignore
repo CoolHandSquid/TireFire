@@ -2,3 +2,5 @@ dirsearch/
 impacket/
 sendtext.txt
 showit.txt
+__pycache__/
+tilix.zip
