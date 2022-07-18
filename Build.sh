@@ -7,8 +7,8 @@ if [[ "$(id -u)" -ne "0" ]]; then
 fi
 
 #Verify in TireFire directory
-if [[ "$(pwd | awk -F"/" '{print$NF}')" != "TireFire" ]]; then
-	echo "You must be in the TireFire directory to run this script (Case sensitive)."
+if [[ "$(pwd | awk -F "/" '{print tolower($NF)}')" != "tirefire" ]]; then
+	echo "You must be in the TireFire directory to run this script."
 	exit 1
 fi
 
