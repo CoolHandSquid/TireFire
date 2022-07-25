@@ -1,0 +1,24 @@
+Diff between current HackTricks-Automatic-Commands/Main.csv and the newest csv
+            old_csv = 89 lines
+            new_csv = 95 lines
+            total   = 6 new lines
+            
+            20,22c20,22
+< LDAP,"389,636",Lightweight Directory Access Protocol,LdapSearch,Base LdapSearch,ldapsearch -h {IP} -x,Verified,3
+< LDAP,"389,636",Lightweight Directory Access Protocol,LdapSearch Naming Context Dump,Attempt to get LDAP Naming Context,ldapsearch -h {IP} -x -s base namingcontexts,Verified,4
+< LDAP,"389,636",Lightweight Directory Access Protocol,LdapSearch Big Dump,Need Naming Context to do big dump,"ldapsearch -h {IP} -x -b ""{Naming_Context}""",Verified,5
+---
+> LDAP,"389,636",Lightweight Directory Access Protocol,LdapSearch,Base LdapSearch,ldapsearch -H ldap://{IP} -x,Verified,3
+> LDAP,"389,636",Lightweight Directory Access Protocol,LdapSearch Naming Context Dump,Attempt to get LDAP Naming Context,ldapsearch -H ldap://{IP} -x -s base namingcontexts,Verified,4
+> LDAP,"389,636",Lightweight Directory Access Protocol,LdapSearch Big Dump,Need Naming Context to do big dump,"ldapsearch -H ldap://{IP} -x -b ""{Naming_Context}""",Verified,5
+218a219,228
+> POP,110,Post Office Protocol,Notes,Notes for POP,"#Post Office Protocol (POP) is a type of computer networking and Internet standard protocol that extracts and retrieves email from a remote mail server for access by the host machine. POP is an application layer protocol in the OSI model that provides end users the ability to fetch and receive email (from here).
+> The POP clients generally connect, retrieve all messages, store them on the client system, and delete them from the server. There are 3 versions of POP, but POP3 is the most used one.
+> 
+> https://book.hacktricks.xyz/pentesting/pentesting-whois
+> ",Verified,1
+> POP,110,Post Office Protocol,Banner Grab,Banner Grab 110,nc -nv {IP} 110,Verified,2
+> POP,110,Post Office Protocol,Banner Grab 995,Grab Banner Secure,openssl s_client -connect {IP}:995 -crlf -quiet,Verified,3
+> POP,110,Post Office Protocol,Nmap,Scan for POP info,"nmap --script ""pop3-capabilities or pop3-ntlm-info"" -sV -p 110 {IP}",Verified,4
+> POP,110,Post Office Protocol,Hydra Brute Force,Need User,hydra -l {Username} -P {Big_Passwordlist} -f {IP} pop3 -V,Verified,5
+> POP,110,Post Office Protocol,consolesless mfs enumeration,POP3 enumeration without the need to run msfconsole,msfconsole -q -x 'use auxiliary/scanner/pop3/pop3_version; set RHOSTS {IP}; set RPORT 110; run; exit',Verified,6
