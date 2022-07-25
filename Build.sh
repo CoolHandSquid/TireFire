@@ -55,14 +55,9 @@ for wordlist in "${wordlists[@]}"
 do
     if [[ ! -f "$wordlist" ]]
     then
-        echo "#"
-        echo "#"
-        echo "#"
         echo "You are going to want to install $wordlist"
-        echo "#"
-        echo "#"
-        echo "#"
     fi
 done
+if test ! -f "`which msfconsole`";then echo "You are going to want to install metasploit if you want to use metasploit mode.";fi
 
 echo "TireFire Installed Successfully."
