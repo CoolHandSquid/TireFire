@@ -17,9 +17,9 @@ LDAP,"389,636",Lightweight Directory Access Protocol,Notes,Notes for LDAP,"#LDAP
 https://book.hacktricks.xyz/pentesting/pentesting-ldap
 ",Verified,1
 LDAP,"389,636",Lightweight Directory Access Protocol,Banner Grab,Grab LDAP Banner,nmap -p 389 --script ldap-search -Pn {IP},Verified,2
-LDAP,"389,636",Lightweight Directory Access Protocol,LdapSearch,Base LdapSearch,ldapsearch -h {IP} -x,Verified,3
-LDAP,"389,636",Lightweight Directory Access Protocol,LdapSearch Naming Context Dump,Attempt to get LDAP Naming Context,ldapsearch -h {IP} -x -s base namingcontexts,Verified,4
-LDAP,"389,636",Lightweight Directory Access Protocol,LdapSearch Big Dump,Need Naming Context to do big dump,"ldapsearch -h {IP} -x -b ""{Naming_Context}""",Verified,5
+LDAP,"389,636",Lightweight Directory Access Protocol,LdapSearch,Base LdapSearch,ldapsearch -H ldap://{IP} -x,Verified,3
+LDAP,"389,636",Lightweight Directory Access Protocol,LdapSearch Naming Context Dump,Attempt to get LDAP Naming Context,ldapsearch -H ldap://{IP} -x -s base namingcontexts,Verified,4
+LDAP,"389,636",Lightweight Directory Access Protocol,LdapSearch Big Dump,Need Naming Context to do big dump,"ldapsearch -H ldap://{IP} -x -b ""{Naming_Context}""",Verified,5
 LDAP,"389,636",Lightweight Directory Access Protocol,Hydra Brute Force,Need User,hydra -l {Username} -P {Big_Passwordlist} {IP} ldap2 -V -f,Verified,6
 Web,"80,443",Web,Notes,Notes for Web,"#https://book.hacktricks.xyz/pentesting/pentesting-web
 ",Verified,1
@@ -216,6 +216,16 @@ SMB,"137,138,139",Server Message Block,Nmap SMB Scan 1,SMB Vuln Scan With Nmap,"
 SMB,"137,138,139",Server Message Block,Nmap Smb Scan 2,SMB Vuln Scan With Nmap (Less Specific),"nmap --script smb-vuln* -Pn -p 139,445 {IP}",Verified,4
 SMB,"137,138,139",Server Message Block,Hydra Brute Force,Need User,hydra -t 1 -V -f -l {Username} -P {Big_Passwordlist} {IP} smb,Verified,5
 SMB,"137,138,139",Server Message Block,SMB/SMB2 139/445 consolesless mfs enumeration,SMB/SMB2 139/445  enumeration without the need to run msfconsole,msfconsole -q -x 'use auxiliary/scanner/smb/smb_version; set RHOSTS {IP}; set RPORT 139; run; exit' && msfconsole -q -x 'use auxiliary/scanner/smb/smb2; set RHOSTS {IP}; set RPORT 139; run; exit' && msfconsole -q -x 'use auxiliary/scanner/smb/smb_version; set RHOSTS {IP}; set RPORT 445; run; exit' && msfconsole -q -x 'use auxiliary/scanner/smb/smb2; set RHOSTS {IP}; set RPORT 445; run; exit',Verified,6
+POP,110,Post Office Protocol,Notes,Notes for POP,"#Post Office Protocol (POP) is a type of computer networking and Internet standard protocol that extracts and retrieves email from a remote mail server for access by the host machine. POP is an application layer protocol in the OSI model that provides end users the ability to fetch and receive email (from here).
+The POP clients generally connect, retrieve all messages, store them on the client system, and delete them from the server. There are 3 versions of POP, but POP3 is the most used one.
+
+https://book.hacktricks.xyz/pentesting/pentesting-whois
+",Verified,1
+POP,110,Post Office Protocol,Banner Grab,Banner Grab 110,nc -nv {IP} 110,Verified,2
+POP,110,Post Office Protocol,Banner Grab 995,Grab Banner Secure,openssl s_client -connect {IP}:995 -crlf -quiet,Verified,3
+POP,110,Post Office Protocol,Nmap,Scan for POP info,"nmap --script ""pop3-capabilities or pop3-ntlm-info"" -sV -p 110 {IP}",Verified,4
+POP,110,Post Office Protocol,Hydra Brute Force,Need User,hydra -l {Username} -P {Big_Passwordlist} -f {IP} pop3 -V,Verified,5
+POP,110,Post Office Protocol,consolesless mfs enumeration,POP3 enumeration without the need to run msfconsole,msfconsole -q -x 'use auxiliary/scanner/pop3/pop3_version; set RHOSTS {IP}; set RPORT 110; run; exit',Verified,6
 SSH,22,Secure Shell Hardening,Hydra Brute Force,Need Username,hydra -v -V -u -l {Username} -P {Big_Passwordlist} -t 1 -u {IP} ssh,Verified,1
 SSH,22,Secure Shell Hardening,consolesless mfs enumeration,SSH enumeration without the need to run msfconsole,msfconsole -q -x 'use auxiliary/scanner/ssh/ssh_version; set RHOSTS {IP}; set RPORT 22; run; exit' && msfconsole -q -x 'use scanner/ssh/ssh_enumusers; set RHOSTS {IP}; set RPORT 22; run; exit' && msfconsole -q -x 'use auxiliary/scanner/ssh/juniper_backdoor; set RHOSTS {IP}; set RPORT 22; run; exit',Verified,2
 RDP,3389,Remote Desktop Protocol,Notes,Notes for RDP,"#Remote Desktop Protocol (RDP) is a proprietary protocol developed by Microsoft, which provides a user with a graphical interface to connect to another computer over a network connection. The user employs RDP client software for this purpose, while the other computer must run RDP server software 

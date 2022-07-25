@@ -24,7 +24,7 @@ apt update
 apt remove tilix
 apt-get install gobuster seclists dconf-cli g++ pip libreoffice smtp-user-enum leafpad enum4linux smbmap dbus-x11 -y
 wait
-python3 -m pip install -r requirements.txt
+python3 -m pip install -r ./requirements.txt | egrep -v "Requirement already satisfied:"
 
 wget https://github.com/gnunn1/tilix/releases/download/1.9.3/tilix.zip
 unzip tilix.zip -d /
@@ -35,11 +35,12 @@ chmod -R 755 dirsearch/
 if [[ ! -d 'impacket' ]]; then git clone https://github.com/SecureAuthCorp/impacket.git; fi
 chmod -R 755 impacket/
 cd impacket
-python3 -m pip install -r ./requirements.txt
-python3 ./setup.py install
+python3 -m pip install -r ./requirements.txt --quiet
+python3 ./setup.py install > /dev/null 2>&1
 cd ..
 
-cp "$PWD/Tire_Fire.jpg" "/root/Pictures/Tire_Fire.jpg"
+mkdir /etc/TireFire 2>/dev/null
+cp "$PWD/Tire_Fire.jpg" "/etc/TireFire/Tire_Fire.jpg"
 dconf load /com/gexperts/Tilix/ < tilix.dconf
 
 if [ -f "/usr/share/wordlists/rockyou.txt.gz" ] || [ ! -f "/usr/share/wordlists/rockyou.txt" ]
@@ -61,3 +62,5 @@ do
         echo "#"
     fi
 done
+
+echo "TireFire Installed Successfully."

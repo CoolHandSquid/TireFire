@@ -1,8 +1,0 @@
-22 files are identified with a HackTricks Automatic Command block.
-
-Error 1:    MdFile: ./HackTricks/network-services-pentesting/pentesting-pop.md
-    Function: populate_proto-Load Block
-    Section: expected <block end>, but found '<block mapping start>'
-  in "<unicode string>", line 34, column 2:
-     Entry_6:
-     ^
