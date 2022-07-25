@@ -146,8 +146,8 @@ Available variables are:
 The current variable values can be viewed in the variables table.
 ```
 ## Supporters
-[![Stargazers repo roster for @coolhandsquid/TireFire](https://reporoster.com/stars/coolhandsquid/TireFire)](https://github.com/coolhandsquid/TireFire/stargazers)
-[![Forkers repo roster for coolhandsquid/TireFire](https://reporoster.com/forks/coolhandsquid/TireFire)](https://github.com/coolhandsquid/TireFire/network/members)
+[![Stargazers repo roster for @CoolHandSquid/TireFire](https://reporoster.com/stars/CoolHandSquid/TireFire)](https://github.com/CoolHandSquid/TireFire/stargazers)
+[![Forkers repo roster for coolhandsquid/TireFire](https://reporoster.com/forks/CoolHandSquid/TireFire)](https://github.com/CoolHandSquid/TireFire/network/members)
 
 ## Contact
 Please contact me at CoolHandSquid32@gmail.com for contributions, suggestions, and ideas!  
