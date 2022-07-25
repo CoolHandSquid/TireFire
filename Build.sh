@@ -26,7 +26,9 @@ apt-get install gobuster seclists dconf-cli g++ pip libreoffice smtp-user-enum l
 wait
 python3 -m pip install -r ./requirements.txt | egrep -v "Requirement already satisfied:"
 
-wget https://github.com/gnunn1/tilix/releases/download/1.9.3/tilix.zip
+if test ! -f 'tilix.zip'
+    then wget https://github.com/gnunn1/tilix/releases/download/1.9.3/tilix.zip
+fi
 unzip tilix.zip -d /
 glib-compile-schemas /usr/share/glib-2.0/schemas/
 
