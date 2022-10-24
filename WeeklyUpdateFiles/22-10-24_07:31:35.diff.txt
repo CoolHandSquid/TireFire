@@ -1,0 +1,96 @@
+Diff between current HackTricks-Automatic-Commands/Main.csv and the newest csv
+            old_csv = 95 lines
+            new_csv = 97 lines
+            total   = 2 new lines
+            
+            59,91d58
+< SMTP,"25,465,587",Simple Mail Transfer Protocol,Notes,Notes for SMTP,"#SMTP (Simple Mail Transfer Protocol) is a TCP/IP protocol used in sending and receiving e-mail. However, since it is limited in its ability to queue messages at the receiving end, it is usually used with one of two other protocols, POP3 or IMAP, that let the user save messages in a server mailbox and download them periodically from the server.
+< 
+< https://book.hacktricks.xyz/pentesting/pentesting-smtp
+< ",Verified,1
+< SMTP,"25,465,587",Simple Mail Transfer Protocol,Banner Grab,Grab SMTP Banner,nc -vn {IP} 25,Verified,2
+< SMTP,"25,465,587",Simple Mail Transfer Protocol,SMTP Vuln Scan,SMTP Vuln Scan With Nmap,"nmap --script=smtp-commands,smtp-enum-users,smtp-vuln-cve2010-4344,smtp-vuln-cve2011-1720,smtp-vuln-cve2011-1764 -p 25 {IP}",Verified,3
+< SMTP,"25,465,587",Simple Mail Transfer Protocol,SMTP User Enum,Enumerate uses with smtp-user-enum,smtp-user-enum -M VRFY -U {Big_Userlist} -t {IP},Verified,4
+< SMTP,"25,465,587",Simple Mail Transfer Protocol,SMTPS Connect,Attempt to connect to SMTPS two different ways,openssl s_client -crlf -connect {IP}:465 &&&& openssl s_client -starttls smtp -crlf -connect {IP}:587,Verified,5
+< SMTP,"25,465,587",Simple Mail Transfer Protocol,Find MX Servers,Find MX servers of an organization,dig +short mx {Domain_Name},Verified,6
+< SMTP,"25,465,587",Simple Mail Transfer Protocol,Hydra Brute Force,Need Nothing,hydra -P {Big_Passwordlist} {IP} smtp -V,Verified,7
+< SMTP,"25,465,587",Simple Mail Transfer Protocol,consolesless mfs enumeration,SMTP enumeration without the need to run msfconsole,msfconsole -q -x 'use auxiliary/scanner/smtp/smtp_version; set RHOSTS {IP}; set RPORT 25; run; exit' && msfconsole -q -x 'use auxiliary/scanner/smtp/smtp_ntlm_domain; set RHOSTS {IP}; set RPORT 25; run; exit' && msfconsole -q -x 'use auxiliary/scanner/smtp/smtp_relay; set RHOSTS {IP}; set RPORT 25; run; exit',Verified,8
+< FTP,21,File Transfer Protocol,Notes,Notes for FTP,"#Anonymous Login
+< -bi     <<< so that your put is done via binary
+< 
+< wget --mirror 'ftp://ftp_user:UTDRSCH53c""$6hys@10.10.10.59'
+< ^^to download all dirs and files
+< 
+< wget --no-passive-ftp --mirror 'ftp://anonymous:anonymous@10.10.10.98' 
+< if PASV transfer is disabled
+< 
+< https://book.hacktricks.xyz/pentesting/pentesting-ftp
+< ",Verified,1
+< FTP,21,File Transfer Protocol,Banner Grab,Grab FTP Banner via telnet,telnet -n {IP} 21,Verified,2
+< FTP,21,File Transfer Protocol,Cert Grab,Grab FTP Certificate if existing,openssl s_client -connect {IP}:21 -starttls ftp,Verified,3
+< FTP,21,File Transfer Protocol,nmap ftp,Anon login and bounce FTP checks are performed,nmap --script ftp-* -p 21 {IP},Verified,4
+< FTP,21,File Transfer Protocol,Browser Connection,Connect with Browser,#ftp://anonymous:anonymous@{IP},Verified,5
+< FTP,21,File Transfer Protocol,Hydra Brute Force,Need Username,hydra -t 1 -l {Username} -P {Big_Passwordlist} -vV {IP} ftp,Verified,6
+< FTP,21,File Transfer Protocol,consolesless mfs enumeration ftp,FTP enumeration without the need to run msfconsole,msfconsole -q -x 'use auxiliary/scanner/ftp/anonymous; set RHOSTS {IP}; set RPORT 21; run; exit' && msfconsole -q -x 'use auxiliary/scanner/ftp/ftp_version; set RHOSTS {IP}; set RPORT 21; run; exit' && msfconsole -q -x 'use auxiliary/scanner/ftp/bison_ftp_traversal; set RHOSTS {IP}; set RPORT 21; run; exit' && msfconsole -q -x 'use auxiliary/scanner/ftp/colorado_ftp_traversal; set RHOSTS {IP}; set RPORT 21; run; exit' &&  msfconsole -q -x 'use auxiliary/scanner/ftp/titanftp_xcrc_traversal; set RHOSTS {IP}; set RPORT 21; run; exit',Verified,7
+< Ident,113,Identification Protocol,Notes,Notes for Ident,"#Is an Internet protocol that helps identify the user of a particular TCP connection.
+< 
+< https://book.hacktricks.xyz/pentesting/113-pentesting-ident
+< ",Verified,1
+< Ident,113,Identification Protocol,Enum Users,Enumerate Users,#apt install ident-user-enum    ident-user-enum {IP} 22 23 139 445 (try all open ports),Verified,2
+127a95,150
+> SMTP,"25,465,587",Simple Mail Transfer Protocol,Notes,Notes for SMTP,"#SMTP (Simple Mail Transfer Protocol) is a TCP/IP protocol used in sending and receiving e-mail. However, since it is limited in its ability to queue messages at the receiving end, it is usually used with one of two other protocols, POP3 or IMAP, that let the user save messages in a server mailbox and download them periodically from the server.
+> 
+> https://book.hacktricks.xyz/pentesting/pentesting-smtp
+> ",Verified,1
+> SMTP,"25,465,587",Simple Mail Transfer Protocol,Banner Grab,Grab SMTP Banner,nc -vn {IP} 25,Verified,2
+> SMTP,"25,465,587",Simple Mail Transfer Protocol,SMTP Vuln Scan,SMTP Vuln Scan With Nmap,"nmap --script=smtp-commands,smtp-enum-users,smtp-vuln-cve2010-4344,smtp-vuln-cve2011-1720,smtp-vuln-cve2011-1764 -p 25 {IP}",Verified,3
+> SMTP,"25,465,587",Simple Mail Transfer Protocol,SMTP User Enum,Enumerate uses with smtp-user-enum,smtp-user-enum -M VRFY -U {Big_Userlist} -t {IP},Verified,4
+> SMTP,"25,465,587",Simple Mail Transfer Protocol,SMTPS Connect,Attempt to connect to SMTPS two different ways,openssl s_client -crlf -connect {IP}:465 &&&& openssl s_client -starttls smtp -crlf -connect {IP}:587,Verified,5
+> SMTP,"25,465,587",Simple Mail Transfer Protocol,Find MX Servers,Find MX servers of an organization,dig +short mx {Domain_Name},Verified,6
+> SMTP,"25,465,587",Simple Mail Transfer Protocol,Hydra Brute Force,Need Nothing,hydra -P {Big_Passwordlist} {IP} smtp -V,Verified,7
+> SMTP,"25,465,587",Simple Mail Transfer Protocol,consolesless mfs enumeration,SMTP enumeration without the need to run msfconsole,msfconsole -q -x 'use auxiliary/scanner/smtp/smtp_version; set RHOSTS {IP}; set RPORT 25; run; exit' && msfconsole -q -x 'use auxiliary/scanner/smtp/smtp_ntlm_domain; set RHOSTS {IP}; set RPORT 25; run; exit' && msfconsole -q -x 'use auxiliary/scanner/smtp/smtp_relay; set RHOSTS {IP}; set RPORT 25; run; exit',Verified,8
+> FTP,21,File Transfer Protocol,Notes,Notes for FTP,"#Anonymous Login
+> -bi     <<< so that your put is done via binary
+> 
+> wget --mirror 'ftp://ftp_user:UTDRSCH53c""$6hys@10.10.10.59'
+> ^^to download all dirs and files
+> 
+> wget --no-passive-ftp --mirror 'ftp://anonymous:anonymous@10.10.10.98' 
+> if PASV transfer is disabled
+> 
+> https://book.hacktricks.xyz/pentesting/pentesting-ftp
+> ",Verified,1
+> FTP,21,File Transfer Protocol,Banner Grab,Grab FTP Banner via telnet,telnet -n {IP} 21,Verified,2
+> FTP,21,File Transfer Protocol,Cert Grab,Grab FTP Certificate if existing,openssl s_client -connect {IP}:21 -starttls ftp,Verified,3
+> FTP,21,File Transfer Protocol,nmap ftp,Anon login and bounce FTP checks are performed,nmap --script ftp-* -p 21 {IP},Verified,4
+> FTP,21,File Transfer Protocol,Browser Connection,Connect with Browser,#ftp://anonymous:anonymous@{IP},Verified,5
+> FTP,21,File Transfer Protocol,Hydra Brute Force,Need Username,hydra -t 1 -l {Username} -P {Big_Passwordlist} -vV {IP} ftp,Verified,6
+> FTP,21,File Transfer Protocol,consolesless mfs enumeration ftp,FTP enumeration without the need to run msfconsole,msfconsole -q -x 'use auxiliary/scanner/ftp/anonymous; set RHOSTS {IP}; set RPORT 21; run; exit' && msfconsole -q -x 'use auxiliary/scanner/ftp/ftp_version; set RHOSTS {IP}; set RPORT 21; run; exit' && msfconsole -q -x 'use auxiliary/scanner/ftp/bison_ftp_traversal; set RHOSTS {IP}; set RPORT 21; run; exit' && msfconsole -q -x 'use auxiliary/scanner/ftp/colorado_ftp_traversal; set RHOSTS {IP}; set RPORT 21; run; exit' &&  msfconsole -q -x 'use auxiliary/scanner/ftp/titanftp_xcrc_traversal; set RHOSTS {IP}; set RPORT 21; run; exit',Verified,7
+> Ident,113,Identification Protocol,Notes,Notes for Ident,"#Is an Internet protocol that helps identify the user of a particular TCP connection.
+> 
+> https://book.hacktricks.xyz/pentesting/113-pentesting-ident
+> ",Verified,1
+> Ident,113,Identification Protocol,Enum Users,Enumerate Users,#apt install ident-user-enum    ident-user-enum {IP} 22 23 139 445 (try all open ports),Verified,2
+> WinRM,5985,Windows Remote Managment,Notes,Notes for WinRM,"#Windows Remote Management (WinRM) is a Microsoft protocol that allows remote management of Windows machines over HTTP(S) using SOAP. On the backend it's utilising WMI, so you can think of it as an HTTP based API for WMI.
+> 
+> sudo gem install winrm winrm-fs colorize stringio 
+> git clone https://github.com/Hackplayers/evil-winrm.git 
+> cd evil-winrm
+> ruby evil-winrm.rb -i 192.168.1.100 -u Administrator -p ‘MySuperSecr3tPass123!’
+> 
+> https://kalilinuxtutorials.com/evil-winrm-hacking-pentesting/
+> 
+> ruby evil-winrm.rb -i 10.10.10.169 -u melanie -p 'Welcome123!' -e /root/Desktop/Machines/HTB/Resolute/
+> ^^so you can upload binary's from that directory        or -s to upload scripts (sherlock)
+> menu
+> invoke-binary `tab`
+> 
+> #python3
+> import winrm
+> s = winrm.Session('windows-host.example.com', auth=('john.smith', 'secret'))
+> print(s.run_cmd('ipconfig'))
+> print(s.run_ps('ipconfig'))
+> 
+> https://book.hacktricks.xyz/pentesting/pentesting-winrm
+> ",Verified,1
+> WinRM,5985,Windows Remote Managment,Hydra Brute Force,Need User,hydra -t 1 -V -f -l {Username} -P {Big_Passwordlist} rdp://{IP},Verified,2

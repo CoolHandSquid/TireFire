@@ -1,0 +1,8 @@
+24 files are identified with a HackTricks Automatic Command block.
+
+Error 1:    MdFile: ./HackTricks/network-services-pentesting/pentesting-dns.md
+    Function: populate_proto-Load Block
+    Section: found character '\t' that cannot start any token
+  in "<unicode string>", line 46, column 3:
+      	Name: consolesless mfs enumeration
+      ^
