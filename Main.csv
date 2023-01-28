@@ -36,6 +36,7 @@ Web,"80,443",Web,WordPress,WordPress Enumeration with WPScan,"?What is the locat
 wpscan --url {Web_Proto}://{IP}{1} --enumerate ap,at,cb,dbe && wpscan --url {Web_Proto}://{IP}{1} --enumerate u,tt,t,vp --passwords {Big_Passwordlist} -e
 ",Verified,10
 Web,"80,443",Web,WordPress Hydra Brute Force,Need User (admin is default),hydra -l admin -P {Big_Passwordlist} {IP} -V http-form-post '/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log In&testcookie=1:S=Location',Verified,11
+Web,"80,443",Web,Ffuf Vhost,Simple Scan with Ffuf for discovering additional vhosts,ffuf -w {Subdomain_List}:FUZZ -u {Web_Proto}://{Domain_Name} -H "Host: FUZZ.{Domain_Name}" -c -mc all {Ffuf_Filters},Verified,12
 MySql,3306,MySql,Notes,Notes for MySql,"#MySQL is a freely available open source Relational Database Management System (RDBMS) that uses Structured Query Language (SQL).
 
 https://book.hacktricks.xyz/pentesting/pentesting-mysql
