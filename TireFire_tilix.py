@@ -133,7 +133,7 @@ def display_sub(proto):
                 display_main()
 
 def display_variables():
-    items   = [("IP", IP), ("Network", Network), ("CIDR", CIDR), ("Domain_Name", Domain_Name), ("Naming_Context", Naming_Context), ("Web_Proto", Web_Proto), ("Web_Port", Web_Port), ("Username", Username), ("Password", Password), ("Big_Passwordlist", Big_Passwordlist), ("Small_Passwordlist", Small_Passwordlist), ("Big_Userlist", Big_Userlist), ("Small_Userlist", Small_Userlist), ("Big_Dirlist", Big_Dirlist), ("Small_Dirlist", Small_Dirlist), ("Tool_Dir", Tool_Dir)]
+    items   = [("IP", IP), ("Network", Network), ("CIDR", CIDR), ("Domain_Name", Domain_Name), ("Naming_Context", Naming_Context), ("Web_Proto", Web_Proto), ("Web_Port", Web_Port), ("Username", Username), ("Password", Password), ("Big_Passwordlist", Big_Passwordlist), ("Small_Passwordlist", Small_Passwordlist), ("Big_Userlist", Big_Userlist), ("Small_Userlist", Small_Userlist), ("Big_Dirlist", Big_Dirlist), ("Small_Dirlist", Small_Dirlist), ("Tool_Dir", Tool_Dir), ("Subdomain_List", Subdomain_List), ("Ffuf_Filters", Ffuf_Filters)]
     headers = ["Variable", "Current Value"]
     rawin   = input(Fore.YELLOW + "Variables Table\n" + Style.RESET_ALL + tabulate(items, headers=headers, tablefmt="psql", showindex="always")+ "\n> ")
     if input_validation(items, rawin) == True:
@@ -246,6 +246,8 @@ if __name__ == "__main__":
     Small_Userlist      = "/usr/share/seclists/Usernames/top-usernames-shortlist.txt"
     Big_Dirlist         = "/usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt"
     Small_Dirlist       = "/usr/share/seclists/Discovery/Web-Content/common.txt"
+    Subdomain_List      = "/usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt"
+    Ffuf_Filters        = "-fs 0"
     metasploit      = args.metasploit
     
     start(IP)
