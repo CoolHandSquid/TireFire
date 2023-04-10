@@ -1,0 +1,22 @@
+Diff between current HackTricks-Automatic-Commands/Main.csv and the newest csv
+            old_csv = 106 lines
+            new_csv = 94 lines
+            total   = -12 new lines
+            
+            24,39d23
+< Web,"80,443",Web,Notes,Notes for Web,"#https://book.hacktricks.xyz/pentesting/pentesting-web
+< ",Verified,1
+< Web,"80,443",Web,Quick Web Scan,Nikto and GoBuster,nikto -host {Web_Proto}://{IP}:{Web_Port} &&&& gobuster dir -w {Small_Dirlist} -u {Web_Proto}://{IP}:{Web_Port} && gobuster dir -w {Big_Dirlist} -u {Web_Proto}://{IP}:{Web_Port},Verified,2
+< Web,"80,443",Web,Nikto,Basic Site Info via Nikto,nikto -host {Web_Proto}://{IP}:{Web_Port},Verified,3
+< Web,"80,443",Web,WhatWeb,General purpose auto scanner,whatweb -a 4 {IP},Verified,4
+< Web,"80,443",Web,Directory Brute Force Non-Recursive,Non-Recursive Directory Brute Force,gobuster dir -w {Big_Dirlist} -u {Web_Proto}://{IP}:{Web_Port},Verified,5
+< Web,"80,443",Web,Directory Brute Force Recursive,Recursive Directory Brute Force,"python3 {Tool_Dir}dirsearch/dirsearch.py -w {Small_Dirlist} -e php,exe,sh,py,html,pl -f -t 20 -u {Web_Proto}://{IP}:{Web_Port} -r 10",Verified,6
+< Web,"80,443",Web,Directory Brute Force CGI,Common Gateway Interface Brute Force,gobuster dir -u {Web_Proto}://{IP}:{Web_Port}/ -w /usr/share/seclists/Discovery/Web-Content/CGIs.txt -s 200,Verified,7
+< Web,"80,443",Web,Nmap Web Vuln Scan,Tailored Nmap Scan for web Vulnerabilities,"nmap -vv --reason -Pn -sV -p {Web_Port} --script=`banner,(http* or ssl*) and not (brute or broadcast or dos or external or http-slowloris* or fuzzer)` {IP}",Verified,8
+< Web,"80,443",Web,Drupal,Drupal Enumeration Notes,"#git clone https://github.com/immunIT/drupwn.git for low hanging fruit and git clone https://github.com/droope/droopescan.git for deeper enumeration
+< ",Verified,9
+< Web,"80,443",Web,WordPress,WordPress Enumeration with WPScan,"?What is the location of the wp-login.php? Example: /Yeet/cannon/wp-login.php
+< wpscan --url {Web_Proto}://{IP}{1} --enumerate ap,at,cb,dbe && wpscan --url {Web_Proto}://{IP}{1} --enumerate u,tt,t,vp --passwords {Big_Passwordlist} -e
+< ",Verified,10
+< Web,"80,443",Web,WordPress Hydra Brute Force,Need User (admin is default),hydra -l admin -P {Big_Passwordlist} {IP} -V http-form-post '/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log In&testcookie=1:S=Location',Verified,11
+< Web,"80,443",Web,Ffuf Vhost,Simple Scan with Ffuf for discovering additional vhosts,ffuf -w {Subdomain_List}:FUZZ -u {Web_Proto}://{Domain_Name} -H "Host: FUZZ.{Domain_Name}" -c -mc all {Ffuf_Filters},Verified,12
