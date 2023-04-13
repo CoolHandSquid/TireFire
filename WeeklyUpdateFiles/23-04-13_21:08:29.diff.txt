@@ -1,0 +1,9 @@
+Diff between current HackTricks-Automatic-Commands/Main.csv and the newest csv
+            old_csv = 106 lines
+            new_csv = 106 lines
+            total   = 0 new lines
+            
+            39c39
+< Web,"80,443",Web,Ffuf Vhost,Simple Scan with Ffuf for discovering additional vhosts,ffuf -w {Subdomain_List}:FUZZ -u {Web_Proto}://{Domain_Name} -H "Host: FUZZ.{Domain_Name}" -c -mc all {Ffuf_Filters},Verified,12
+---
+> Web,"80,443",Web,Ffuf Vhost,Simple Scan with Ffuf for discovering additional vhosts,fuff -w {Subdomain_List}:FUZZ -u {Web_Proto}://{Domain_Name} -H Host:Fuzz.{Domian_Name} -c -mc all {Ffuf_Filters},Verified,12
