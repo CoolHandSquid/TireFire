@@ -36,7 +36,7 @@ Web,"80,443",Web,WordPress,WordPress Enumeration with WPScan,"?What is the locat
 wpscan --url {Web_Proto}://{IP}{1} --enumerate ap,at,cb,dbe && wpscan --url {Web_Proto}://{IP}{1} --enumerate u,tt,t,vp --passwords {Big_Passwordlist} -e
 ",Verified,10
 Web,"80,443",Web,WordPress Hydra Brute Force,Need User (admin is default),hydra -l admin -P {Big_Passwordlist} {IP} -V http-form-post '/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log In&testcookie=1:S=Location',Verified,11
-Web,"80,443",Web,Ffuf Vhost,Simple Scan with Ffuf for discovering additional vhosts,ffuf -w {Subdomain_List}:FUZZ -u {Web_Proto}://{Domain_Name} -H "Host: FUZZ.{Domain_Name}" -c -mc all {Ffuf_Filters},Verified,12
+Web,"80,443",Web,Ffuf Vhost,Simple Scan with Ffuf for discovering additional vhosts,"ffuf -w {Subdomain_List}:FUZZ -u {Web_Proto}://{Domain_Name} -H ""Host:FUZZ.{Domain_Name}"" -c -mc all {Ffuf_Filters}",Verified,12
 MySql,3306,MySql,Notes,Notes for MySql,"#MySQL is a freely available open source Relational Database Management System (RDBMS) that uses Structured Query Language (SQL).
 
 https://book.hacktricks.xyz/pentesting/pentesting-mysql
@@ -75,7 +75,7 @@ https://book.hacktricks.xyz/pentesting/pentesting-dns
 ",Verified,1
 DNS,53,Domain Name Service,Banner Grab,Grab DNS Banner,dig version.bind CHAOS TXT @DNS,Verified,2
 DNS,53,Domain Name Service,Nmap Vuln Scan,Scan for Vulnerabilities with Nmap,"nmap -n --script ""(default and *dns*) or fcrdns or dns-srv-enum or dns-random-txid or dns-random-srcport"" {IP}",Verified,3
-DNS,53,Domain Name Service,Zone Transfer,Three attempts at forcing a zone transfer,dig axfr @{IP} && dix axfr @{IP} {Domain_Name} && fierce -dns {Domain_Name},Verified,4
+DNS,53,Domain Name Service,Zone Transfer,Three attempts at forcing a zone transfer,dig axfr @{IP} && dix axfr @{IP} {Domain_Name} && fierce --dns-servers {IP} --domain {Domain_Name},Verified,4
 DNS,53,Domain Name Service,Active Directory,Eunuerate a DC via DNS,"dig -t _gc._{Domain_Name} && dig -t _ldap._{Domain_Name} && dig -t _kerberos._{Domain_Name} && dig -t _kpasswd._{Domain_Name} && nmap --script dns-srv-enum --script-args ""dns-srv-enum.domain={Domain_Name}""",Verified,5
 DNS,53,Domain Name Service,consolesless mfs enumeration,DNS enumeration without the need to run msfconsole,msfconsole -q -x 'use auxiliary/scanner/dns/dns_amp; set RHOSTS {IP}; set RPORT 53; run; exit' && msfconsole -q -x 'use auxiliary/gather/enum_dns; set RHOSTS {IP}; set RPORT 53; run; exit',Verified,6
 MSSQL,1433,Microsoft SQL Server,Notes,Notes for MSSQL,"#Microsoft SQL Server is a relational database management system developed by Microsoft. As a database server, it is a software product with the primary function of storing and retrieving data as requested by other software applications—which may run either on the same computer or on another computer across a network (including the Internet).
