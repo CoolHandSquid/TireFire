@@ -21,7 +21,7 @@ ln -s "$PWD/TireFire.py" "/usr/bin/TireFire"
 printf "\033[1;32mApt Installing Neccessary Tools\n\033[0m"
 apt -qqq update
 sudo apt -qqq remove tilix 2>/dev/null | grep -v Unable
-apt-get -qq install gobuster seclists dconf-cli g++ pip libreoffice smtp-user-enum leafpad enum4linux smbmap dbus-x11 -y
+apt-get -qq install gobuster seclists dconf-cli g++ pip libreoffice smtp-user-enum leafpad enum4linux smbmap dbus-x11 tilix -y
 wait
 
 printf "\033[1;32mPip Installing Neccessary Tools\n\033[0m"
@@ -40,11 +40,7 @@ python3 -m pip install -qq -r ./requirements.txt --quiet
 python3 ./setup.py install > /dev/null 2>&1
 cd ..
 
-printf "\033[1;32mInstalling tilix\n\033[0m"
-if test ! -f 'tilix.zip'
-    then wget https://github.com/gnunn1/tilix/releases/download/1.9.3/tilix.zip
-fi
-unzip -oq tilix.zip -d /
+printf "\033[1;32mConfiguring tilix\n\033[0m"
 glib-compile-schemas /usr/share/glib-2.0/schemas/
 mkdir /etc/TireFire 2>/dev/null
 cp "$PWD/Tire_Fire.jpg" "/etc/TireFire/Tire_Fire.jpg"
