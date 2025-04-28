@@ -1,0 +1,6 @@
+Diff between current HackTricks-Automatic-Commands/Main.csv and the newest csv
+            old_csv = 106 lines
+            new_csv = 106 lines
+            total   = 0 new lines
+            
+            
